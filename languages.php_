@@ -1,0 +1,8 @@
+<?php
+ $lu = "Arctic Language Pack 1.0 by Calisto";
+ $lang = array();
+ $lngname = 'en';
+ $lang[$lngname]['possible']        =      'en,com,c,english'; // comma-separated list of possible values to set this language
+ $lang[$lngname]['language']        =      'English';  // It'll be shown this way:  English (en)
+ $lang[$lngname]['cset_overview']   =      '%s Channel Einstellungen';
+?>

@@ -1,0 +1,1 @@
+<?php echo('NOTICE Calisto :'.date('d.m.y H:i:s').' GMT +01:00'); ?>

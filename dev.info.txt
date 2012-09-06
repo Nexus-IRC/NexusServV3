@@ -1,0 +1,3 @@
+ArcticServ 2.0 (wgn) Release 1
+
+Modified version of ArcticServ2.0 for the IRC network WebGamesnet
