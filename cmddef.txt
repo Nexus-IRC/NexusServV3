@@ -1,3 +1,0 @@
-[takelist]
- This command requires a channel owner access.
- This command requires a channel access of at least [b]AddUser[b]

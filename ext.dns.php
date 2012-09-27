@@ -1,169 +1,169 @@
 <?php
- if (str_replace("::ip","",$params) != $params) {
-  $params = implode(".",array_reverse(explode(".",str_replace("::ip","",$params)))).".in-addr.arpa";
- }
- $param = explode(" ",$params);
- if ($chan[0] == "#") {
-  if ($toys == "" || $toys == "0") {
-   echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
-  }
-  elseif ($toys == "1") {
-    if($param[0] == NULL){ echo("PRIVMSG $chan :Invalid Hostname.\n"); } 
-	else {
-		if(strtolower($param[1]) == "soa"){
-			$xx = dns_get_record($param[0]);
-			echo("NOTICE $nick :DNS Records for \002".$param[0]."\002: (SOA)\n");
-			foreach ($xx as $ipar) {
-			if ($ipar['type'] == 'SOA') {
-			 $mname = $ipar['mname'];
-			 $serial = $ipar['serial'];
-			 $refresh = $ipar['refresh'];
-			 $retry = $ipar['retry'];
-			 $expire = $ipar['expire'];
-			 $ttl = $ipar['ttl'];
-			}
-		   }
-			echo("NOTICE $nick : SOA    (Start of Authority):\n");
-			echo("NOTICE $nick :    name:     ".$mname."\n");
-			echo("NOTICE $nick :    serial:   ".$serial."\n");
-			echo("NOTICE $nick :    refresh:  ".$refresh."\n");
-			echo("NOTICE $nick :    retry:    ".$retry."\n");
-			echo("NOTICE $nick :    expire:   ".$expire."\n");
-			echo("NOTICE $nick :    TTL:      ".$ttl."\n");	   
-		}else{
-		  $xx = dns_get_record($param[0]);
-		  $xc = 0;
-		  echo("NOTICE $nick :DNS Records for \002".$param[0]."\002:\n");
-		   foreach ($xx as $ipar) {
-			if ($ipar['type'] == 'AAAA') {
-			 $ip = '   '.$ipar['ipv6'];
-			}
-			if ($ipar['type'] == 'A') {
-			 $ip = '      '.$ipar['ip'];
-			}
-			if ($ipar['type'] == 'SOA') {
-			 $ip = '    (see: dns '.$param[0].' SOA)';
-			}
-			if ($ipar['type'] == 'TXT') {
-			 $ip = '    '.$ipar['txt'];
-			}
-			if ($ipar['type'] == 'CNAME') {
-			 $ip = '  '.$ipar['target'];
-			}
-			if ($ipar['type'] == 'NS') {
-			 $ip = '     '.$ipar['target'];
-			}
-			if ($ipar['type'] == 'MX') {
-			 $ip = '     '.$ipar['target'].' (priority: '.$ipar['pri'].')';
-			}
-			if ($ipar['type'] == 'PTR') {
-			 $ip = $ipar['target'];
-			}
-			if ($ipar['type'] == '') {
-			 $ipar['type'] = '0';
-			 $ip = '      EMPTY_DNS';
-			}
-			if ($ipar['type'] == 'NAPTR') {
-			 $ipar['type'] = '0';
-			 $ip = '  EMPTY_DNS';
-			}
-			if($ipar['type'] == "0"){
+if (str_replace("::ip","",$params) != $params) {
+	$params = implode(".",array_reverse(explode(".",str_replace("::ip","",$params)))).".in-addr.arpa";
+}
+$param = explode(" ",$params);
+if ($chan[0] == "#") {
+	if ($toys == "" || $toys == "0") {
+		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
+	}
+	elseif ($toys == "1") {
+		if($param[0] == NULL){ echo("PRIVMSG $chan :Invalid Hostname.\n"); } 
+		else {
+			if(strtolower($param[1]) == "soa"){
+				$xx = dns_get_record($param[0]);
+				echo("NOTICE $nick :DNS Records for \002".$param[0]."\002: (SOA)\n");
+				foreach ($xx as $ipar) {
+					if ($ipar['type'] == 'SOA') {
+						$mname = $ipar['mname'];
+						$serial = $ipar['serial'];
+						$refresh = $ipar['refresh'];
+						$retry = $ipar['retry'];
+						$expire = $ipar['expire'];
+						$ttl = $ipar['ttl'];
+					}
+				}
+				echo("NOTICE $nick : SOA    (Start of Authority):\n");
+				echo("NOTICE $nick :    name:     ".$mname."\n");
+				echo("NOTICE $nick :    serial:   ".$serial."\n");
+				echo("NOTICE $nick :    refresh:  ".$refresh."\n");
+				echo("NOTICE $nick :    retry:    ".$retry."\n");
+				echo("NOTICE $nick :    expire:   ".$expire."\n");
+				echo("NOTICE $nick :    TTL:      ".$ttl."\n");	   
 			}else{
-				echo("NOTICE $nick :\002".$ipar['type']."\002 ".$ip."\n");
+				$xx = dns_get_record($param[0]);
+				$xc = 0;
+				echo("NOTICE $nick :DNS Records for \002".$param[0]."\002:\n");
+				foreach ($xx as $ipar) {
+					if ($ipar['type'] == 'AAAA') {
+						$ip = '   '.$ipar['ipv6'];
+					}
+					if ($ipar['type'] == 'A') {
+						$ip = '      '.$ipar['ip'];
+					}
+					if ($ipar['type'] == 'SOA') {
+						$ip = '    (see: dns '.$param[0].' SOA)';
+					}
+					if ($ipar['type'] == 'TXT') {
+						$ip = '    '.$ipar['txt'];
+					}
+					if ($ipar['type'] == 'CNAME') {
+						$ip = '  '.$ipar['target'];
+					}
+					if ($ipar['type'] == 'NS') {
+						$ip = '     '.$ipar['target'];
+					}
+					if ($ipar['type'] == 'MX') {
+						$ip = '     '.$ipar['target'].' (priority: '.$ipar['pri'].')';
+					}
+					if ($ipar['type'] == 'PTR') {
+						$ip = $ipar['target'];
+					}
+					if ($ipar['type'] == '') {
+						$ipar['type'] = '0';
+						$ip = '      EMPTY_DNS';
+					}
+					if ($ipar['type'] == 'NAPTR') {
+						$ipar['type'] = '0';
+						$ip = '  EMPTY_DNS';
+					}
+					if($ipar['type'] == "0"){
+					}else{
+						echo("NOTICE $nick :\002".$ipar['type']."\002 ".$ip."\n");
+					}
+					$xc++;
+				}
+				echo("NOTICE $nick :\002$xc\002 records found.\n");
 			}
-		   $xc++;
-		  }
-		  echo("NOTICE $nick :\002$xc\002 records found.\n");
 		}
 	}
-  }
-  elseif ($toys == "2") {
-    if($param[0] == NULL){ echo("PRIVMSG $chan :Invalid Hostname.\n"); } 
-	else {
-		if(strtolower($param[1]) == "soa"){ 
-			$xx = dns_get_record($param[0]);
-			echo("PRIVMSG $chan :DNS Records for \002".$param[0]."\002: (SOA)\n");
-			foreach ($xx as $ipar) {
-			if ($ipar['type'] == 'SOA') {
-			 $mname = $ipar['mname'];
-			 $serial = $ipar['serial'];
-			 $refresh = $ipar['refresh'];
-			 $retry = $ipar['retry'];
-			 $expire = $ipar['expire'];
-			 $ttl = $ipar['ttl'];
-			}
-		   }
-			echo("PRIVMSG $chan : SOA    (Start of Authority):\n");
-			echo("PRIVMSG $chan :    name:     ".$mname."\n");
-			echo("PRIVMSG $chan :    serial:   ".$serial."\n");
-			echo("PRIVMSG $chan :    refresh:  ".$refresh."\n");
-			echo("PRIVMSG $chan :    retry:    ".$retry."\n");
-			echo("PRIVMSG $chan :    expire:   ".$expire."\n");
-			echo("PRIVMSG $chan :    TTL:      ".$ttl."\n");	   
-		}else{
-		   $xx = dns_get_record($param[0]);
-		   $xc = 0;
-		   echo("PRIVMSG $chan :DNS Records for \002".$param[0]."\002:\n");
-		   foreach ($xx as $ipar) {
-			if ($ipar['type'] == 'AAAA') {
-			 $ip = '   '.$ipar['ipv6'];
-			}
-			if ($ipar['type'] == 'A') {
-			 $ip = '      '.$ipar['ip'];
-			}
-			if ($ipar['type'] == 'SOA') {
-			 $ip = '    (see: dns '.$param[0].' SOA)';
-			}
-			if ($ipar['type'] == 'TXT') {
-			 $ip = '    '.$ipar['txt'];
-			}
-			if ($ipar['type'] == 'CNAME') {
-			 $ip = '  '.$ipar['target'];
-			}
-			if ($ipar['type'] == 'NS') {
-			 $ip = '     '.$ipar['target'];
-			}
-			if ($ipar['type'] == 'MX') {
-			 $ip = '     '.$ipar['target'].' (priority: '.$ipar['pri'].')';
-			}
-			if ($ipar['type'] == 'PTR') {
-			 $ip = $ipar['target'];
-			}
-			if ($ipar['type'] == '') {
-			 $ipar['type'] = '0';
-			 $ip = '      EMPTY_DNS';
-			}
-			if ($ipar['type'] == 'NAPTR') {
-			 $ipar['type'] = '0';
-			 $ip = '  EMPTY_DNS';
-			}
-			if($ipar['type'] == "0"){
+	elseif ($toys == "2") {
+		if($param[0] == NULL){ echo("PRIVMSG $chan :Invalid Hostname.\n"); } 
+		else {
+			if(strtolower($param[1]) == "soa"){ 
+				$xx = dns_get_record($param[0]);
+				echo("PRIVMSG $chan :DNS Records for \002".$param[0]."\002: (SOA)\n");
+				foreach ($xx as $ipar) {
+					if ($ipar['type'] == 'SOA') {
+						$mname = $ipar['mname'];
+						$serial = $ipar['serial'];
+						$refresh = $ipar['refresh'];
+						$retry = $ipar['retry'];
+						$expire = $ipar['expire'];
+						$ttl = $ipar['ttl'];
+					}
+				}
+				echo("PRIVMSG $chan : SOA    (Start of Authority):\n");
+				echo("PRIVMSG $chan :    name:     ".$mname."\n");
+				echo("PRIVMSG $chan :    serial:   ".$serial."\n");
+				echo("PRIVMSG $chan :    refresh:  ".$refresh."\n");
+				echo("PRIVMSG $chan :    retry:    ".$retry."\n");
+				echo("PRIVMSG $chan :    expire:   ".$expire."\n");
+				echo("PRIVMSG $chan :    TTL:      ".$ttl."\n");	   
 			}else{
-				echo("PRIVMSG $chan :\002".$ipar['type']."\002 ".$ip."\n");
+				$xx = dns_get_record($param[0]);
+				$xc = 0;
+				echo("PRIVMSG $chan :DNS Records for \002".$param[0]."\002:\n");
+				foreach ($xx as $ipar) {
+					if ($ipar['type'] == 'AAAA') {
+						$ip = '   '.$ipar['ipv6'];
+					}
+					if ($ipar['type'] == 'A') {
+						$ip = '      '.$ipar['ip'];
+					}
+					if ($ipar['type'] == 'SOA') {
+						$ip = '    (see: dns '.$param[0].' SOA)';
+					}
+					if ($ipar['type'] == 'TXT') {
+						$ip = '    '.$ipar['txt'];
+					}
+					if ($ipar['type'] == 'CNAME') {
+						$ip = '  '.$ipar['target'];
+					}
+					if ($ipar['type'] == 'NS') {
+						$ip = '     '.$ipar['target'];
+					}
+					if ($ipar['type'] == 'MX') {
+						$ip = '     '.$ipar['target'].' (priority: '.$ipar['pri'].')';
+					}
+					if ($ipar['type'] == 'PTR') {
+						$ip = $ipar['target'];
+					}
+					if ($ipar['type'] == '') {
+						$ipar['type'] = '0';
+						$ip = '      EMPTY_DNS';
+					}
+					if ($ipar['type'] == 'NAPTR') {
+						$ipar['type'] = '0';
+						$ip = '  EMPTY_DNS';
+					}
+					if($ipar['type'] == "0"){
+					}else{
+						echo("PRIVMSG $chan :\002".$ipar['type']."\002 ".$ip."\n");
+					}
+					$xc++;
+				}
+				echo("PRIVMSG $chan :\002$xc\002 records found.\n");
 			}
-			$xc++;
-		   }
-		   echo("PRIVMSG $chan :\002$xc\002 records found.\n");
 		}
 	}
-  }
- }
- else {
+}
+else {
 	if($param[0] == NULL){ echo("PRIVMSG $chan :Invalid Hostname.\n"); } 
 	else {
 		if(strtolower($param[1]) == "soa"){
 			$xx = dns_get_record($param[0]);
 			echo("NOTICE $nick :DNS Records for \002".$param[0]."\002: (SOA)\n");
 			foreach ($xx as $ipar) {
-			if ($ipar['type'] == 'SOA') {
-			 $mname = $ipar['mname'];
-			 $serial = $ipar['serial'];
-			 $refresh = $ipar['refresh'];
-			 $retry = $ipar['retry'];
-			 $expire = $ipar['expire'];
-			 $ttl = $ipar['ttl'];
+					if ($ipar['type'] == 'SOA') {
+					$mname = $ipar['mname'];
+					$serial = $ipar['serial'];
+					$refresh = $ipar['refresh'];
+					$retry = $ipar['retry'];
+					$expire = $ipar['expire'];
+					$ttl = $ipar['ttl'];
+				}
 			}
-		   }
 			echo("NOTICE $nick : SOA    (Start of Authority):\n");
 			echo("NOTICE $nick :    name:     ".$mname."\n");
 			echo("NOTICE $nick :    serial:   ".$serial."\n");
@@ -172,50 +172,50 @@
 			echo("NOTICE $nick :    expire:   ".$expire."\n");
 			echo("NOTICE $nick :    TTL:      ".$ttl."\n");	   
 		}else{
-		  $xx = dns_get_record($param[0]);
-		  $xc = 0;
-		  echo("NOTICE $nick :DNS Records for \002".$param[0]."\002:\n");
-		   foreach ($xx as $ipar) {
-			if ($ipar['type'] == 'AAAA') {
-			 $ip = '   '.$ipar['ipv6'];
+			$xx = dns_get_record($param[0]);
+			$xc = 0;
+			echo("NOTICE $nick :DNS Records for \002".$param[0]."\002:\n");
+			foreach ($xx as $ipar) {
+				if ($ipar['type'] == 'AAAA') {
+					$ip = '   '.$ipar['ipv6'];
+				}
+				if ($ipar['type'] == 'A') {
+					$ip = '      '.$ipar['ip'];
+				}
+				if ($ipar['type'] == 'SOA') {
+					$ip = '    (see: dns '.$param[0].' SOA)';
+				}
+				if ($ipar['type'] == 'TXT') {
+					$ip = '    '.$ipar['txt'];
+				}
+				if ($ipar['type'] == 'CNAME') {
+					$ip = '  '.$ipar['target'];
+				}
+				if ($ipar['type'] == 'NS') {
+					$ip = '     '.$ipar['target'];
+				}
+				if ($ipar['type'] == 'MX') {
+					$ip = '     '.$ipar['target'].' (priority: '.$ipar['pri'].')';
+				}
+					if ($ipar['type'] == 'PTR') {
+				$ip = $ipar['target'];
+				}
+				if ($ipar['type'] == '') {
+					$ipar['type'] = '0';
+					$ip = '      EMPTY_DNS';
+				}
+				if ($ipar['type'] == 'NAPTR') {
+					$ipar['type'] = '0';
+					$ip = '  EMPTY_DNS';
+				}
+				if($ipar['type'] == "0"){
+				}else{
+					echo("NOTICE $nick :\002".$ipar['type']."\002 ".$ip."\n");
+				}
+				$xc++;
 			}
-			if ($ipar['type'] == 'A') {
-			 $ip = '      '.$ipar['ip'];
-			}
-			if ($ipar['type'] == 'SOA') {
-			 $ip = '    (see: dns '.$param[0].' SOA)';
-			}
-			if ($ipar['type'] == 'TXT') {
-			 $ip = '    '.$ipar['txt'];
-			}
-			if ($ipar['type'] == 'CNAME') {
-			 $ip = '  '.$ipar['target'];
-			}
-			if ($ipar['type'] == 'NS') {
-			 $ip = '     '.$ipar['target'];
-			}
-			if ($ipar['type'] == 'MX') {
-			 $ip = '     '.$ipar['target'].' (priority: '.$ipar['pri'].')';
-			}
-			if ($ipar['type'] == 'PTR') {
-			 $ip = $ipar['target'];
-			}
-			if ($ipar['type'] == '') {
-			 $ipar['type'] = '0';
-			 $ip = '      EMPTY_DNS';
-			}
-			if ($ipar['type'] == 'NAPTR') {
-			 $ipar['type'] = '0';
-			 $ip = '  EMPTY_DNS';
-			}
-			if($ipar['type'] == "0"){
-			}else{
-				echo("NOTICE $nick :\002".$ipar['type']."\002 ".$ip."\n");
-			}
-		   $xc++;
-		  }
-		  echo("NOTICE $nick :\002$xc\002 records found.\n");
+			echo("NOTICE $nick :\002$xc\002 records found.\n");
 		}
 	}
- }
+}
 ?>

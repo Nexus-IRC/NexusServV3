@@ -1,2 +1,0 @@
-arcticserv.php
-cmds

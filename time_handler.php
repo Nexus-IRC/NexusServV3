@@ -1,51 +1,51 @@
 <?php
 function str2time ($line) {
- $ttime = 0;
- $x = 0;
- $cache = "";
- while ($line[$x] != "") {
-  if ($line[$x] == "1" or $line[$x] == "2" or $line[$x] == "3" or $line[$x] == "4" or $line[$x] == "5" or $line[$x] == "6" or $line[$x] == "7" or $line[$x] == "8" or $line[$x] == "9" or $line[$x] == "0") {
-   $cache = $cache.$line[$x];
-   $y = $x + 1;
-   if ($line[$y] == "") {
-    $ttime = $ttime + $cache;
-    $cache = "";
-   }
-  }
-  elseif ($line[$x] == "y") {
-   $ttime = $ttime + $cache * 60 * 60 * 24 * 30 * 12;
-   $cache = "";
-  }
-  elseif ($line[$x] == "M") {
-   $ttime = $ttime + $cache * 60 * 60 * 24 * 30;
-   $cache = "";
-  }
-  elseif ($line[$x] == "w") {
-   $ttime = $ttime + $cache * 60 * 60 * 24 * 7;
-   $cache = "";
-  }
-  elseif ($line[$x] == "d") {
-   $ttime = $ttime + $cache * 60 * 60 * 24;
-   $cache = "";
-  }
-  elseif ($line[$x] == "h") {
-   $ttime = $ttime + $cache * 60 * 60;
-   $cache = "";
-  }
-  elseif ($line[$x] == "m") {
-   $ttime = $ttime + $cache * 60;
-   $cache = "";
-  }
-  elseif ($line[$x] == "s") {
-   $ttime = $ttime + $cache;;
-   $cache = "";
-  }
-  else {
-   return("I");
-  }
-  $x++;
- }
- return($ttime);
+	$ttime = 0;
+	$x = 0;
+	$cache = "";
+	while ($line[$x] != "") {
+		if ($line[$x] == "1" or $line[$x] == "2" or $line[$x] == "3" or $line[$x] == "4" or $line[$x] == "5" or $line[$x] == "6" or $line[$x] == "7" or $line[$x] == "8" or $line[$x] == "9" or $line[$x] == "0") {
+			$cache = $cache.$line[$x];
+			$y = $x + 1;
+			if ($line[$y] == "") {
+				$ttime = $ttime + $cache;
+				$cache = "";
+			}
+		}
+		elseif ($line[$x] == "y") {
+			$ttime = $ttime + $cache * 60 * 60 * 24 * 30 * 12;
+			$cache = "";
+		}
+		elseif ($line[$x] == "M") {
+			$ttime = $ttime + $cache * 60 * 60 * 24 * 30;
+			$cache = "";
+		}
+		elseif ($line[$x] == "w") {
+			$ttime = $ttime + $cache * 60 * 60 * 24 * 7;
+			$cache = "";
+		}
+		elseif ($line[$x] == "d") {
+			$ttime = $ttime + $cache * 60 * 60 * 24;
+			$cache = "";
+		}
+		elseif ($line[$x] == "h") {
+			$ttime = $ttime + $cache * 60 * 60;
+			$cache = "";
+		}
+		elseif ($line[$x] == "m") {
+			$ttime = $ttime + $cache * 60;
+			$cache = "";
+		}
+		elseif ($line[$x] == "s") {
+			$ttime = $ttime + $cache;;
+			$cache = "";
+		}
+		else {
+			return("I");
+		}
+		$x++;
+	}
+	return($ttime);
 }
 
 function time2str ($line) {

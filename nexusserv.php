@@ -1,5 +1,5 @@
 <?php
-/* arcticserv.php - NexusServV3
+/* nexusserv.php - NexusServV3
  * Copyright (C) 2012  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
