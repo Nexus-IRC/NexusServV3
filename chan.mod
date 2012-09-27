@@ -2687,7 +2687,7 @@ elseif (strtolower($cbase) == "adduser") {
 		$xyz = 500;
 		$valid = 0;
 		while ($xyz > 0) {
-			if ($pe == $xyz) {
+			if ("$pe" == "$xyz") {
 				$valid = 1;
 			}
 			$xyz = $xyz - 1;
@@ -2854,6 +2854,18 @@ elseif (strtolower($cbase) == "clvl") {
 	$ctarg = strtolower($target);
 	$tchan = $ctarg;
 	$area = "";
+	$xyz = 500;
+	$valid = 0;
+	while ($xyz > 0) {
+		if ("$pe" == "$xyz") {
+			$valid = 1;
+		}
+		$xyz = $xyz - 1;
+	}
+	if ($valid == 0) {
+		sendserv("NOTICE $nick :\002$pe\002 is an invalid access level.");
+		return(0);
+	}
 	$fop = fopen("settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);

@@ -209,20 +209,7 @@ elseif (strtolower($cbase) == "emote") {
 }
 elseif (strtolower($cbase) == "version") {
 	global $version; global $devline; global $secdevline;
-	sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].") Release ".$GLOBALS['brelease']);
-	sendserv("NOTICE $nick : based on the ArcticServ Core v".$GLOBALS['core']." by Calisto.");
-	sendserv("NOTICE $nick :Copyright© 2012 Calisto (Eric F.) Project #nexus (\002xycalistoyx@gmail.com\002)");
-	sendserv("NOTICE $nick :Special thanks to:");
-	sendserv("NOTICE $nick : Stricted           Hosting");
-	sendserv("NOTICE $nick : pierre             Bugreporting and Ideas");
-	sendserv("NOTICE $nick : synthtech          Ideas");
-	sendserv("NOTICE $nick : ");
-	sendserv("NOTICE $nick :Special thanks to the following for \002previous versions\002");
-	sendserv("NOTICE $nick : Zer0n              Bugreporting and -fixing");
-	sendserv("NOTICE $nick : pk910              Bugreporting");
-	sendserv("NOTICE $nick : Shaw               Bugreporting");
-	sendserv("NOTICE $nick : TeaTow             Bugreporting and ideas");
-	sendserv("NOTICE $nick :---");
+	sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename']."). Core ".$GLOBALS['core'].". Release ".$GLOBALS['brelease']);
 }
 elseif (strtolower($cbase) == "netinfo") {
 	global $server; global $botnick; global $userinfo; global $stime;

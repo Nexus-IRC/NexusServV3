@@ -26,10 +26,10 @@ $botreal = "Channel Services - #nexus";
 $botauth = "NexusServ";
 $pass = "xxxx";
 
-$bversion = "3.5-1";
-$bcodename = "ogn";
-$brelease = "802 (105)";
-$core = "2.1.3-8~dotnex.17";
+$bversion = "2012/w39d4";
+$bcodename = "NexusIRC";
+$brelease = "805";
+$core = "3.1";
 $version = "$bversion ($bcodename) Release $brelease on Core $core";
 
 ?>

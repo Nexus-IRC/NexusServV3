@@ -288,7 +288,7 @@ elseif (strtolower($cbase) == "users") {
 		sendserv("NOTICE $nick :\002$paz[2]\002 is not a valid access level!");
 		return(0);
 	}
-	sendserv("NOTICE $nick :".$chans["$ctarg"]["name"]." users from level $paz[1] to $paz[2]".$matchstr.":");
+	sendserv("NOTICE $nick :".@(isset($chans["$ctarg"]["name"]) ? $chans["$ctarg"]["name"] : $ctarg)." users from level $paz[1] to $paz[2]".$matchstr.":");
 	sendserv("NOTICE $nick :Access".spaces("Access",6)." Account".spaces("Account",$lsize)." Status".spaces("Status",$sul)." Last Seen");
 	krsort($userz);
 	foreach ($userz as $uaxs => $unam) {
