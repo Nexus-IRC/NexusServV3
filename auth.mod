@@ -223,7 +223,7 @@ elseif (strtolower($cbase) == "rename") {
 		fclose($fope);
 		if ($found != "") {
 			sendserv("NOTICE $nick :The account $found has been renamed to $paz[1].");
-			sendserv("PRIVMSG #ArcticServ :$nick renamed account $found to $paz[1].");
+			sendserv("PRIVMSG $debugchannel :$nick renamed account $found to $paz[1].");
 			$fope = fopen("accs.conf","w+");
 			fwrite($fope,$fcont);
 			fclose($fope);

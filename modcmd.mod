@@ -111,7 +111,7 @@ elseif (strtolower($cbase) == "god") {
 		$ccchan = "";
 	}
 	$command = $GLOBALS['msg'];
-	sendserv("NOTICE #arcticserv.debug :($ccchan) [$nick:$acc] $command");
+	sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 	if ($saxs >= 200) {
 		if ($god["$acc"] != 1) {
 			$god["$acc"] = 1;

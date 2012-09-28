@@ -38,7 +38,7 @@ if (strtolower($cbase) == "bot") {
 		$ccchan = "";
 	}
 	$command = $GLOBALS['msg'];
-	sendserv("NOTICE #arcticserv.debug :($ccchan) [$nick:$acc] $command");
+	sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 	if ($saxs >= 950) {
 		$paz = explode(" ",$params);
 		if (strtolower($paz[0]) == "unloadmod") {

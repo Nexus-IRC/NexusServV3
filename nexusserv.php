@@ -378,7 +378,7 @@ while (true) {
 							}
 						}
 						if ($ucf == 1) {
-							sendserv("PRIVMSG #ArcticServ :User $unick not found on any channel. Terminating userinfo.");
+							sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
 							unset($userinfo["$unick"]);
 						}
 					}
@@ -396,7 +396,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-					sendserv("PRIVMSG #ArcticServ :User $nick not found on any channel. Terminating userinfo.");
+					sendserv("PRIVMSG $debugchannel :User $nick not found on any channel. Terminating userinfo.");
 					unset($userinfo["$lnick"]);
 				}
 			}
@@ -427,7 +427,7 @@ while (true) {
 					}
 				}
 				unset($userinfo["$lnick"]);
-				sendserv("PRIVMSG #ArcticServ :User $nick quited. Terminating userinfo, removing from all channels.");
+				sendserv("PRIVMSG $debugchannel :User $nick quited. Terminating userinfo, removing from all channels.");
 			}
 			if ($e[1] == "KICK") {
 				$xing = explode("!",$e[0]);
@@ -471,7 +471,7 @@ while (true) {
 							}
 						}
 						if ($ucf == 1) {
-							sendserv("PRIVMSG #ArcticServ :User $unick not found on any channel. Terminating userinfo.");
+							sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
 							unset($userinfo["$unick"]);
 						}
 					}
@@ -485,7 +485,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-				sendserv("PRIVMSG #ArcticServ :User $e[3] not found on any channel. Terminating userinfo.");
+				sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
 				unset($userinfo["$lnick"]);
 				}
 			}
@@ -554,7 +554,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-					sendserv("PRIVMSG #ArcticServ :User $e[3] not found on any channel. Terminating userinfo.");
+					sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
 					unset($userinfo["$lnick"]);
 				}
 			}
@@ -1290,7 +1290,7 @@ function protect_execute ($target) {
 
 function create_timer ($time, $line) {
 	if (str2time($time) == "I") {
-		sendserv("PRIVMSG #ArcticServ :create_timer() invalid: timespan $time is not valid.");
+		sendserv("PRIVMSG $debugchannel :create_timer() invalid: timespan $time is not valid.");
 		return(0);
 	}
 	global $dltimer;

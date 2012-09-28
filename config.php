@@ -25,7 +25,7 @@ $botident = "NexusServ";
 $botreal = "Channel Services - #nexus";
 $botauth = "NexusServ";
 $pass = "xxxx";
-
+$debugchannel = "#nexus-debug";
 $bversion = "2012/w39d4";
 $bcodename = "NexusIRC";
 $brelease = "805";
