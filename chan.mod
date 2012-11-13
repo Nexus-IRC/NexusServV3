@@ -3155,7 +3155,7 @@ elseif (strtolower($cbase) == "info") {
 		sendserv("NOTICE $nick :---");
 	}
 	else {
-	sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002ArcticServ\002.");
+		sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002".$botnick."\002.");
 	}
 }
 elseif (strtolower($cbase) == "uset") {
