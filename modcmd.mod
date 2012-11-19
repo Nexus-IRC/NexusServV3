@@ -210,6 +210,7 @@ elseif (strtolower($cbase) == "emote") {
 elseif (strtolower($cbase) == "version") {
 	global $version; global $devline; global $secdevline;
 	sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename']."). Core ".$GLOBALS['core'].". Release ".$GLOBALS['brelease']);
+	sendserv("NOTICE $nick :If you found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
 }
 elseif (strtolower($cbase) == "netinfo") {
 	global $server; global $botnick; global $userinfo; global $stime;
@@ -255,6 +256,7 @@ elseif (strtolower($cbase) == "netinfo") {
 	sendserv("NOTICE $nick :\002Version            \002:     ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].")");
 	sendserv("NOTICE $nick :\002Core Version       \002:     ArcticServ v".$GLOBALS['core']);
 	sendserv("NOTICE $nick :\002Reloads            \002:     ".($GLOBALS['rid']+0));
+	sendserv("NOTICE $nick :If you found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
 	sendserv("NOTICE $nick :---");
 }
 elseif (strtolower($cbase) == "codeteam") {
