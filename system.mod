@@ -1,5 +1,5 @@
 /* system.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,13 +76,13 @@ if (strtolower($cbase) == "bot") {
 			}
 			$buffer .= "NOTICE $nick :Loading language pack...\n";
 			if (!file_exists('languages.php')) {
-				$buffer .= "NOTICE $nick :\0034WARNING:\003 Language pack not found. Using included english language.\n";
-				$buffer .= "NOTICE $nick :\0033INFO:\003 Language packs are just one file: \002languages.php\002 in the $botnick folder.\n";
+				$buffer .= "NOTICE $nick :\0034WARNING:\003 Language pack not found. Using included English language.\n";
+				$buffer .= "NOTICE $nick :\0033INFO:\003 Language packs are in just one file: \002languages.php\002 in the $botnick folder.\n";
 			}
 			else {
 				include('languages.php');
 			}
-			$buffer .= "NOTICE $nick :Done, rehashed everything ($mcnt modules, $xlines lines of code) in ".(microtime(true) - $mtime)."seconds.\n";
+			$buffer .= "NOTICE $nick :Done, rehashed everything ($mcnt modules, $xlines lines of code) in ".(microtime(true) - $mtime)." seconds.\n";
 			$GLOBALS['rid']++;
 			sendserv($buffer);
 		}
@@ -160,11 +160,11 @@ if (strtolower($cbase) == "debug") {
 		$ccchan = "";
 	}
 	$command = $GLOBALS['command'];
-	sendserv("NOTICE #arcticserv.debug :($ccchan) [$nick:$acc] $command $paramzz");
+	sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
 	if ($saxs >= 1000) {
 		if ($paramzz == "") {
 			sendserv("NOTICE $nick :More parameters required:");
-			sendserv("NOTICE $nick :Syntax: /MSG $botnick ".$GLOBALS['command']." <debug commands>");
+			sendserv("NOTICE $nick :Syntax: /msg $botnick ".$GLOBALS['command']." <debug commands>");
 			sendserv("NOTICE $nick :Missing parameter(s): debug commands");
 			return(0);
 		}
@@ -218,7 +218,7 @@ elseif (strtolower($cbase) == "raw") {
 		$ccchan = "";
 	}
 	$command = $GLOBALS['command'];
-	sendserv("NOTICE #arcticserv.debug :($ccchan) [$nick:$acc] $command $paramzz");
+	sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
 	if ($saxs >= 1000) {
 		sendserv($params);
 	}

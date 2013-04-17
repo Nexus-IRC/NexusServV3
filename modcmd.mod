@@ -1,5 +1,5 @@
 /* modcmd.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 // cbase: commands
 // cbase: command
 // cbase: botlist
+// cbase: help
 if (strtolower($cbase) == "botlist") {
 	sendserv("NOTICE $nick :Function under construction");
 }
@@ -72,11 +73,11 @@ elseif (strtolower($cbase) == "checkchans") {
 				}
 			}
 			sendserv("NOTICE $nick :\002Channel Check\002");
-			sendserv("NOTICE $nick :\002Chans where i'm not opped:\002");
+			sendserv("NOTICE $nick :\002Chans where I'm not opped:\002");
 			foreach ($chansnoop as $cname => $carg) {
 				sendserv("NOTICE $nick :$cname");
 			}
-			sendserv("NOTICE $nick :\002Chans where i'm not on:\002");
+			sendserv("NOTICE $nick :\002Chans where I'm not on:\002");
 			foreach ($chansnoton as $cname => $carg) {
 				sendserv("NOTICE $nick :- $cname");
 			}
@@ -157,7 +158,7 @@ elseif (strtolower($cbase) == "staff") {
 	sendserv("NOTICE $nick :".$staffs["0"]); // Trial
 }
 elseif (strtolower($cbase) == "modcmd") {
-	sendserv("NOTICE $nick :The command modification engine currently isnt finished.");
+	sendserv("NOTICE $nick :The command modification engine currently isn't finished.");
 }
 elseif (strtolower($cbase) == "say") {
 	$params = $paramzz;
@@ -209,8 +210,9 @@ elseif (strtolower($cbase) == "emote") {
 }
 elseif (strtolower($cbase) == "version") {
 	global $version; global $devline; global $secdevline;
-	sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename']."). Core ".$GLOBALS['core'].". Release ".$GLOBALS['brelease']);
-	sendserv("NOTICE $nick :If you found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
+	sendserv("NOTICE $nick :\002Version\002");
+	sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].") Core ".$GLOBALS['core']." Release ".$GLOBALS['brelease']);
+	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
 }
 elseif (strtolower($cbase) == "netinfo") {
 	global $server; global $botnick; global $userinfo; global $stime;
@@ -228,13 +230,13 @@ elseif (strtolower($cbase) == "netinfo") {
 		$acccount++;
 	}
 	fclose($fop);
-	sendserv("NOTICE $nick :\002Network information\002");
-	sendserv("NOTICE $nick :\002Network            \002:     ".$GLOBALS['netdata']['NETWORK']);
-	sendserv("NOTICE $nick :\002Bot Uptime         \002:     ".time2str(time() - $stime));
-	sendserv("NOTICE $nick :\002Channels registered\002:     $chancount");
-	sendserv("NOTICE $nick :\002Maximal channels   \002:     ".$GLOBALS['netdata']['MAXCHANNELS']);
-	sendserv("NOTICE $nick :\002Accounts known     \002:     $acccount");
-	sendserv("NOTICE $nick :\002Users visible      \002:     ".count($userinfo));
+	sendserv("NOTICE $nick :\002\037Network Information\037\002");
+	sendserv("NOTICE $nick :\002Network            \002  ".$GLOBALS['netdata']['NETWORK']);
+	sendserv("NOTICE $nick :\002Bot Uptime         \002  ".time2str(time() - $stime));
+	sendserv("NOTICE $nick :\002Channels registered\002  $chancount");
+	sendserv("NOTICE $nick :\002Maximum channels   \002  ".$GLOBALS['netdata']['MAXCHANNELS']);
+	sendserv("NOTICE $nick :\002Accounts known     \002  $acccount");
+	sendserv("NOTICE $nick :\002Users visible      \002  ".count($userinfo));
 	$auc = 0;
 	foreach ($userinfo as $uname => $user) {
 		if ($userinfo[$uname]['auth'] != "") {
@@ -242,40 +244,36 @@ elseif (strtolower($cbase) == "netinfo") {
 		}
 	}
 	if ($userinfo[strtolower($botnick)]["auth"] != "") {
-		sendserv("NOTICE $nick :\002Bot Account        \002:     ".$userinfo[strtolower($botnick)]["auth"]);
+		sendserv("NOTICE $nick :\002Bot Account        \002  ".$userinfo[strtolower($botnick)]["auth"]);
 	}
 	else {
-		sendserv("NOTICE $nick :\002Bot Account        \002:     Not logged in");
+		sendserv("NOTICE $nick :\002Bot Account        \002  Not logged in");
 	}
-	sendserv("NOTICE $nick :\002Users authed       \002:     $auc");
-	sendserv("NOTICE $nick :\002Maximal Memory Use \002:     ".round((memory_get_peak_usage()/1024/1024),2)."MBytes");
-	sendserv("NOTICE $nick :\002         Right now \002:     ".round((memory_get_usage()/1024/1024),2)."MBytes");
-	sendserv("NOTICE $nick :\002Incoming Traffic   \002:     ".round(($GLOBALS['glob']['dat_in']/1024/1024),2)."MBytes");
-	sendserv("NOTICE $nick :\002Outgoing Traffic   \002:     ".round(($GLOBALS['glob']['dat_out']/1024/1024),2)."MBytes");
-	sendserv("NOTICE $nick :\002Parser             \002:     php".phpversion());
-	sendserv("NOTICE $nick :\002Version            \002:     ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].")");
-	sendserv("NOTICE $nick :\002Core Version       \002:     ArcticServ v".$GLOBALS['core']);
-	sendserv("NOTICE $nick :\002Reloads            \002:     ".($GLOBALS['rid']+0));
-	sendserv("NOTICE $nick :If you found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
-	sendserv("NOTICE $nick :---");
+	sendserv("NOTICE $nick :\002Users authed       \002  $auc");
+	sendserv("NOTICE $nick :\002Maximum Memory Use \002  ".round((memory_get_peak_usage()/1024/1024),2)."MB");
+	sendserv("NOTICE $nick :\002         Right now \002  ".round((memory_get_usage()/1024/1024),2)."MB");
+	sendserv("NOTICE $nick :\002Incoming Traffic   \002  ".round(($GLOBALS['glob']['dat_in']/1024/1024),2)."MB");
+	sendserv("NOTICE $nick :\002Outgoing Traffic   \002  ".round(($GLOBALS['glob']['dat_out']/1024/1024),2)."MB");
+	sendserv("NOTICE $nick :\002Parser             \002  php".phpversion());
+	sendserv("NOTICE $nick :\002Version            \002  ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].")");
+	sendserv("NOTICE $nick :\002Core Version       \002  NexusServ v".$GLOBALS['core']);
+	sendserv("NOTICE $nick :\002Reloads            \002  ".($GLOBALS['rid']+0));
+	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
 }
 elseif (strtolower($cbase) == "codeteam") {
 	global $botnick;
-	sendserv("NOTICE $nick :\002$botnick\002 coding team");
+	sendserv("NOTICE $nick :\002\037$botnick Developers\037\002");
 	sendserv("NOTICE $nick :\002Main Coding\002");
 	sendserv("NOTICE $nick :Calisto");
 	sendserv("NOTICE $nick :\002Module Coding\002");
 	sendserv("NOTICE $nick :Calisto Zer0n");
 	sendserv("NOTICE $nick :\002Modifications/Bugfixes");
-	sendserv("NOTICE $nick :Calisto Zer0n");
-	sendserv("NOTICE $nick :\002SourceForge Public-Version Management");
-	sendserv("NOTICE $nick :Calisto");
-	sendserv("NOTICE $nick :---");
+	sendserv("NOTICE $nick :Calisto Zer0n Stricted synthtech");
 }
 elseif (strtolower($cbase) == "services") {
 	global $stime;
-	sendserv("NOTICE $nick :\002Service status check\002");
-	sendserv("NOTICE $nick :Service status: Bot online since ".time2str(time() - $stime).".");
+	sendserv("NOTICE $nick :\002Service Status Check\002");
+	sendserv("NOTICE $nick :Service status: Bot online for ".time2str(time() - $stime)."");
 }
 elseif (strtolower($cbase) == "commands") {
 	global $botnick;
@@ -306,7 +304,7 @@ elseif (strtolower($cbase) == "commands") {
 		sendserv("NOTICE $nick :$fgr[0]".spaces($fgr[0],20)." ".substr($fgr[2],0,(strlen($fgr[2])-4)).".$fgr[3] ".$cmdp);
 		$bcount++;
 	}
-	sendserv("NOTICE $nick :There are \002$bcount\002 bindings for \002$botnick\002.");
+	sendserv("NOTICE $nick :There are \002$bcount\002 bindings for \002$botnick\002");
 }
 elseif (strtolower($cbase) == "showcommands") {
 	global $botnick;
@@ -425,47 +423,7 @@ elseif (strtolower($cbase) == "help") {
 	}
 	$bla = explode("\r\n",$fcont);
 	foreach ($bla as $blu) {
-		sendserv("NOTICE $nick :".str_replace('$V',$version,str_replace('$B',$botnick,str_replace("[b]","\002",substr($blu,1)))));
-	}
-	fclose($fop);
-}
-elseif (strtolower($cbase) == "spamhelp") {
-	$helpfile = "help.txt";
-	$params = $paramzz;
-	$para = explode(" ",$params);
-	if (substr($para[0],0,2) == "::") {
-		$helpfile = "spamhelp".substr($para[0],2).".txt";
-		$params = substr($params,strlen($para[0]." "));
-	}
-	global $botnick; global $version;
-	$fop = fopen($helpfile,"r+");
-	if ($params == "") {
-		$paramz = "Main";
-	}
-	else {
-		$paramz = $params;
-	}
-	$fcont = "";
-	$area = "";
-	while ($fg = fgets($fop)) {
-		$fra = str_replace("\r","",$fg);
-		$fra = str_replace("\n","",$fra);
-		if ($fra{0} == "[") {
-			$area = $fra;
-		}
-		else {
-			if (strtolower($area) == strtolower("[".$paramz."]")) {
-				$fcont .= $fra."\r\n";
-			}
-		}
-	}
-	if ($fcont == "") {
-		sendserv("NOTICE $nick :No help on that topic!");
-		return(101);
-	}
-	$bla = explode("\r\n",$fcont);
-	foreach ($bla as $blu) {
-		sendserv("NOTICE $nick :".str_replace('$V',$version,str_replace('$B',$botnick,str_replace("[b]","\002",substr($blu,1)))));
+		sendserv("NOTICE $nick :".str_replace('$V',$version,str_replace('$B',$botnick,str_replace("[b]","\002",str_replace("[u]","\037",str_replace("[i]","\035",substr($blu,1)))))));
 	}
 	fclose($fop);
 }

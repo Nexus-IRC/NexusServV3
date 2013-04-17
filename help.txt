@@ -1,0 +1,54 @@
+[Main]
+ [u][b]$B Help[b][u]
+ [b]$B[b] is an advanced channel management bot which provides control over all aspects of your channel.
+ [b]$B[b] command categories:
+  USER            User management
+  CHANNEL         Channel management
+  BAN MANAGEMENT  Ban management
+  INFORMATION     Informative commands
+  STAFF           Staff only commands
+[USER]
+ [b]User Management:[b]
+  Nothing here yet!
+[CHANNEL]
+ [b]Channel Management:[b]
+  Nothing here yet!
+[BAN MANAGEMENT]
+ [b]Ban Management:[b]
+  Nothing here yet!
+[INFORMATION]
+ [b]Information:[b]
+  Nothing here yet!
+[STAFF]
+ [b]Staff Commands:[b]
+  Nothing here yet!
+[SET]
+ [b]SET[b]
+  /msg $B SET <#channel> [<parameter> [setting]]
+   This command will set various channel options.  With no arguments, it will show the current values of all channel options.
+   DEFAULTTOPIC: The channel's default topic
+   TOPICMASK:    A pattern that topics must match
+   GREETING:     A greeting message for visitors to the channel
+   USERGREETING: A greeting message for users on the channel's userlist
+   MODES:        The channel's default modes
+   PUBCMD:       Restrictions to use commands in public
+   INVITEME:     Minimum level for users to use INVITEME or AUTOINVITE
+   USERINFO:     Minimum level for users to show an infoline on join
+   GIVEVOICE:    The users that [b]$B[b] will autovoice
+   GIVEOPS:      The users that [b]$B[b] will autoop
+   ENFOPS:       Restrictions for opping users
+   ENFMODES:     Restrictions to change the default modes
+   ENFTOPIC:     Restrictions on changing the topic
+   MODTOPIC:     Who may change TOPICMASK and DEFAULTTOPIC
+   SETTERS:      Who may change channel settings (using [b]SET[b])
+   VOTE:         Who may vote in the channel (using [b]VOTE[b])
+   PROTECT:      The protection level [b]$B[b] provides
+   TOYS:         Toggles how [b]$B[b] will respond to toy commands
+   DYNLIMIT:     Adjusts user limit (+l channel mode) to prevent join floods
+[ACCESS]
+ /msg $B ACCESS <#channel> [<nick|*account>]
+  Reports various pieces of information about a channel user, including channel and network access level, and the user's infoline. If no nick or account is provided, $B returns your own information.
+[CLVL]
+ /msg $B CLVL <#channel> <nick|*account> <level>
+  Modifies a channel user's access level. You cannot give users access greater than or equal to your own.
+  You may use *Account instead of Nick as the name argument; the * makes $B use the name of a account directly (useful if the user is not online).

@@ -1,5 +1,5 @@
 /* chan3.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -174,7 +174,6 @@ if (strtolower($cbase) == "cset") {
 				sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($tsets["toys"]));
 				sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($tsets["protect"]));
 				sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($tsets['trigger']));
-				sendserv("NOTICE $nick :--- End of the overview ---");
 			}
 			else {
 				$pp = explode(" ",$params);
@@ -200,7 +199,7 @@ if (strtolower($cbase) == "cset") {
 						return(0);
 					}
 					if ($pe != "!".substr(md5($cname.date("d.m-H.i").$nick),0,8)."!") {
-						sendserv("NOTICE $nick :To really reset all settings to the default, do \002set defaults !".substr(md5($cname.date("d.m-H.i").$nick),0,8)."!");
+						sendserv("NOTICE $nick :To really reset all settings to their defaults, use \002set defaults !".substr(md5($cname.date("d.m-H.i").$nick),0,8)."!");
 					}
 					else {
 						$fcont = "";
@@ -488,7 +487,7 @@ if (strtolower($cbase) == "cset") {
 					fclose($fop);
 					sendserv("NOTICE $nick :\002AutoOpChan             \002 ".binsetting($pe));
 					if (binsetting($pe) == "On") {
-						sendserv("NOTICE $nick :Please be sure to activate \002AutoOpChan\002 ".chr(31)."only".chr(31)." while botwars aren't possible at this channel!");
+						sendserv("NOTICE $nick :Please be sure to activate \002AutoOpChan\002 ".chr(31)."only".chr(31)." while botwars aren't possible on this channel!");
 					}
 				}
 				elseif (strtolower($pp[0]) == "enhancedtopic" && $pe != "") {
@@ -1097,7 +1096,7 @@ if (strtolower($cbase) == "cset") {
 				}
 				elseif (strtolower($pp[0]) == "dynlimit" && $pe != "") {
 					if ($pe > 200) {
-						sendserv("NOTICE $nick :\002$pe\002 is a too high value for this setting.");
+						sendserv("NOTICE $nick :\002$pe\002 is too high of a value for this setting.");
 						return(0);
 					}
 					$fcont = "";
@@ -2214,7 +2213,7 @@ if (strtolower($cbase) == "cset") {
 						$pe = "=";
 					}
 					if (strlen($pe) > 1) {
-						sendserv("NOTICE $nick :The trigger can't be longer than 1 char.");
+						sendserv("NOTICE $nick :The trigger can't be longer than 1 character.");
 						return(0);
 					}
 					$fcont = "";
@@ -2262,7 +2261,7 @@ if (strtolower($cbase) == "cset") {
 						$pe = "=";
 					}
 					if (strlen($pe) > 1) {
-						sendserv("NOTICE $nick :The trigger can't be longer than 1 char.");
+						sendserv("NOTICE $nick :The trigger can't be longer than 1 character.");
 						return(0);
 					}
 					$fcont = "";
@@ -2718,7 +2717,7 @@ if (strtolower($cbase) == "set") {
 				[23:58:21] -ChanServ- NoDelete     Off
 				[23:58:21] -ChanServ- Expire       off
 				*/
-				sendserv("NOTICE $nick :\002".$chans["$tchan"]["name"]."\002 ChanServ setting overview:");
+				sendserv("NOTICE $nick :\002".$chans["$tchan"]["name"]."\002 basic settings:");
 				sendserv("NOTICE $nick :\002DefaultTopic           \002 ".strsetting($tsets["defaulttopic"]));
 				sendserv("NOTICE $nick :\002TopicMask              \002 ".strsetting($tsets["topicmask"]));
 				sendserv("NOTICE $nick :\002Greeting               \002 ".strsetting($tsets["greeting"]));
@@ -2736,7 +2735,7 @@ if (strtolower($cbase) == "set") {
 				sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($tsets["nodelete"]));
 				sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($tsets["toys"]));
 				sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($tsets["protect"]));
-				sendserv("NOTICE $nick :For a bigger list of channel settings, please use the \002cset\002 command!");
+				sendserv("NOTICE $nick :For a complete list of channel settings, please use the \002cset\002 command!");
 			}
 			else {
 				cmd_parser($nick,$ident,$host,"cset",$target,$target,$paramzz);
@@ -2746,9 +2745,8 @@ if (strtolower($cbase) == "set") {
 }
 if (strtolower($cbase) == "opchan") {
 	global $botnick;
-	sendserv("NOTICE $nick :If i'm not opped at ".$target.", i'll reop myself now.");
-	sendserv("CS OPME $target");
-	sendserv("PRIVMSG ChanServ :OP $target $botnick");
-	sendserv("PRIVMSG Centravi :OP $target $botnick");
-	sendserv("PRIVMSG NeonServ :OP $target $botnick");
+	sendserv("NOTICE $nick :If I'm not opped on ".$target.", I'll attempt to reop myself now.");
+	sendserv("PRIVMSG ChanServ :UP $target");
+	sendserv("PRIVMSG Centravi :UP $target");
+	sendserv("PRIVMSG NeonServ :UP $target");
 }

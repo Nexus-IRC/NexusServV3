@@ -1,5 +1,5 @@
 /* watchdog.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ if (strtolower($cbase) == "watchdog") {
 		}
 		elseif ($pp[0] == 'set') {
 			if ($pp[1] == "") {
-				sendserv("NOTICE $nick :\002Watchdog script settings\002");
+				sendserv("NOTICE $nick :\002Watchdog Settings\002");
 				sendserv("NOTICE $nick :\002DYNAMIC\002");
 				sendserv("NOTICE $nick :REACTION            KICKBAN");
 				sendserv("NOTICE $nick :RREASON             Watchdog: Illegal word/url found.");
@@ -59,7 +59,7 @@ if (strtolower($cbase) == "watchdog") {
 			sendserv("NOTICE $nick :ArcticServ Watchdog Script v1.0-rv5 (added on ArcticServ v2.1.(wgn)-r2)");
 		}
 		elseif ($pp[0] == 'list') {
-			sendserv("NOTICE $nick :\002Watchdog list\002");
+			sendserv("NOTICE $nick :\002Watchdog List\002");
 			$fop = fopen('watchdog.txt','r+');
 			while ($fr = fgets($fop)) {
 				$fr = str_replace("\r","",$fr);
@@ -67,7 +67,7 @@ if (strtolower($cbase) == "watchdog") {
 				sendserv("NOTICE $nick :$fr");
 			}
 			fclose($fop);
-			sendserv("NOTICE $nick :--- End of list ---");
+			sendserv("NOTICE $nick :--- End of List ---");
 		}
 		elseif ($pp[0] == 'add') {
 			$fop = fopen('watchdog.txt','r+');
@@ -91,7 +91,7 @@ if (strtolower($cbase) == "watchdog") {
 			$fop = fopen("watchdog.txt","w+");
 			fwrite($fop,$wac.$pp[1]);
 			fclose($fop);
-			sendserv("NOTICE $nick :\002$pp[1]\002 was added to the Watchdog-list.");
+			sendserv("NOTICE $nick :\002$pp[1]\002 was added to the Watchdog list.");
 		}
 		elseif ($pp[0] == "del") {
 

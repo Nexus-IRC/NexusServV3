@@ -1,5 +1,5 @@
 /* chan4.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ if (strtolower($cbase) == "clist") {
 	}
 	fclose($fop);
 	if ($saxs >= 200) {
-		sendserv("NOTICE $nick :Channel list");
+		sendserv("NOTICE $nick :Channel List");
 		$fp = fopen("users.conf","r+");
 		while ($fg = fgets($fp)) {
 			$fg = str_replace("\r","",$fg);

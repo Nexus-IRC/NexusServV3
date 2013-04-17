@@ -1,6 +1,6 @@
 <?php
 /* nexusserv.php - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -109,7 +109,7 @@ sendserv("PASS :$botauth:$pass");
 sendserv("NICK $botnick");
 sendserv("USER $botident - - :$botreal");
 $autojoin = 1;
-$god["ArcticServ"] = 1;
+$god["NexusServ"] = 1;
 
 // /server -m 127.0.0.1:8018
 while (true) {
@@ -378,7 +378,7 @@ while (true) {
 							}
 						}
 						if ($ucf == 1) {
-							sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
+							#sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
 							unset($userinfo["$unick"]);
 						}
 					}
@@ -396,7 +396,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-					sendserv("PRIVMSG $debugchannel :User $nick not found on any channel. Terminating userinfo.");
+					#sendserv("PRIVMSG $debugchannel :User $nick not found on any channel. Terminating userinfo.");
 					unset($userinfo["$lnick"]);
 				}
 			}
@@ -427,7 +427,7 @@ while (true) {
 					}
 				}
 				unset($userinfo["$lnick"]);
-				sendserv("PRIVMSG $debugchannel :User $nick quited. Terminating userinfo, removing from all channels.");
+				#sendserv("PRIVMSG $debugchannel :User $nick quited. Terminating userinfo, removing from all channels.");
 			}
 			if ($e[1] == "KICK") {
 				$xing = explode("!",$e[0]);
@@ -437,7 +437,7 @@ while (true) {
 				$nnick = $e[3];
 				if ($nnick == $botnick) {
 					sendserv("JOIN $cchan");
-					sendserv("PRIVMSG #arctic-team : $knick kicked me from $cchan");
+					sendserv("PRIVMSG $staffchan :$knick kicked me from $cchan");
 				}
 				$lnick = strtolower($e[3]);
 				$nexttime = time() + 10;
@@ -471,7 +471,7 @@ while (true) {
 							}
 						}
 						if ($ucf == 1) {
-							sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
+							#sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
 							unset($userinfo["$unick"]);
 						}
 					}
@@ -485,7 +485,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-				sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
+				#sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
 				unset($userinfo["$lnick"]);
 				}
 			}
@@ -554,7 +554,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-					sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
+					#sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
 					unset($userinfo["$lnick"]);
 				}
 			}
@@ -709,8 +709,8 @@ while (true) {
 			if ($e[1] == "PRIVMSG" && $e[3][1] == "\001") {#
 				$nick = getnick($e[0]);
 				if ($e[3] == ":\001VERSION\001") {
-					sendserv("NOTICE $nick :\001VERSION ArcticServ v$bversion ($bcodename) Release $brelease :\002:\002: ".$botreal."\001");
-					sendserv("NOTICE $nick :\001VERSION Core ArcticServ v$core\001");
+					sendserv("NOTICE $nick :\001VERSION NexusServ v$bversion ($bcodename) Release $brelease :\002:\002: ".$botreal."\001");
+					sendserv("NOTICE $nick :\001VERSION Core NexusServ v$core\001");
 				}
 				if ($e[3] == ":\001CHAT\001") {
 					sendserv("NOTICE $nick :\001CHAT This bot is not an eggdrop.\001");
@@ -1803,9 +1803,9 @@ function addChanUser ($chan, $auth, $access) {
 	return("Ok");
 }
 
-// ArcticServ 4.0 Area
+// NexusServ 4.0 Area
 // -- Info --
-// All functions and classes in this area are tests to prepare myself for coding ArcticServ 4.0
+// All functions and classes in this area are tests to prepare myself for coding NexusServ 4.0
 // All functions above are NOT used in any function of the bot. Remove it, if you don't want these
 // classes ;)
 

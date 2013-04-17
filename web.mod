@@ -1,5 +1,5 @@
 /* web.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,16 +18,16 @@
 // cbase: v1-history
 // cbase: history
 if (strtolower($cbase) == "history") {
-	sendserv("NOTICE $nick :For the ".chr(29)."ArcticServ 3.0".chr(29)." Code there is no history available.");
-	sendserv("NOTICE $nick :The ".chr(29)."Version 2.0 History".chr(29)." was incomplete and has been removed");
-	sendserv("NOTICE $nick :Try \002v1-history\002 for the ".chr(29)."Version ".chr(31)."1.0".chr(31).chr(29)."History");
+	sendserv("NOTICE $nick :".chr(31)."NexusServ 3.0".chr(31)." can be found at http://git.nexus-irc.de/?p=NexusServV3.git");
+	sendserv("NOTICE $nick :".chr(31)."ArcticServ 2.0".chr(31)." was incomplete and has been removed");
+	sendserv("NOTICE $nick :Try \002v1-history\002 for the ".chr(31)."ArcticServ 1.0".chr(31)." history");
 }
 if (strtolower($cbase) == "webinfo") {
-	sendserv("NOTICE $nick :\0034Error.");
+	sendserv("NOTICE $nick :The latest news can be found at http://board.nexus-irc.de/index.php?page=CNews");
 }
 elseif (strtolower($cbase) == "v1-history") {
-	sendserv("NOTICE $nick :ArcticServ version history:");
-	sendserv("NOTICE $nick :Version            Coder(s)");
+	sendserv("NOTICE $nick :\002ArcticServ 1.0 History\002");
+	sendserv("NOTICE $nick :\037Version\037            \037Coder(s)\037");
 	sendserv("NOTICE $nick :1.0.0-dev          Calisto");
 	sendserv("NOTICE $nick :1.0.0-stable       Calisto");
 	sendserv("NOTICE $nick :1.5-dev            Calisto");
@@ -54,5 +54,4 @@ elseif (strtolower($cbase) == "v1-history") {
 	sendserv("NOTICE $nick :1.8.1a-hotfix2 &");
 	sendserv("NOTICE $nick : -hotfix2-wgnpatch Calisto");
 	sendserv("NOTICE $nick :1.9.0-wgnpatch     Calisto Zer0n");
-	sendserv("NOTICE $nick :--- End of \002History\002 ---");
 }
