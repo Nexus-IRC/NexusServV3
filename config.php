@@ -17,6 +17,7 @@
  */
  
 $trigger = "'";
+$strigger = "$";
 $sendwith = -1;
 $server = "irc.onlinegamesnet.net";
 $port = 6667;
@@ -33,5 +34,5 @@ $bcodename = "NexusIRC";
 $brelease = "805";
 $core = "3.1";
 $version = "$bversion ($bcodename) Release $brelease on Core $core";
-
+$autojoin = 1;
 ?>

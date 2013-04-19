@@ -108,7 +108,6 @@ stream_set_blocking($socket,0);
 sendserv("PASS :$botauth:$pass");
 sendserv("NICK $botnick");
 sendserv("USER $botident - - :$botreal");
-$autojoin = 1;
 $god["NexusServ"] = 1;
 
 // /server -m 127.0.0.1:8018
@@ -378,7 +377,7 @@ while (true) {
 							}
 						}
 						if ($ucf == 1) {
-							#sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
+							sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
 							unset($userinfo["$unick"]);
 						}
 					}
@@ -396,7 +395,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-					#sendserv("PRIVMSG $debugchannel :User $nick not found on any channel. Terminating userinfo.");
+					sendserv("PRIVMSG $debugchannel :User $nick not found on any channel. Terminating userinfo.");
 					unset($userinfo["$lnick"]);
 				}
 			}
@@ -427,7 +426,7 @@ while (true) {
 					}
 				}
 				unset($userinfo["$lnick"]);
-				#sendserv("PRIVMSG $debugchannel :User $nick quited. Terminating userinfo, removing from all channels.");
+				sendserv("PRIVMSG $debugchannel :User $nick quited. Terminating userinfo, removing from all channels.");
 			}
 			if ($e[1] == "KICK") {
 				$xing = explode("!",$e[0]);
@@ -471,7 +470,7 @@ while (true) {
 							}
 						}
 						if ($ucf == 1) {
-							#sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
+							sendserv("PRIVMSG $debugchannel :User $unick not found on any channel. Terminating userinfo.");
 							unset($userinfo["$unick"]);
 						}
 					}
@@ -485,7 +484,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-				#sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
+				sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
 				unset($userinfo["$lnick"]);
 				}
 			}
@@ -554,7 +553,7 @@ while (true) {
 					}
 				}
 				if ($ucf == 0) {
-					#sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
+					sendserv("PRIVMSG $debugchannel :User $e[3] not found on any channel. Terminating userinfo.");
 					unset($userinfo["$lnick"]);
 				}
 			}
@@ -635,6 +634,7 @@ while (true) {
 			}
 			if ($e[1] == "001") {
 				$botnick = $e[2];
+				sendserv("mode ".$botnick." +xIn");
 				if ($autojoin == 1) {
 					$fop = fopen("users.conf","r+");
 					while ($fra = fgets($fop)) {
@@ -778,10 +778,10 @@ while (true) {
 					$atrig = $tsets['trigger'];
 					$strig = $tsets['spamservtrigger'];
 					if ($atrig == "") {
-						$atrig = "=";
+						$atrig = $trigger;
 					}
 					if ($strig == "") {
-						$strig = "$";
+						$strig = $strigger;
 					}
 					if ($tsets["watchdogexceptlevel"] == "") {
 						$tsets["watchdogexceptlevel"] = "200";
