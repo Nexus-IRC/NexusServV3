@@ -1596,7 +1596,9 @@ elseif (strtolower($cbase) == "unregister") {
 			if ($cfound == 1) {
 				sendserv("PART $target :Unregistered by $nick ($acc).");
 				sendserv("NOTICE $nick :$target has been unregistered.");
-				sendserv("PRIVMSG $debugchannel :$nick ($acc) unregistered $target");
+				if($showdebug == true){
+					sendserv("PRIVMSG $debugchannel :$nick ($acc) unregistered $target");
+				}
 			}
 			else {
 				sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002$botnick\002.");
@@ -1664,7 +1666,9 @@ elseif (strtolower($cbase) == "register") {
 						fclose($fop);
 						sendserv("JOIN $target");
 						sendserv("NOTICE $nick :$target has been registered to $accfound.");
-						sendserv("PRIVMSG $debugchannel :$nick ($acc) registered $target to $accfound.");
+						if($showdebug == true){
+							sendserv("PRIVMSG $debugchannel :$nick ($acc) registered $target to $accfound.");
+						}
 					}
 					else {
 						sendserv("NOTICE $nick :This account (\002".substr($params,1)."\002) is unknown to me.");
@@ -1676,7 +1680,9 @@ elseif (strtolower($cbase) == "register") {
 					fwrite($fop,"$acc 500");
 					sendserv("JOIN $target");
 					sendserv("NOTICE $nick :$target has been registered to $acc");
-					sendserv("PRIVMSG $debugchannel :$nick ($acc) registered $target to $nick ($acc)");
+					if($showdebug == true){
+						sendserv("PRIVMSG $debugchannel :$nick ($acc) registered $target to $nick ($acc)");
+					}
 				}
 				else {
 					if ($userinfo["$lpam"]["nick"] == "") {
@@ -1702,7 +1708,9 @@ elseif (strtolower($cbase) == "register") {
 						fclose($fop);
 						sendserv("JOIN $target");
 						sendserv("NOTICE $nick :$target has been registered to ".$userinfo["$lpam"]["nick"]." ($racc).");
-						sendserv("PRIVMSG $debugchannel :$nick ($acc) registered $target to ".$userinfo["$lpam"]["nick"]." ($racc).");
+						if($showdebug == true){
+							sendserv("PRIVMSG $debugchannel :$nick ($acc) registered $target to ".$userinfo["$lpam"]["nick"]." ($racc).");
+						}
 					}
 				}
 			}

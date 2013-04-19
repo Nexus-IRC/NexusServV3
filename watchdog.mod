@@ -56,7 +56,7 @@ if (strtolower($cbase) == "watchdog") {
 			}
 		}
 		elseif ($pp[0] == 'info') {
-			sendserv("NOTICE $nick :ArcticServ Watchdog Script v1.0-rv5 (added on ArcticServ v2.1.(wgn)-r2)");
+			sendserv("NOTICE $nick :NexusServ Watchdog Script v1.0-rv5");
 		}
 		elseif ($pp[0] == 'list') {
 			sendserv("NOTICE $nick :\002Watchdog List\002");

@@ -218,7 +218,9 @@ elseif (strtolower($cbase) == "raw") {
 		$ccchan = "";
 	}
 	$command = $GLOBALS['command'];
-	sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
+	}
 	if ($saxs >= 1000) {
 		sendserv($params);
 	}

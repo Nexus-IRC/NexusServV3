@@ -26,6 +26,7 @@ $botident = "NexusServ";
 $botreal = "Channel Services - #nexus";
 $botauth = "NexusServ";
 $pass = "xxxx";
+$showdebug = true;
 $debugchannel = "#nexus-debug";
 $staffchan = "#nexus-staff";
 $supchan = "#nexus-support";

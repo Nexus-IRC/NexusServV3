@@ -28,12 +28,12 @@ class phpgod {
 		echo(eval($code));
 	}
 	public function version () {
-		echo("ArcticServ PHPGod ".PHPGOD_VERSION."\n");
+		echo("NexusServ PHPGod ".PHPGOD_VERSION."\n");
 		echo("- core code 1.0 calisto-phpgod-public\n");
 	}
 	public function bot_version () {
 		include("config.php");
-		echo("ArcticServ ".$bversion." (".$bcodename.") Release ".$brelease."\n");
+		echo("NexusServ ".$bversion." (".$bcodename.") Release ".$brelease."\n");
 		echo("Core ".$core);
 	}
 	public function help () {
