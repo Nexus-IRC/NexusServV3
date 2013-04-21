@@ -1,5 +1,5 @@
 /* chan2.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ if (strtolower($cbase) == "op") {
 			}
 			if ($fail == 1) {
 				global $botnick;
-				sendserv("NOTICE $nick :\002$botnick\002 couldnt process with some nicks you provided.");
+				sendserv("NOTICE $nick :\002$botnick\002 couldn't process with some nicks you provided.");
 			}
 			sendserv("NOTICE $nick :User(s) have been opped in $cname.");
 		}
@@ -146,7 +146,7 @@ elseif (strtolower($cbase) == "voice") {
 			}
 			if ($fail == 1) {
 				global $botnick;
-				sendserv("NOTICE $nick :\002$botnick\002 couldnt process with some nicks you provided.");
+				sendserv("NOTICE $nick :\002$botnick\002 couldn't process with some nicks you provided.");
 			}
 			sendserv("NOTICE $nick :User(s) have been voiced in $cname.");
 		}

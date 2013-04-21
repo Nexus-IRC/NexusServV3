@@ -1,6 +1,6 @@
 <?php
 /* phpTextWrite.class.php - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,9 +27,9 @@
 /*
 
 TODO:
-	1.	Add UTF-8 Support
-	2.	Add more letters (KLMNOPQRSTUVWXYZ)
-	3.	Add more special chars ($ maybe... and.... other chars...)
+	1.	Add UTF-8 Support                                           [done]
+	2.	Add more letters (KLMNOPQRSTUVWXYZ)                         [done]
+	3.	Add more special chars ($ maybe... and.... other chars...)  [ongoing]
 
 */
 
@@ -257,6 +257,12 @@ class phpText {
 		$this->ar3["*"] = "#######";
 		$this->ar4["*"] = "  ###  ";
 		$this->ar5["*"] = " # # # ";
+			// +
+		$this->ar1["+"] = "   #   ";
+		$this->ar2["+"] = "   #   ";
+		$this->ar3["+"] = "#######";
+		$this->ar4["+"] = "   #   ";
+		$this->ar5["+"] = "   #   ";
 			// {triangle}
 		$this->ar1[chr(3)] = "       ";
 		$this->ar2[chr(3)] = "   #   ";
@@ -311,19 +317,19 @@ class phpText {
 		$this->ar3["}"] = "    #";
 		$this->ar4["}"] = "   # ";
 		$this->ar5["}"] = "###  ";
-			// }
+			// {
 		$this->ar1["{"] = "  ###";
 		$this->ar2["{"] = " #   ";
 		$this->ar3["{"] = "#    ";
 		$this->ar4["{"] = " #   ";
 		$this->ar5["{"] = "  ###";
-			// }
+			// )
 		$this->ar1[")"] = "#  ";
 		$this->ar2[")"] = " # ";
 		$this->ar3[")"] = "  #";
 		$this->ar4[")"] = " # ";
 		$this->ar5[")"] = "#  ";
-			// }
+			// (
 		$this->ar1["("] = "  #";
 		$this->ar2["("] = " # ";
 		$this->ar3["("] = "#  ";
@@ -347,6 +353,12 @@ class phpText {
 		$this->ar3["."] = " ";
 		$this->ar4["."] = " ";
 		$this->ar5["."] = "#";
+			// ;
+		$this->ar1[";"] = "  ";
+		$this->ar2[";"] = " #";
+		$this->ar3[";"] = "  ";
+		$this->ar4[";"] = " #";
+		$this->ar5[";"] = "# ";
 			// 0
 		$this->ar1["0"] = "#####";
 		$this->ar2["0"] = "#  ##";
@@ -375,8 +387,8 @@ class phpText {
 		$this->ar1["4"] = "#  # ";
 		$this->ar2["4"] = "#  # ";
 		$this->ar3["4"] = "#####";
-		$this->ar4["4"] = "  #  ";
-		$this->ar5["4"] = "  #  ";
+		$this->ar4["4"] = "   # ";
+		$this->ar5["4"] = "   # ";
 			// 5
 		$this->ar1["5"] = " ####";
 		$this->ar2["5"] = "#    ";
@@ -550,7 +562,7 @@ class phpText {
 	function convert ($input) {
 		$this->schar = chr(160);
 		if ($input == "") {
-			return("You need to provide a text that can be converted to big letters.");
+			return("You need to provide text that can be converted to big letters.");
 		}
 		$input = $this->bracketCheck($input,$error);
 		$this->ar1 = str_replace("#",$this->xchar,$this->ar1);
