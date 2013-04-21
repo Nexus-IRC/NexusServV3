@@ -1,5 +1,5 @@
 /* chan.mod - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -3125,7 +3125,7 @@ elseif (strtolower($cbase) == "info") {
 		}
 	}
 	if ($chans["$ctarg"]["name"] != "" && $god["$acc"] != "1") {
-		sendserv("NOTICE $nick :\002".$chans["$ctarg"]["name"]."\002 channel information:");
+		sendserv("NOTICE $nick :\002".$chans["$ctarg"]["name"]."\002 Channel Information:");
 		sendserv("NOTICE $nick :Registrar:    $registrar");
 		sendserv("NOTICE $nick :Registered:   ".time2str($registered));
 		if ($chans["$ctarg"]["users"]["$lnick"] != "" or $god["$acc"] == "1" or $axs > 0) {
@@ -3150,7 +3150,7 @@ elseif (strtolower($cbase) == "info") {
 			ksort($nlist);
 			if ($paramzz == "nicklist") {
 				sendserv("NOTICE $nick :This parameter has been removed in Release 801");
-				sendserv("NOTICE $nick :Use \002nicklist\002 (command) instead.");
+				sendserv("NOTICE $nick :Use the \002nicklist\002 command instead.");
 			}
 			sendserv("NOTICE $nick :User Count:   $unc");
 			sendserv("NOTICE $nick :Modes:        ".$chans["$ctarg"]["modes"]);
@@ -3160,7 +3160,6 @@ elseif (strtolower($cbase) == "info") {
 		else {
 			sendserv("NOTICE $nick :You must be on the channel or its userlist to see the channel information");
 		}
-		sendserv("NOTICE $nick :---");
 	}
 	else {
 		sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002".$botnick."\002.");
@@ -3249,7 +3248,6 @@ elseif (strtolower($cbase) == "uset") {
 		sendserv("NOTICE $nick :\002PartInfo             \002 ".strsetting($infos['pinfo']));
 		sendserv("NOTICE $nick :\002QuitInfo             \002 ".strsetting($infos['qinfo']));
 		sendserv("NOTICE $nick :\002NoInvite             \002 ".binsetting($infos['noinvite']));
-	sendserv("NOTICE $nick :---");
 	}
 	elseif ($pa == "noautovoice" && $pb == "" && $axs > $tsets['givevoice'] && $axs < $tsets['giveops']) {
 		sendserv("NOTICE $nick :\002NoAutoVoice          \002 ".binsetting($nomodes));
@@ -3551,7 +3549,7 @@ elseif (strtolower($cbase) == "mode") {
 		return(0);
 	}
 	if ($chans["$ctarg"]["name"] == "") {
-		sendserv("NOTICE $nick :I'm not at $target.");
+		sendserv("NOTICE $nick :I'm not in $target.");
 		return(0);
 	}
 	$cname = $chans["$ctarg"]["name"];
@@ -3713,7 +3711,7 @@ elseif (strtolower($cbase) == "down") {
 	global $chans;
 	$ctarg = strtolower($target);
 	if ($chans["$ctarg"]["name"] == "") {
-		sendserv("NOTICE $nick :I'm not at $target.");
+		sendserv("NOTICE $nick :I'm not in $target.");
 		return(0);
 	}
 	$cname = $chans["$ctarg"]["name"];
@@ -3725,7 +3723,7 @@ elseif (strtolower($cbase) == "downall") {
 	global $chans;
 	$ctarg = strtolower($target);
 	if ($chans["$ctarg"]["name"] == "") {
-		sendserv("NOTICE $nick :I'm not at $target.");
+		sendserv("NOTICE $nick :I'm not in $target.");
 		return(0);
 	}
 	foreach ($chans as $clname => $clarray) {
@@ -3783,7 +3781,7 @@ elseif (strtolower($cbase) == "deop") {
 		return(0);
 	}
 	$cname = $chans["$tchan"]["name"];
-	if ($axs < 300 || $god[$acc] == 1) {
+	if ($axs < 300 || $god[$acc] == 0) {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 		return(0);
 	}
@@ -3812,7 +3810,7 @@ elseif (strtolower($cbase) == "deop") {
 							//sendserv("KICK $target $unick :($nick) $reason");
 						}
 						else {
-							sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) ranks you off.");
+							sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) outranks you.");
 							return(0);
 						}
 					}
@@ -3848,7 +3846,7 @@ elseif (strtolower($cbase) == "deop") {
 								//sendserv("KICK $target $unick :($nick) $reason");
 							}
 							else {
-								sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) ranks you off.");
+								sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) outranks you.");
 								return(0);
 							}
 						}
@@ -3883,7 +3881,7 @@ elseif (strtolower($cbase) == "deop") {
 								}
 							}
 							else {
-								sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) ranks you off.");
+								sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) outranks you.");
 								return(0);
 							}
 						}
@@ -3896,5 +3894,5 @@ elseif (strtolower($cbase) == "deop") {
 			}
 		}
 	}
-	sendserv("NOTICE $nick :Users have been kicked from $cname.");
+	sendserv("NOTICE $nick :User(s) have been deopped in $cname.");
 }
