@@ -210,9 +210,10 @@ elseif (strtolower($cbase) == "emote") {
 }
 elseif (strtolower($cbase) == "version") {
 	global $version; global $devline; global $secdevline;
-	sendserv("NOTICE $nick :\002Version\002");
-	sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].") Core ".$GLOBALS['core']." Release ".$GLOBALS['brelease']);
-	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
+	sendserv("NOTICE $nick :\002NexusServ ".$GLOBALS['core']."\002");
+	sendserv("NOTICE $nick :Release ".$GLOBALS['brelease']." NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].")");
+	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at http://nexus-irc.de/nexusserv.html");
+	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de");
 }
 elseif (strtolower($cbase) == "netinfo") {
 	global $server; global $botnick; global $userinfo; global $stime;
@@ -250,15 +251,15 @@ elseif (strtolower($cbase) == "netinfo") {
 		sendserv("NOTICE $nick :\002Bot Account        \002  Not logged in");
 	}
 	sendserv("NOTICE $nick :\002Users authed       \002  $auc");
-	sendserv("NOTICE $nick :\002Maximum Memory Use \002  ".round((memory_get_peak_usage()/1024/1024),2)."MB");
-	sendserv("NOTICE $nick :\002         Right now \002  ".round((memory_get_usage()/1024/1024),2)."MB");
-	sendserv("NOTICE $nick :\002Incoming Traffic   \002  ".round(($GLOBALS['glob']['dat_in']/1024/1024),2)."MB");
-	sendserv("NOTICE $nick :\002Outgoing Traffic   \002  ".round(($GLOBALS['glob']['dat_out']/1024/1024),2)."MB");
+	sendserv("NOTICE $nick :\002Maximum Memory Use \002  ".round((memory_get_peak_usage()/1024/1024),2)." MB (".round((memory_get_peak_usage()/1024),2)." kB)");
+	sendserv("NOTICE $nick :\002         Right now \002  ".round((memory_get_usage()/1024/1024),2)." MB (".round((memory_get_usage()/1024),2)." kB)");
+	sendserv("NOTICE $nick :\002Incoming Traffic   \002  ".round(($GLOBALS['glob']['dat_in']/1024/1024),2)." MB (".round(($GLOBALS['glob']['dat_in']/1024),2)." kB)");
+	sendserv("NOTICE $nick :\002Outgoing Traffic   \002  ".round(($GLOBALS['glob']['dat_out']/1024/1024),2)." MB (".round(($GLOBALS['glob']['dat_out']/1024/1024),2)." kB)");
 	sendserv("NOTICE $nick :\002Parser             \002  php".phpversion());
 	sendserv("NOTICE $nick :\002Version            \002  ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].")");
 	sendserv("NOTICE $nick :\002Core Version       \002  NexusServ v".$GLOBALS['core']);
 	sendserv("NOTICE $nick :\002Reloads            \002  ".($GLOBALS['rid']+0));
-	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de/");
+	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de");
 }
 elseif (strtolower($cbase) == "codeteam") {
 	global $botnick;

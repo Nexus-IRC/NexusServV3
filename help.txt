@@ -9,46 +9,107 @@
   STAFF           Staff only commands
 [USER]
  [b]User Management:[b]
-  Nothing here yet!
+  ACCESS      Check someone's access in a channel.
+  MYACCESS    Show all channels where you have access.
+  CLVL        Change a person's access level in a channel.
+  ADDUSER     Give another person access in a channel.
+  DELUSER     Remove a person's access from a channel.
+  UP          Give you ops in a channel you have access to.
+  DOWN        Remove your ops in a channel.
+  UPALL       Give you ops in all channels you have access to.
+  DOWNALL     Remove your ops in all channels.
+  OP          Give ops to the specified user.
+  DEOP        Remove ops from the specified user.
+  VOICE       Give voice to the specified user.
+  DEVOICE     Remove voice from the specified user.
+  USET        Set channel user options.
+  WIPEINFO    Remove a lower-ranked user's infoline.
 [CHANNEL]
  [b]Channel Management:[b]
-  Nothing here yet!
+  USERS       List all users of a channel.
+  CLIST       List all co-owners of a channel.
+  MLIST       List all masters of a channel.
+  OLIST       List all ops of a channel.
+  PLIST       List all peons of a channel.
+  BANS        List all the bans for a channel.
+  TOPIC       Set the current topic, or reset it to the default topic.
+  MODE        Change a channel mode.
+  INVITE      Invite new users to your channel.
+  INFO        Show numerical information about the users in a channel.
+  SET         Change various channel settings.
+  EVENTS      View a list of events relevant to a channel.
+  RESYNC      Synchronize ops and voice with the channel userlist.
 [BAN MANAGEMENT]
  [b]Ban Management:[b]
-  Nothing here yet!
+  KICK        Kick a user from a channel.
+  BAN         Ban a user from a channel.
+  KICKBAN     Kick and ban a user from a channel.
+  BANS        List lasting bans in a channel.
+  ADDBAN      Add a permanent ban for a user.
+  ADDTIMEDBAN Add a ban that expires in the specified time.
+  DELBAN      Remove the specified permanent ban from memory.
+  UNBANALL    Remove all bans from a channel.
 [INFORMATION]
  [b]Information:[b]
-  Nothing here yet!
+  VERSION     Check the current running version of $B.
+  NETINFO     Check current network-wide information.
+  STAFF       Get a list of all the current staff.
+  PEEK        Reveal information on a channel's modes, topic and ops.
+  SEEN        Find out the last time a user was in a channel.
+  COMMAND     Display some information about a command.
 [STAFF]
  [b]Staff Commands:[b]
-  Nothing here yet!
+  SAY         Have $B say a message in a channel.
+  EMOTE       Equivalent to $B doing a /me in a channel.
+  GOD         Turn security override on/off.
+  OPCHAN      Force $B to op itself in a channel.
+  REGISTER    Register a new channel with $B.
+  UNREGISTER  Remove $B from a registered channel.
 [SET]
  [b]SET[b]
   /msg $B SET <#channel> [<parameter> [setting]]
    This command will set various channel options.  With no arguments, it will show the current values of all channel options.
-   DEFAULTTOPIC: The channel's default topic
-   TOPICMASK:    A pattern that topics must match
-   GREETING:     A greeting message for visitors to the channel
-   USERGREETING: A greeting message for users on the channel's userlist
-   MODES:        The channel's default modes
-   PUBCMD:       Restrictions to use commands in public
-   INVITEME:     Minimum level for users to use INVITEME or AUTOINVITE
-   USERINFO:     Minimum level for users to show an infoline on join
-   GIVEVOICE:    The users that [b]$B[b] will autovoice
-   GIVEOPS:      The users that [b]$B[b] will autoop
-   ENFOPS:       Restrictions for opping users
-   ENFMODES:     Restrictions to change the default modes
-   ENFTOPIC:     Restrictions on changing the topic
-   MODTOPIC:     Who may change TOPICMASK and DEFAULTTOPIC
-   SETTERS:      Who may change channel settings (using [b]SET[b])
-   VOTE:         Who may vote in the channel (using [b]VOTE[b])
-   PROTECT:      The protection level [b]$B[b] provides
-   TOYS:         Toggles how [b]$B[b] will respond to toy commands
-   DYNLIMIT:     Adjusts user limit (+l channel mode) to prevent join floods
+   DEFAULTTOPIC:  The channel's default topic
+   TOPICMASK:     A pattern that topics must match
+   GREETING:      A greeting message for visitors to the channel
+   USERGREETING:  A greeting message for users on the channel's userlist
+   MODES:         The channel's default modes
+   PUBCMD:        Restrictions to use commands in public
+   INVITEME:      Minimum level for users to use INVITEME or AUTOINVITE
+   USERINFO:      Minimum level for users to show an infoline on join
+   GIVEVOICE:     The users that [b]$B[b] will autovoice
+   GIVEOPS:       The users that [b]$B[b] will autoop
+   ENFOPS:        Restrictions for opping users
+   ENFMODES:      Restrictions to change the default modes
+   ENFTOPIC:      Restrictions on changing the topic
+   MODTOPIC:      Who may change TOPICMASK and DEFAULTTOPIC
+   ENHANCEDTOPIC: Enables or disables the enhanced topic mode
+   SETTERS:       Who may change channel settings (using [b]SET[b])
+   VOTE:          Who may vote in the channel (using [b]VOTE[b])
+   PROTECT:       The protection level [b]$B[b] provides
+   TOYS:          Toggles how [b]$B[b] will respond to toy commands
+   DYNLIMIT:      Adjusts user limit (+l channel mode) to prevent join floods
 [ACCESS]
  /msg $B ACCESS <#channel> [<nick|*account>]
-  Reports various pieces of information about a channel user, including channel and network access level, and the user's infoline. If no nick or account is provided, $B returns your own information.
+ Reports various pieces of information about a channel user, including channel and network access level, and the user's infoline. If no nick or account is provided, $B returns your own information.
+[MYACCESS]
+ /msg $B MYACCESS [<nick|*account>]
+ Lists channels where you have access and infolines for each.
+ Staff may specify a nickname or *account to view the list for another user.
+ Your access level in the channel may be followed by a comma and one of the following characters:
+   s     Your access in the channel has been suspended
+   o     AutoOp is active
+   v     AutoVoice is active
+   i     AutoInvite is active
 [CLVL]
  /msg $B CLVL <#channel> <nick|*account> <level>
-  Modifies a channel user's access level. You cannot give users access greater than or equal to your own.
-  You may use *Account instead of Nick as the name argument; the * makes $B use the name of a account directly (useful if the user is not online).
+ Modifies a channel user's access level. You cannot give users access greater than or equal to your own.
+ You may use *Account instead of Nick as the name argument; the * makes $B use the name of a account directly (useful if the user is not online).
+[ADDUSER]
+ /msg $B ADDUSER <#channel> <nick|*account> <level>
+ This command adds someone to the channel userlist with the specified access level.  (You may only add users to levels less than your own.)
+ The level may be a number between 1 and 500.  Only staff may add level 500 users (owners).
+[DELUSER]
+ /msg $B DELUSER <#channel> <nick|*account>
+ Deletes a user from the channel userlist.
+ You may use *Account instead of Nick as the name argument; the * makes $B use the name of a account directly (useful if the user is not online).

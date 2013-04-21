@@ -646,7 +646,7 @@ while (true) {
 			}
 			if ($e[1] == "001") {
 				$botnick = $e[2];
-				sendserv("mode ".$botnick." +xIn");
+				sendserv("mode ".$botnick." +xiIn");
 				if ($autojoin == 1) {
 					$fop = fopen("users.conf","r+");
 					while ($fra = fgets($fop)) {

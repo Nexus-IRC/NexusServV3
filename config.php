@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
  
-$trigger = "'";
+$trigger = "=";
 $strigger = "$";
 $sendwith = -1;
 $server = "irc.onlinegamesnet.net";
@@ -30,7 +30,7 @@ $showdebug = true;
 $debugchannel = "#nexus-debug";
 $staffchan = "#nexus-staff";
 $supchan = "#nexus-support";
-$bversion = "2013/w15d3";
+$bversion = "2013/w16d1";
 $bcodename = "NexusIRC";
 $brelease = "805";
 $core = "3.1";
