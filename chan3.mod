@@ -2348,6 +2348,58 @@ if (strtolower($cbase) == "cset") {
 					fclose($fop);
 					sendserv("NOTICE $nick :\002UserGreeting           \002 ".strsetting($pe));
 				}
+				elseif (strtolower($pp[0]) == "funbot" && $pe != "") {
+					if ($pe == "*") {
+						$pe = "";
+					}
+					$fcont = "";
+					$area = "";
+					$sfound = 0;
+					$arfound = 0;
+					$fop = fopen("settings.conf","r+");
+					while ($fra = fgets($fop)) {
+						$fra = str_replace("\r","",$fra);
+						$fra = str_replace("\n","",$fra);
+						$frg = explode(" ",$fra);
+						if ($frg[0] == "-") {
+							$area = $frg[1];
+							$fcont .= "- $frg[1]\r\n";
+							if ($area == $tchan) {
+								$arfound = 1;
+								$fcont .= "funbot $pe\r\n";
+							}
+						}
+						else {
+							if ($area == $tchan && $frg[0] == "funbot") {
+								$sfound = 1;
+								$fcont .= ""; // Ignore old data.
+							}
+							else {
+								$fcont .= "$fra\r\n";
+							}
+						}
+					}
+					fclose($fop);
+					if ($sfound == 0) {
+						if ($arfound == 0) {
+							$fcont .= "- ".$tchan."\r\n";
+							$fcont .= "funbot $pe\r\n";
+						}
+					}
+					unlink("settings.conf");
+					$fop = fopen("settings.conf","w+");
+					fwrite($fop,$fcont);
+					fclose($fop);
+					sendserv("NOTICE $nick :\002FunBot           \002 ".strsetting($pe));
+					if($pe == "0") {
+						sendserv("privmsg nexusfun :unreg ".$tchan);
+					}elseif($pe == "1"){
+						sendserv("invite nexusfun ".$tchan);
+						sendserv("privmsg nexusfun :reg ".$tchan);
+					}else{
+						sendserv("privmsg nexusfun :unreg ".$tchan);
+					}
+				}
 				elseif (strtolower($pp[0]) == "topic" && $pe != "") {
 					if ($pe == "*") {
 						$pe = "";
@@ -2688,6 +2740,17 @@ if (strtolower($cbase) == "set") {
 		if ($tsets["trigger"] == "") {
 			$tsets["trigger"] = "=";
 		}
+		if($tsets["funbot"] == "0") {
+			sendserv("privmsg nexusfun :unreg ".$tchan);
+			$tsets["funbot"] = "0";
+		}elseif($tsets["funbot"] == "1"){
+			sendserv("invite nexusfun ".$tchan);
+			sendserv("privmsg nexusfun :reg ".$tchan);
+			$tsets["funbot"] = "1";
+		}else{
+			sendserv("privmsg nexusfun :unreg ".$tchan);
+			$tsets["funbot"] = "0";
+		}
 		if ($tsets["spamservtrigger"] == "") {
 			$tsets["spamservtrigger"] = "$";
 		}
@@ -2712,6 +2775,7 @@ if (strtolower($cbase) == "set") {
 				[23:58:21] -ChanServ- Setters      400
 				[23:58:21] -ChanServ- CTCPReaction 2 - Short timed ban on disallowed CTCPs
 				[23:58:21] -ChanServ- Protect      2 - Users will be protected from those of lower access.
+				[23:58:21] -ChanServ- funbot       0
 				[23:58:21] -ChanServ- Toys         2 - Toys will reply publicly.
 				[23:58:21] -ChanServ- DynLimit     Off
 				[23:58:21] -ChanServ- NoDelete     Off
@@ -2733,6 +2797,7 @@ if (strtolower($cbase) == "set") {
 				sendserv("NOTICE $nick :\002InviteMe               \002 ".asetting($tsets["inviteme"]));
 				sendserv("NOTICE $nick :\002DynLimit               \002 ".a2setting($tsets["dynlimit"]));
 				sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($tsets["nodelete"]));
+				sendserv("NOTICE $nick :\002FunBot                 \002 ".asetting($tsets["funbot"]));
 				sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($tsets["toys"]));
 				sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($tsets["protect"]));
 				sendserv("NOTICE $nick :For a complete list of channel settings, please use the \002cset\002 command!");
