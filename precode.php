@@ -1,6 +1,6 @@
 <?php
 /* precode.php - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ class phpgod {
 	}
 	public function bot_version () {
 		include("config.php");
-		echo("NexusServ ".$bversion." (".$bcodename.") Release ".$brelease."\n");
+		echo("NexusServ ".$bofficial." ".$bversion." (".$bcodename.") Release ".$brelease."\n");
 		echo("Core ".$core);
 	}
 	public function help () {

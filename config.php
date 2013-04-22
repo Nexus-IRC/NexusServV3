@@ -30,10 +30,11 @@ $showdebug = true;
 $debugchannel = "#nexus-debug";
 $staffchan = "#nexus-staff";
 $supchan = "#nexus-support";
-$bversion = "2013/w16d1";
-$bcodename = "NexusIRC";
-$brelease = "805";
+$bversion = "2013/w16d2";
+$bcodename = "Nexus-IRC";
+$brelease = "806";
 $core = "3.1";
-$version = "$bversion ($bcodename) Release $brelease on Core $core";
+$bofficial = "3.6";
+$version = "$bofficial $bversion ($bcodename) Release $brelease on Core $core";
 $autojoin = 1;
 ?>

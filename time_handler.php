@@ -1,6 +1,6 @@
 <?php
 /* time_handler.php - NexusServV3
- * Copyright (C) 2012  #Nexus project
+ * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,25 +99,25 @@ function time2str ($line) {
 		$secs = $secs - 60;
 	}
 	if ($years > 0) {
-		$str = $str.$years."years ";
+		$str = $str.$years." years ";
 	}
 	if ($months > 0) {
-		$str = $str.$months."months ";
+		$str = $str.$months." months ";
 	}
 	if ($wks > 0) {
-		$str = $str.$wks."weeks ";
+		$str = $str.$wks." weeks ";
 	}
 	if ($days > 0) {
-		$str = $str.$days."days ";
+		$str = $str.$days." days ";
 	}
 	if ($hrs > 0) {
-		$str = $str.$hrs."hours ";
+		$str = $str.$hrs." hours ";
 	}
 	if ($mins > 0) {
-		$str = $str.$mins."minutes ";
+		$str = $str.$mins." minutes ";
 	}
 	if ($secs > 0 or $str == "") {
-		$str = $str.$secs."seconds";
+		$str = $str.$secs." seconds";
 	}
 	if (substr($str,strlen($str) - 1) == " ") {
 		$str = substr($str,0,strlen($str) - 1);
