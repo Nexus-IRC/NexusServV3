@@ -2392,12 +2392,12 @@ if (strtolower($cbase) == "cset") {
 					fclose($fop);
 					sendserv("NOTICE $nick :\002FunBot           \002 ".strsetting($pe));
 					if($pe == "0") {
-						sendserv("privmsg nexusfun :unreg ".$tchan);
+						sendserv("PRIVMSG NexusFun :unreg ".$tchan);
 					}elseif($pe == "1"){
-						sendserv("invite nexusfun ".$tchan);
-						sendserv("privmsg nexusfun :reg ".$tchan);
+						sendserv("INVITE NexusFun ".$tchan);
+						sendserv("PRIVMSG NexusFun :reg ".$tchan);
 					}else{
-						sendserv("privmsg nexusfun :unreg ".$tchan);
+						sendserv("PRIVMSG NexusFun :unreg ".$tchan);
 					}
 				}
 				elseif (strtolower($pp[0]) == "topic" && $pe != "") {

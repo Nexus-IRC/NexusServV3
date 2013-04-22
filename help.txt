@@ -113,3 +113,80 @@
  /msg $B DELUSER <#channel> <nick|*account>
  Deletes a user from the channel userlist.
  You may use *Account instead of Nick as the name argument; the * makes $B use the name of a account directly (useful if the user is not online).
+[UP]
+ /msg $B UP <#channel>
+ Grants you your normal channel privileges. If your access in the channel is less than the GiveVoice setting, this does nothing. Otherwise, if your access is less than the GiveOps setting, [b]$B[b] will give you voice. If your access is at least GiveOps, [b]$B[b] will give you ops.
+[DOWN]
+ /msg $B DOWN <#channel>
+ This command will devoice/deop you in the selected channel.
+[UPALL]
+ /msg $B UPALL
+ Executes the [b]up[b] command for each channel you have access in.
+[DOWNALL]
+ /msg $B DOWNALL
+ Executes the [b]down[b] command for each channel you have access to.
+[OP]
+ /msg $B OP <#channel> <nick> [nick]...
+ This command makes $B op the specified user(s).
+[DEOP]
+ /msg $B DEOP <#channel> <nick> [nick]...
+ Deops the specified user(s).
+[VOICE]
+ /msg $B VOICE <#channel> <nick> [nick]...
+ Voices the specified nick in the specified channel. If the channel is omitted, then [b]voice[b] will be done in the channel where the command was given.
+[DEVOICE]
+ /msg $B DEVOICE <#channel> <nick> [nick]...
+ This command will make $B devoice the selected user(s).
+[USET]
+ /msg $B USET <#channel> [<option> [<setting>]]
+ The [b]uset[b] command allows you to toggle various channel user settings. With no arguments, it will print the current values of all channel user options.
+ [b]Options:[b]
+ NOAUTOOP:   Enable or disable $B automatically opping you upon joining or authenticating.
+ AUTOINVITE: $B will invite you to this channel if you have access to and are not in when you authenticate if this setting is on.
+ INFO:       Sets the infoline that $B sends when you join a channel.
+ PARTINFO:   Sets the infoline that $B sends when you part a channel.
+ QUITINFO:   Sets the infoline that $B sends when you quit.
+ NOINVITE:   $B will prevent users from trying to invite you to the channel.
+[WIPEINFO]
+ /msg B WIPEINFO <#channel> <nick|*account>
+ Removes the named user's infoline in the channel.
+[USERS]
+ /msg $B USERS <#channel> [mask]
+ Displays the userlist for the specified channel. If a mask is supplied, only users matching the mask will be shown.
+[CLIST]
+ /msg $B CLIST <#channel> [mask]
+ This command lists all users from level [b]400-499[b] on a channel's userlist. If a mask is supplied, only co-owners matching the mask will be shown.
+[MLIST]
+ /msg $B MLIST <#channel> [mask]
+ This command lists all users from level [b]300-399[b] on a channel's userlist. If a mask is supplied, only masters matching the mask will be shown.
+[OLIST]
+ /msg $B OLIST <#channel> [mask]
+ This command lists all users from level [b]200-299[b] on a channel's userlist. If a mask is supplied, only ops matching the mask will be shown.
+[PLIST]
+ /msg $B PLIST <#channel> [mask]
+ This command lists all users from level [b]100-199[b] on a channel's userlist. If a mask is supplied, only peons matching the mask will be shown.
+[BANS]
+ /msg $B BANS <#channel> [mask|nick]
+ This command lists all permanent and timed bans in the channel.
+ If a nickname is specified, lists any bans that visibly match that user.
+ If a hostmask with no wildcards is specified, lists any bans that match that hostmask.
+ If a hostmask with wildcards is specified, lists any bans included in that mask.
+[TOPIC]
+ /msg $B TOPIC <#channel> [topic]
+ Sets the current topic for the specified channel.  If no topic is specified, then sets the current topic to the default topic.
+[MODE]
+ /msg $B MODE <#channel>
+ Resets the modes in the channel to their default.
+[INVITE]
+ /msg $B INVITEME <#channel>
+ Invites you into the channel.
+[INFO]
+ /msg $B INFO <#channel>
+ This command responds with various pieces of information about a channel's users, status, and registration.
+[EVENTS]
+ /msg $B EVENTS <#channel> [limit [pattern]]
+ Allows channel co-owners to view a list of events related to their channel. If a pattern is provided, only events with a matching description will be displayed.
+ [b]Note:[b] You must specify a limit if you want to use a pattern to match against.
+[RESYNC]
+ /msg $B RESYNC <#channel>
+ Synchronizes users in the channel with the userlist.  This means that if the user can normally get ops, $B makes sure the user has ops. Otherwise, if the user normally gets voice, $B makes sure the user has voice but not ops. Otherwise, $B makes sure the user has neither voice nor ops.

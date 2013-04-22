@@ -431,7 +431,7 @@ while (true) {
 				}
 				unset($userinfo["$lnick"]);
 				if($showdebug == true){
-					sendserv("PRIVMSG $debugchannel :User $nick quited. Terminating userinfo, removing from all channels.");
+					sendserv("PRIVMSG $debugchannel :User $nick quit. Terminating userinfo, removing from all channels.");
 				}
 			}
 			if ($e[1] == "KICK") {
@@ -442,7 +442,7 @@ while (true) {
 				$nnick = $e[3];
 				if ($nnick == $botnick) {
 					sendserv("JOIN $cchan");
-					sendserv("PRIVMSG $staffchan :$knick kicked me from $cchan");
+					sendserv("PRIVMSG $debugchannel :$knick kicked me from $cchan");
 				}
 				$lnick = strtolower($e[3]);
 				$nexttime = time() + 10;
