@@ -16,6 +16,8 @@
  */
 // cbase: op
 // cbase: voice
+// cbase: opall
+// cbase: vall
 if (strtolower($cbase) == "op") {
 	$fail = 0;
 	$params = $paramzz;
@@ -243,9 +245,9 @@ elseif (strtolower($cbase) == "voice") {
 		$modes = "";
 		$modeps = "";
 		$xuc = 0;
-		sendserv("NOTICE $nick :Users in $cname have been synchronised with the userlist.");
+		sendserv("NOTICE $nick :Users in $cname have been synchronized with the userlist.");
 	} else {
-		sendserv("WARNING: Opping all users on a channel is very insecure! If you still want do op all users on $cname: 'opall FORCE'");
+		sendserv("NOTICE $nick :WARNING: Opping all users on a channel is very insecure! If you still want to op all users on $cname use: '\002opall FORCE\002'");
 	}
 }elseif (strtolower($cbase) == "vall") {
 	global $userinfo; global $chans; global $god; global $waitfor; global $botnick;
@@ -333,8 +335,8 @@ elseif (strtolower($cbase) == "voice") {
 		$modes = "";
 		$modeps = "";
 		$xuc = 0;
-		sendserv("NOTICE $nick :Users in $cname have been synchronised with the userlist.");
+		sendserv("NOTICE $nick :Users in $cname have been synchronized with the userlist.");
 	} else {
-		sendserv("WARNING: Voiceing all users on a channel is very insecure! If you still want do op all users on $cname: 'vall FORCE'");
+		sendserv("NOTICE $nick :WARNING: Voicing all users on a channel is very insecure! If you still want to voice all users on $cname use: '\002vall FORCE\002'");
 	}
 }

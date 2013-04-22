@@ -190,3 +190,66 @@
 [RESYNC]
  /msg $B RESYNC <#channel>
  Synchronizes users in the channel with the userlist.  This means that if the user can normally get ops, $B makes sure the user has ops. Otherwise, if the user normally gets voice, $B makes sure the user has voice but not ops. Otherwise, $B makes sure the user has neither voice nor ops.
+[KICK]
+ /msg $B KICK <#channel> <mask|nick> [reason]
+ Kicks the users matching the given nick or mask with the specified reason. If no reason is provided, a default will be used.
+[BAN]
+ /msg $B BAN <#channel> <mask|nick>
+ This command will temporarily add a ban for the user specified as the parameter. Masks are to be supplied in the format <Nick>!<Ident>@<Host> and usually contain wildcards. If a nick is specified, a mask is automatically generated (though not completely foolproof). This ban is removed either by removing it from the channel banlist using any IRC client, or sending the DELBAN or UNBANALL commands.
+ Example: *!*serv@*.user.OnlineGamesNet would ban anyone with the ident 'serv' and a user.OnlineGamesNet hostname from joining the channel.
+[KICKBAN]
+ /msg $B KICKBAN <#channel> <mask|nick> [reason]
+ Kicks and bans with the specified reason any users with a matching nick or hostmask. If no reason is provided, a default one will be used.
+[BANS]
+ /msg $B BANS <#channel> [mask|nick]
+ This command lists all permanent and timed bans in the channel.
+ If a nickname is specified, lists any bans that visibly match that user.
+ If a hostmask with no wildcards is specified, lists any bans that match that hostmask.
+[ADDBAN]
+ /msg $B ADDBAN <#channel> <mask|nick> [Reason]
+ Adds a ban to the channels permanent banlist, remaining in effect until removed with the DELBAN command. If it exactly matches an existing ban already in the list, the reason will be updated. If the existing ban was a timed ban, it will be extended into a permanent ban.
+[ADDTIMEDBAN]
+ /msg $B ADDTIMEDBAN <#channel> <mask|nick> <Duration> [Reason]
+ Adds an automatically expiring ban to the channel banlist. This command behaves in the exact same fashion as ADDBAN with the exception that the bans are automatically removed after the user-supplied duration. If it exactly matches an existing ban already in the list, the reason will be updated. If the existing ban was a timed ban, it will be extended. Timed bans can be removed with the DELBAN command, as with permanent bans.
+[DELBAN]
+ /msg $B DELBAN <#channel> <mask|nick>
+ Deletes a ban from the channel ban list. This command works for both permanent and timed bans alike.
+[UNBANALL]
+ /msg $B UNBANALL <#channel>
+ Clears the specified channel's banlist. If the channel is omitted, then [b]unbanall[b] will be done in the channel where the command was given.
+[VERSION]
+ /msg $B VERSION
+ Sends you version and copyright information for this software.
+[NETINFO]
+ /msg $B NETINFO
+ Displays some assorted pieces of information about network-wide [b]$B[b] statistics.
+[STAFF]
+ /msg $B STAFF
+ Lists all the staff currently online.
+[PEEK]
+ /msg $B PEEK <#channel>
+ Displays the current topic, modes, and other information of the specified channel.
+[SEEN]
+ /msg $B SEEN <#channel> <account>
+ This command will tell you if the selected user is in the channel, or when was the last time the user was seen in the channel.
+[COMMAND]
+ /msg $B COMMAND <command>
+ Shows the specified binding the named command is bound to.
+[SAY]
+ /msg $B SAY <#channel|nick|*account> <text>
+ Makes [b]$B[b] send a message to the specified channel/nick or all users on the account.
+[EMOTE]
+ /msg $B EMOTE <#channel|nick|*account> <text>
+ Makes [b]$B[b] send a CTCP ACTION message to the specified channel/nick or all users on the account.
+[GOD]
+ /msg $B GOD
+ Toggles security override, which grants you complete access to all channels. Please use carefully.
+[OPCHAN]
+ /msg $B OPCHAN <#channel>
+ This command makes $B op itself in the specified channel.
+[REGISTER]
+ /msg $B REGISTER <#channel> [user|*account]
+ Registers a channel with [b]$B[b], automatically granting owner access to the specified user. If no user is provided, [b]$B[b] gives owner access to the user executing the command.
+[UNREGISTER]
+ /msg $B UNREGISTER <#channel>
+ Unregisters a channel that is registered with [b]$B[b]. [b]IMPORTANT[b]: Once the channel is unregistered, the userlist and its settings [b]cannot[b] be recovered.
