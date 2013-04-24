@@ -831,7 +831,6 @@ while (true) {
 						$strig = str_repeat("?",145);
 						sendserv("NOTICE $nick :Public commands are restricted in \002".$e[2]."\002.");
 					}
-					fclose($fop);
 					// TRIGGER SET END
 					if ($mm[0][0] == $strig) {
 						// -
@@ -1497,7 +1496,6 @@ function join_event ($nick, $chan, $wfa) {
 	fwrite($fop,serialize($washere));
 	fclose($fop);
 
-	fclose($fop);
 	if ($axs >= $tsets["giveops"] && binsetting($noamodes) != "On") {
 		sendserv("MODE $wfa[1] +o $lnick");
 	}
