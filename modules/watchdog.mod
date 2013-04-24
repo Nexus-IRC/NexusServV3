@@ -23,7 +23,7 @@ if (strtolower($cbase) == "watchdog") {
 	$chansnoop = array();
 	$chansnoton = array();
 	$cpcount = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -47,7 +47,7 @@ if (strtolower($cbase) == "watchdog") {
 				sendserv("NOTICE $nick :\002STATIC\002");
 				sendserv("NOTICE $nick :SACCESS             800 (or higher)");
 				sendserv("NOTICE $nick :LINKER              add del list info set");
-				sendserv("NOTICE $nick :LISTFILE            watchdog.txt");
+				sendserv("NOTICE $nick :LISTFILE            conf/watchdog.txt");
 			}
 			else {
 				sendserv("NOTICE $nick :ERROR: Setting request/change for \002$pp[1]\002 failed.");
@@ -58,7 +58,7 @@ if (strtolower($cbase) == "watchdog") {
 		}
 		elseif ($pp[0] == 'list') {
 			sendserv("NOTICE $nick :\002Watchdog List\002");
-			$fop = fopen('watchdog.txt','r+');
+			$fop = fopen('conf/watchdog.txt','r+');
 			while ($fr = fgets($fop)) {
 				$fr = str_replace("\r","",$fr);
 				$fr = str_replace("\n","",$fr);
@@ -68,7 +68,7 @@ if (strtolower($cbase) == "watchdog") {
 			sendserv("NOTICE $nick :--- End of List ---");
 		}
 		elseif ($pp[0] == 'add') {
-			$fop = fopen('watchdog.txt','r+');
+			$fop = fopen('conf/watchdog.txt','r+');
 			while ($fr = fgets($fop)) {
 				$fr = str_replace("\r","",$fr);
 				$fr = str_replace("\n","",$fr);
@@ -86,14 +86,14 @@ if (strtolower($cbase) == "watchdog") {
 			}
 			fclose($fop);
 
-			$fop = fopen("watchdog.txt","w+");
+			$fop = fopen("conf/watchdog.txt","w+");
 			fwrite($fop,$wac.$pp[1]);
 			fclose($fop);
 			sendserv("NOTICE $nick :\002$pp[1]\002 was added to the Watchdog list.");
 		}
 		elseif ($pp[0] == "del") {
 
-			$fop = fopen('watchdog.txt','r+');
+			$fop = fopen('conf/watchdog.txt','r+');
 			while ($fr = fgets($fop)) {
 				$fr = str_replace("\r","",$fr);
 				$fr = str_replace("\n","",$fr);
@@ -107,7 +107,7 @@ if (strtolower($cbase) == "watchdog") {
 			}
 			fclose($fop);
 
-			$fop = fopen("watchdog.txt","w+");
+			$fop = fopen("conf/watchdog.txt","w+");
 			fwrite($fop,$wac);
 			fclose($fop);
 			sendserv("NOTICE $nick :All matches for \002$pp[1]\002 were removed.");

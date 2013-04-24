@@ -3,7 +3,7 @@ if (strtolower($cbase) == "vote") {
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -23,7 +23,7 @@ if (strtolower($cbase) == "vote") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -59,7 +59,7 @@ if (strtolower($cbase) == "vote") {
 			sendserv("NOTICE $nick : <OPTION-ID>");
 			return(0);
 		}
-		$ffop = fopen('votes.conf','r+');
+		$ffop = fopen('conf/votes.conf','r+');
 		while ($ffg = fgets($ffop)) {
 			$ffg = str_replace("\r","",$ffg);
 			$ffg = str_replace("\n","",$ffg);
@@ -85,7 +85,7 @@ if (strtolower($cbase) == "vote") {
 		}
 		$varray[$tchan]['votes'][$paramzz]++;
 		$varray[$tchan]['voted'][$uauth] = 1;
-		$ffop = fopen('votes.conf','w+');
+		$ffop = fopen('conf/votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
 		sendserv("NOTICE $nick :You voted for ID#$paramzz (".$varray[$tchan]['options'][$paramzz].")");

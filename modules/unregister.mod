@@ -3,7 +3,7 @@ if (strtolower($cbase) == "unregister") {
 	$tchan = strtolower($target);
 	$area = "";
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -22,7 +22,7 @@ if (strtolower($cbase) == "unregister") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -42,7 +42,7 @@ if (strtolower($cbase) == "unregister") {
 	$lchan = strtolower($target);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -64,7 +64,7 @@ if (strtolower($cbase) == "unregister") {
 			$cfound = 0;
 			$area = "";
 			$fcont = "";
-			$fop = fopen("users.conf","r+");
+			$fop = fopen("conf/users.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -85,12 +85,12 @@ if (strtolower($cbase) == "unregister") {
 				}
 			}
 			fclose($fop);
-			$fop = fopen("users.conf","w+");
+			$fop = fopen("conf/users.conf","w+");
 			fwrite($fop,$fcont);
 			fclose($fop);
 			$fcont = "";
 			$area = "";
-			$fop = fopen("settings.conf","r+");
+			$fop = fopen("conf/settings.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -108,12 +108,12 @@ if (strtolower($cbase) == "unregister") {
 				}
 			}
 			fclose($fop);
-			$fop = fopen("settings.conf","w+");
+			$fop = fopen("conf/settings.conf","w+");
 			fwrite($fop,$fcont);
 			fclose($fop);
 			$fcont = "";
 			$area = "";
-			$fop = fopen("bans.conf","r+");
+			$fop = fopen("conf/bans.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -131,7 +131,7 @@ if (strtolower($cbase) == "unregister") {
 				}
 			}
 			fclose($fop);
-			$fop = fopen("bans.conf","w+");
+			$fop = fopen("conf/bans.conf","w+");
 			fwrite($fop,$fcont);
 			fclose($fop);
 			if ($cfound == 1) {

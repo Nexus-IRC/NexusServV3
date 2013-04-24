@@ -7,7 +7,7 @@ if (strtolower($cbase) == "cset") {
 	$cfound = 0;
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -26,7 +26,7 @@ if (strtolower($cbase) == "cset") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -184,7 +184,7 @@ if (strtolower($cbase) == "cset") {
 					}
 					else {
 						$fcont = "";
-						$fop = fopen("settings.conf","r+");
+						$fop = fopen("conf/settings.conf","r+");
 						while ($fra = fgets($fop)) {
 							$fra = str_replace("\r","",$fra);
 							$fra = str_replace("\n","",$fra);
@@ -206,7 +206,7 @@ if (strtolower($cbase) == "cset") {
 							}
 						}
 						fclose($fop);
-						$fop = fopen("settings.conf","w+");
+						$fop = fopen("conf/settings.conf","w+");
 						fwrite($fop,$fcont);
 						fclose($fop);
 						sendserv("NOTICE $nick :Channel settings for ".$chans["$tchan"]["name"]." have been reset to default.");
@@ -342,7 +342,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -372,8 +372,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "showclones $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002ShowClones             \002 ".binsetting($pe));
@@ -387,7 +387,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -417,8 +417,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "votings $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Votings                \002 ".binsetting($pe));
@@ -432,7 +432,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -462,8 +462,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "autoopchan $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002AutoOpChan             \002 ".binsetting($pe));
@@ -480,7 +480,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -510,8 +510,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "enhancedtopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002EnhancedTopic          \002 ".binsetting($pe));
@@ -529,7 +529,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -559,8 +559,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "spamserv $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002SpamServ               \002 ".binsetting($pe));
@@ -575,7 +575,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -605,8 +605,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "watchdogscanops $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -622,7 +622,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -652,8 +652,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "watchdogscanvoiced $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -669,7 +669,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -699,8 +699,8 @@ if (strtolower($cbase) == "cset") {
 					$fcont .= "watchdogscanregular $pe\r\n";
 					}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -730,7 +730,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -760,8 +760,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "watchdogexceptlevel $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -776,7 +776,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -806,8 +806,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "watchdog $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($pe));
@@ -831,7 +831,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -861,8 +861,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "nodelete $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($pe));
@@ -876,7 +876,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -906,8 +906,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "toys $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($pe));
@@ -921,7 +921,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -951,8 +951,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "protect $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($pe));
@@ -980,7 +980,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1010,8 +1010,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "setters $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Setters                \002 ".asetting($pe));
@@ -1039,7 +1039,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1069,8 +1069,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "modtopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002ModTopic               \002 ".asetting($pe));
@@ -1084,7 +1084,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1114,8 +1114,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "dynlimit $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					$xx = 0;
@@ -1154,7 +1154,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1184,8 +1184,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "inviteme $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002InviteMe               \002 ".asetting($pe));
@@ -1213,7 +1213,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1243,8 +1243,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "giveops $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002GiveOps                \002 ".asetting($pe));
@@ -1272,7 +1272,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1302,8 +1302,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "givevoice $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002GiveVoice              \002 ".asetting($pe));
@@ -1331,7 +1331,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1361,8 +1361,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "uset $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Uset                   \002 ".asetting($pe));
@@ -1390,7 +1390,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1420,8 +1420,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "changeusers $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002ChangeUsers            \002 ".asetting($pe));
@@ -1453,7 +1453,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1483,8 +1483,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "adduser $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					if ($pe != "") {
@@ -1520,7 +1520,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1550,8 +1550,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "deluser $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					if ($pe != "") {
@@ -1587,7 +1587,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 						while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1617,8 +1617,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "clvl $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					if ($pe != "") {
@@ -1651,7 +1651,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1681,8 +1681,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "wipeinfo $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002WipeInfo               \002 ".asetting($pe));
@@ -1710,7 +1710,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1740,8 +1740,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "changevote $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002ChangeVote             \002 ".asetting($pe));
@@ -1769,7 +1769,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1799,8 +1799,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "vote $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Vote                   \002 ".asetting($pe));
@@ -1828,7 +1828,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1858,8 +1858,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "successor $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Successor              \002 ".asetting($pe));
@@ -1887,7 +1887,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1917,8 +1917,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "enftopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002EnfTopic               \002 ".asetting($pe));
@@ -1946,7 +1946,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1976,8 +1976,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "enfmodes $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002EnfModes               \002 ".asetting($pe));
@@ -2005,7 +2005,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2035,8 +2035,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "changetopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002ChangeTopic            \002 ".asetting($pe));
@@ -2064,7 +2064,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2094,8 +2094,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "pubcmd $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002PubCmd                 \002 ".asetting($pe));
@@ -2108,7 +2108,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2138,8 +2138,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "modes $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					bot_mod_mod($nick,$user,$host,$cchan,$target,"chan.mod mode ".$pe);
@@ -2153,7 +2153,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2183,8 +2183,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "greeting $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Greeting               \002 ".strsetting($pe));
@@ -2201,7 +2201,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2231,8 +2231,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "trigger $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($pe));
@@ -2249,7 +2249,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2279,8 +2279,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "spamservtrigger $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002SpamServTrigger        \002 ".strsetting($pe));
@@ -2293,7 +2293,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2323,8 +2323,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "usergreeting $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002UserGreeting           \002 ".strsetting($pe));
@@ -2337,7 +2337,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2367,8 +2367,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "funbot $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002FunBot           \002 ".strsetting($pe));
@@ -2389,7 +2389,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2419,8 +2419,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "defaulttopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("TOPIC $target :$pe");
@@ -2434,7 +2434,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2464,8 +2464,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "alttopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("TOPIC $target :$pe");
@@ -2479,7 +2479,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2509,8 +2509,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "defaulttopic $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/settings.conf");
+					$fop = fopen("conf/conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("TOPIC $target :$pe");
@@ -2524,7 +2524,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2554,8 +2554,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "topicmask $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/conf/settings.conf");
+					$fop = fopen("conf/conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002TopicMask              \002 ".strsetting($pe));
@@ -2568,7 +2568,7 @@ if (strtolower($cbase) == "cset") {
 					$area = "";
 					$sfound = 0;
 					$arfound = 0;
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -2598,8 +2598,8 @@ if (strtolower($cbase) == "cset") {
 							$fcont .= "alttopicmask $pe\r\n";
 						}
 					}
-					unlink("settings.conf");
-					$fop = fopen("settings.conf","w+");
+					unlink("conf/conf/settings.conf");
+					$fop = fopen("conf/conf/settings.conf","w+");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :\002AltTopicMask           \002 ".strsetting($pe));

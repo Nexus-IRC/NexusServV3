@@ -6,7 +6,7 @@ if (strtolower($cbase) == "clist") {
 	$saxs = 0;
 	$ccnt = 0;
 	$cpcount = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -18,7 +18,7 @@ if (strtolower($cbase) == "clist") {
 	fclose($fop);
 	if ($saxs >= 200) {
 		sendserv("NOTICE $nick :Channel List");
-		$fp = fopen("users.conf","r+");
+		$fp = fopen("conf/users.conf","r+");
 		while ($fg = fgets($fp)) {
 			$fg = str_replace("\r","",$fg);
 			$fg = str_replace("\n","",$fg);

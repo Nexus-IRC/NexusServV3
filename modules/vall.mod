@@ -14,7 +14,7 @@ if (strtolower($cbase) == "vall") {
 	$tsets = array();
 	$axs = array();
 	if($pp[0] == "FORCE"){
-		$fop = fopen("users.conf","r+");
+		$fop = fopen("conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -30,7 +30,7 @@ if (strtolower($cbase) == "vall") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("settings.conf","r+");
+		$fop = fopen("conf/settings.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -45,7 +45,7 @@ if (strtolower($cbase) == "vall") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("accs.conf","r+");
+		$fop = fopen("conf/accs.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);

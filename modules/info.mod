@@ -5,7 +5,7 @@ if (strtolower($cbase) == "info") {
 	$tchan = $ctarg;
 	$axs = 0;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -26,7 +26,7 @@ if (strtolower($cbase) == "info") {
 	$registrar = "not registered";
 	$acc = $userinfo["lnick"]["auth"];
 	$registered = 0;
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

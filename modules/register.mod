@@ -6,7 +6,7 @@ if (strtolower($cbase) == "register") {
 	$lpam = strtolower($params);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -22,7 +22,7 @@ if (strtolower($cbase) == "register") {
 		}
 		else {
 			$arfound = 0;
-			$fop = fopen("users.conf","r+");
+			$fop = fopen("conf/users.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -38,7 +38,7 @@ if (strtolower($cbase) == "register") {
 			else {
 				if ($params[0] == "*") {
 					$accfound = "";
-					$fop = fopen("accs.conf","r+");
+					$fop = fopen("conf/accs.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -49,7 +49,7 @@ if (strtolower($cbase) == "register") {
 					}
 					fclose($fop);
 					if ($accfound != "") {
-						$fop = fopen("users.conf","a+");
+						$fop = fopen("conf/users.conf","a+");
 						fwrite($fop,"\r\n- ".$lchan." ".$acc." ".time()."\r\n");
 						fwrite($fop,"$accfound 500");
 						fclose($fop);
@@ -64,7 +64,7 @@ if (strtolower($cbase) == "register") {
 					}
 				}
 				elseif ($params == "") {
-					$fop = fopen("users.conf","a+");
+					$fop = fopen("conf/users.conf","a+");
 					fwrite($fop,"\r\n- ".$lchan." ".$acc." ".time()."\r\n");
 					fwrite($fop,"$acc 500");
 					sendserv("JOIN $target");
@@ -91,7 +91,7 @@ if (strtolower($cbase) == "register") {
 							sendserv("NOTICE $nick :".$userinfo["$lpam"]["nick"]." is not authed with \002AuthServ\002.");
 							return(0);
 						}
-						$fop = fopen("users.conf","a+");
+						$fop = fopen("conf/users.conf","a+");
 						fwrite($fop,"\r\n- ".$lchan." ".$acc." ".time()."\r\n");
 						fwrite($fop,"$racc 500");
 						fclose($fop);

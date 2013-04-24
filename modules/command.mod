@@ -2,7 +2,7 @@ if (strtolower($cbase) == "command") {
 	$params = $paramzz;
 	$found = 0;
 	$bip = explode(" ",$params);
-	$fop = fopen("bind.conf","r+");
+	$fop = fopen("conf/bind.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

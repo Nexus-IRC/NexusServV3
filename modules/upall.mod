@@ -11,7 +11,7 @@ if (strtolower($cbase) == "upall") {
 	foreach ($chans as $ctarg => $ctarray) {
 		$axs = array();
 		$targ = $chans["$ctarg"]["name"];
-		$fop = fopen("users.conf","r+");
+		$fop = fopen("conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -27,7 +27,7 @@ if (strtolower($cbase) == "upall") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("settings.conf","r+");
+		$fop = fopen("conf/settings.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);

@@ -8,7 +8,7 @@ if (strtolower($cbase) == "voice") {
 	$cfound = 0;
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -27,7 +27,7 @@ if (strtolower($cbase) == "voice") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

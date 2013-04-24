@@ -1,9 +1,9 @@
 if (strtolower($cbase) == "help") {
-	$helpfile = "help.txt";
+	$helpfile = "conf/help.txt";
 	$params = $paramzz;
 	$para = explode(" ",$params);
 	if (substr($para[0],0,2) == "::") {
-		$helpfile = "help".substr($para[0],2).".txt";
+		$helpfile = "conf/help".substr($para[0],2).".txt";
 		$params = substr($params,strlen($para[0]." "));
 	}
 	global $botnick; global $version;

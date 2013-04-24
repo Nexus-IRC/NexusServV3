@@ -15,4 +15,4 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
- echo('NOTICE Calisto :'.date('d.m.y H:i:s').' GMT +01:00'); ?>
+ echo('NOTICE $nick :'.date('d.m.y H:i:s').' GMT +01:00'); ?>

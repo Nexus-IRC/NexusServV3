@@ -3,7 +3,7 @@ if (strtolower($cbase) == "deloption") {
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -23,7 +23,7 @@ if (strtolower($cbase) == "deloption") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -59,7 +59,7 @@ if (strtolower($cbase) == "deloption") {
 			sendserv("NOTICE $nick : <OPTION-ID>");
 			return(0);
 		}
-		$ffop = fopen('votes.conf','r+');
+		$ffop = fopen('conf/votes.conf','r+');
 		while ($ffg = fgets($ffop)) {
 			$ffg = str_replace("\r","",$ffg);
 			$ffg = str_replace("\n","",$ffg);
@@ -84,7 +84,7 @@ if (strtolower($cbase) == "deloption") {
 		foreach ($vk as $vkint) {
 			$varray[$tchan]['options'][] = $vkint;
 		}
-		$ffop = fopen('votes.conf','w+');
+		$ffop = fopen('conf/votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
 		sendserv("NOTICE $nick :Option was deleted.");

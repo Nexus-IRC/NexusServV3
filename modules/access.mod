@@ -9,7 +9,7 @@ if (strtolower($cbase) == "access") {
 	global $chans; global $userinfo; global $botnick; global $god;
 	if ($params[0] == "*") {
 		$acc = substr($params,1);
-		$fop = fopen("users.conf","r+");
+		$fop = fopen("conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -56,7 +56,7 @@ if (strtolower($cbase) == "access") {
 		}
 		elseif ($access == 0) {
 			$afound = "";
-			$fop = fopen("accs.conf","r+");
+			$fop = fopen("conf/accs.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -97,7 +97,7 @@ if (strtolower($cbase) == "access") {
 				return(0);
 			}
 		}
-		$fop = fopen("users.conf","r+");
+		$fop = fopen("conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -144,7 +144,7 @@ if (strtolower($cbase) == "access") {
 		}
 		elseif ($access == 0) {
 			$afound = "";
-			$fop = fopen("accs.conf","r+");
+			$fop = fopen("conf/accs.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -193,7 +193,7 @@ if (strtolower($cbase) == "access") {
 				return(0);
 			}
 		}
-		$fop = fopen("users.conf","r+");
+		$fop = fopen("conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -240,7 +240,7 @@ if (strtolower($cbase) == "access") {
 		}
 		elseif ($access == 0) {
 			$afound = "";
-			$fop = fopen("accs.conf","r+");
+			$fop = fopen("conf/accs.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -261,7 +261,7 @@ if (strtolower($cbase) == "access") {
 			}
 			else {
 				sendserv("NOTICE $nick :".$userinfo["$lpam"]["nick"]." ($acc) lacks access to ".$chans["$lchan"]["name"]);
-				$fop = fopen("accs.conf","a+");
+				$fop = fopen("conf/accs.conf","a+");
 				fwrite($fop,"\r\n$acc");
 				fclose($fop);
 			}

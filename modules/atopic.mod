@@ -7,7 +7,7 @@ if (strtolower($cbase) == "atopic") {
 	$cfound = 0;
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -26,7 +26,7 @@ if (strtolower($cbase) == "atopic") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -84,14 +84,14 @@ if (strtolower($cbase) == "atopic") {
 							sendserv("NOTICE $nick :\002$xploder[0]\002 is an invalid \002EnhancedTopic\002-ID");
 							return(0);
 						}
-						$etopics = getArrayFromFile("etopics.conf");
+						$etopics = getArrayFromFile("conf/etopics.conf");
 						if (substr($paramzz,strlen($xploder[0]." ")) != "*") {
 							$etopics[$tchan][$xploder[0]] = substr($paramzz,strlen($xploder[0]." "));
-							sendArrayToFile("etopics.conf",$etopics);
+							sendArrayToFile("conf/etopics.conf",$etopics);
 						}
 						else {
 							unset($etopics[$tchan][$xploder[0]]);
-							sendArrayToFile("etopics.conf",$etopics);
+							sendArrayToFile("conf/etopics.conf",$etopics);
 						}
 						$bla[1] = "";
 						$bla[2] = "";

@@ -15,7 +15,7 @@ if (strtolower($cbase) == "trace") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -27,7 +27,7 @@ if (strtolower($cbase) == "trace") {
 	fclose($fop);
 	if ($saxs >= 200) {
 		$cnt = 0;
-		$fope = fopen("accs.conf","r+");
+		$fope = fopen("conf/accs.conf","r+");
 		while ($frae = fgets($fope)) {
 			$frae = str_replace("\r","",$frae);
 			$frae = str_replace("\n","",$frae);

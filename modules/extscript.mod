@@ -1,7 +1,7 @@
 if (strtolower($cbase) == "extscript") {
 	$phppath = 'php'; // Linux Path FOR EVERY FUNCTION IN THIS MODULE!
 	$tchan = strtolower($cchan);
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -32,7 +32,7 @@ if (strtolower($cbase) == "extscript") {
 	}
 	fwrite($xx,serialize($nicklist));
 	fclose($xx);
-	fwrite($fp,$extnick.file_get_contents($la[0]));
+	fwrite($fp,$extnick.file_get_contents("ext/".$la[0]));
 	// Relay the nick to the external script and - whuuush - start it!
 	// We'll see how it goes.
 	fclose($fp);

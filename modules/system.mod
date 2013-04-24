@@ -23,7 +23,7 @@ if (strtolower($cbase) == "bot") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -58,7 +58,7 @@ if (strtolower($cbase) == "bot") {
 			$buffer .= "NOTICE $nick :Rehashing modules...\n";
 			global $modules;
 			$modules = array();
-			foreach (glob("*.mod") as $filename) {
+			foreach (glob("modules/*.mod") as $filename) {
 				/* $buffer .= "NOTICE $nick :Loading module $filename ...\n"; */
 				$mcnt++;
 				$cnt = 0; $lcnt = 0;
@@ -107,17 +107,11 @@ if (strtolower($cbase) == "bot") {
 				$amcc = $amcc + $mcc;
 				$amlc = $amlc + $mlc;
 			}
-			if ($GLOBALS['lpack'] == "") {
-				sendserv("NOTICE $nick :\0033INFO:\003 No language pack is loaded.");
-			}
-			else {
-				sendserv("NOTICE $nick :\0033INFO:\003 Language pack \"".$GLOBALS['lpack']."\" is loaded.");
-			}
 			$mcode = file('nexusserv.php');
-			$tcode = file('time_handler.php');
+			$tcode = file('inc/time_handler.php');
 			$amlc = $amlc + count($mcode) + count($tcode);
 			sendserv("NOTICE $nick :Main Code (Core) : ".round(filesize('nexusserv.php')/1024,0)."KBytes (".count($mcode)." Lines)");
-			sendserv("NOTICE $nick :Time Handler Code: ".round(filesize('time_handler.php')/1024,0)."KBytes (".count($tcode)." Lines)");
+			sendserv("NOTICE $nick :Time Handler Code: ".round(filesize('inc/time_handler.php')/1024,0)."KBytes (".count($tcode)." Lines)");
 			sendserv("NOTICE $nick :\002End of list.\002 $amcc Commands ($amlc Lines)");
 		}
 		else {
@@ -147,7 +141,7 @@ if (strtolower($cbase) == "debug") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -205,7 +199,7 @@ elseif (strtolower($cbase) == "raw") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

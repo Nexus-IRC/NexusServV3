@@ -9,7 +9,7 @@ if (strtolower($cbase) == "addban") {
 	global $userinfo; global $chans; global $botnick; global $god; global $botnick;
 	$lbotnick = strtolower($botnick);
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -29,7 +29,7 @@ if (strtolower($cbase) == "addban") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -162,7 +162,7 @@ if (strtolower($cbase) == "addban") {
 	$bcfound = 0;
 	$xx = 0;
 	$fcont = "";
-	$fop = fopen("bans.conf","r+");
+	$fop = fopen("conf/bans.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -196,7 +196,7 @@ if (strtolower($cbase) == "addban") {
 		$fcont .= "- $tchan\r\n";
 		$fcont .= "$targ $acc p $reason\r\n";
 	}
-	$fop = fopen("bans.conf","w+");
+	$fop = fopen("conf/bans.conf","w+");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("MODE $target +b $targ");

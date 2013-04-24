@@ -5,7 +5,7 @@ if (strtolower($cbase) == "bind") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -16,7 +16,7 @@ if (strtolower($cbase) == "bind") {
 	}
 	fclose($fop);
 	if ($saxs >= 800) {
-		$fope = fopen("bind.conf","r+");
+		$fope = fopen("conf/bind.conf","r+");
 		$fcont = "";
 		while ($frae = fgets($fope)) {
 			$frae = str_replace("\r","",$frae);
@@ -55,7 +55,7 @@ if (strtolower($cbase) == "bind") {
 				sendserv("NOTICE $nick :\002".$pazz[1]."\002 is not a valid command in module ".$pazz[0].".");
 			}
 			else {
-				$fope = fopen("bind.conf","w+");
+				$fope = fopen("conf/bind.conf","w+");
 				fwrite($fope,$fcont);
 				fclose($fope);
 				sendserv("NOTICE $nick :New command \002$paz[0]\002 bound to the bot.");
@@ -71,7 +71,7 @@ if (strtolower($cbase) == "bind") {
 						$mgs = "";
 					}
 					$fcont .= $paz[0]." ".$pazz[1]." ".$mgs;
-					$fope = fopen("bind.conf","w+");
+					$fope = fopen("conf/bind.conf","w+");
 					fwrite($fope,$fcont);
 					fclose($fope);
 					sendserv("NOTICE $nick :New command \002$paz[0]\002 bound to the bot.");     

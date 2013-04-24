@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-@(include('fnmatch.php'));
+@(include('inc/fnmatch.php'));
 error_reporting(E_ALL & ~E_NOTICE);
 $modules = array();
-foreach (glob("*.mod") as $filename) {
+foreach (glob("modules/*.mod") as $filename) {
 	$fop = fopen($filename,"r+");
 	while ($fg = fgets($fop)) {
 		$modules["$filename"] .= $fg;
@@ -82,7 +82,7 @@ class irc_handle {
 }
 #  NexusServ Channel Service
 #  made by DarkFly
-include("time_handler.php");
+include("inc/time_handler.php");
 set_time_limit(0);
 $devline    = " ";
 $secdevline = "---";
@@ -100,7 +100,7 @@ $staffl["8"] = "Hoster";
 $floodtime = time();
 $flood = "0";
 
-require_once("config.php");
+require_once("inc/config.php");
 $socket = fsockopen($server,$port,$errstr,$errno,2);
 $dltimer = array();
 $timer = time();
@@ -360,11 +360,11 @@ while (true) {
 				$fopi = fopen("users.conf","r+");
 
 
-				$temp = file_get_contents("lastseen.txt");
+				$temp = file_get_contents("conf/lastseen.txt");
 
 				$washere = unserialize($temp);
 				$washere[$cchan][$uauth] = time();
-				$fop = fopen("lastseen.txt","w+");
+				$fop = fopen("conf/lastseen.txt","w+");
 				fwrite($fop,serialize($washere));
 				fclose($fop);
 
@@ -414,7 +414,7 @@ while (true) {
 						unset($chans["$cname"]["users"]["$lnick"]);
 						$uauth = strtolower($userinfo["$lnick"]["auth"]);
 
-						$fop = fopen("lastseen.txt","r+");
+						$fop = fopen("conf/lastseen.txt","r+");
 						while ($fra = fgets($fop)) {
 							$fra = str_replace("\r","",$fra);
 							$fra = str_replace("\n","",$fra);
@@ -424,7 +424,7 @@ while (true) {
 
 						$washere = unserialize($temp);
 						$washere[$cname][$uauth] = time();
-						$fop = fopen("lastseen.txt","w+");
+						$fop = fopen("conf/lastseen.txt","w+");
 						fwrite($fop,serialize($washere));
 						fclose($fop);
 					}
@@ -452,7 +452,7 @@ while (true) {
 				global $userinfo;
 				$uauth = strtolower($userinfo["$lnick"]["auth"]);
 
-				$fop = fopen("lastseen.txt","r+");
+				$fop = fopen("conf/lastseen.txt","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -463,7 +463,7 @@ while (true) {
 				$washere = unserialize($temp);
 				$washere[$cchan][$uauth] = time();
 
-				$fop = fopen("lastseen.txt","w+");
+				$fop = fopen("conf/lastseen.txt","w+");
 				fwrite($fop,serialize($washere));
 				fclose($fop);
 
@@ -1481,7 +1481,7 @@ function join_event ($nick, $chan, $wfa) {
 	}
 	$uauth = strtolower($userinfo["$lnick"]["auth"]);
 
-	$fop = fopen("lastseen.txt","r+");
+	$fop = fopen("conf/lastseen.txt","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1492,7 +1492,7 @@ function join_event ($nick, $chan, $wfa) {
 	$washere = unserialize($temp);
 	$washere[$tlchan][$uauth] = time();
 
-	$fop = fopen("lastseen.txt","w+");
+	$fop = fopen("conf/lastseen.txt","w+");
 	fwrite($fop,serialize($washere));
 	fclose($fop);
 
@@ -1599,7 +1599,7 @@ function protsetting ($val) {
 
 function lseen ($account, $chan) {
 	global $userinfo; global $chans;
-	$fp = fopen("lastseen.txt","r+");
+	$fp = fopen("conf/lastseen.txt","r+");
 	while ($fr = fgets($fp)) {
 		$fr = str_replace("\r","",$fr);
 		$fr = str_replace("\n","",$fr);

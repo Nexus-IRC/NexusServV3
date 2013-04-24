@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-include("phpTextWrite.class.php"); // Text writer include...
+include("../inc/phpTextWrite.class.php"); // Text writer include...
 $phpText = new phpText(chr(22)." ".chr(22));
 
  if ($chan[0] == "#") {
