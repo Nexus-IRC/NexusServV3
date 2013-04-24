@@ -23,6 +23,12 @@ if (strtolower($cbase) == "history") {
 	sendserv("NOTICE $nick :Try \002v1-history\002 for the ".chr(31)."ArcticServ 1.0".chr(31)." history");
 }
 if (strtolower($cbase) == "webinfo") {
+	require_once("inc/Feed.class.php");
+	$feed = new FeedClass;
+	$data = $feed->parseFeed("http://board.nexus-irc.de/index.php?page=CNewsFeed&categoryID=1");
+	foreach($data as $id => $v) {
+		sendserv("NOTICE $nick :".$v['title']." By ".$v['author']." (".date("d.m.Y H:i:s",$v['pubDate']).")");
+	}
 	sendserv("NOTICE $nick :The latest news can be found at http://board.nexus-irc.de/index.php?page=CNews");
 }
 elseif (strtolower($cbase) == "v1-history") {
