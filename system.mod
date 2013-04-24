@@ -59,7 +59,7 @@ if (strtolower($cbase) == "bot") {
 			global $modules;
 			$modules = array();
 			foreach (glob("*.mod") as $filename) {
-				$buffer .= "NOTICE $nick :Loading module $filename ...\n";
+				/* $buffer .= "NOTICE $nick :Loading module $filename ...\n"; */
 				$mcnt++;
 				$cnt = 0; $lcnt = 0;
 				$fop = fopen($filename,"r+");
@@ -71,9 +71,10 @@ if (strtolower($cbase) == "bot") {
 					$lcnt++;
 				}
 				fclose($fop);
-				$buffer .= "NOTICE $nick :Loaded module ".str_replace(".mod","",$filename)." ($filename) ; $cnt commands; $lcnt lines of code.\n";
+				/* $buffer .= "NOTICE $nick :Loaded module ".str_replace(".mod","",$filename)." ($filename) ; $cnt commands; $lcnt lines of code.\n"; */
 				$xlines = $xlines + $lcnt;
 			}
+			/*
 			$buffer .= "NOTICE $nick :Loading language pack...\n";
 			if (!file_exists('languages.php')) {
 				$buffer .= "NOTICE $nick :\0034WARNING:\003 Language pack not found. Using included English language.\n";
@@ -82,6 +83,7 @@ if (strtolower($cbase) == "bot") {
 			else {
 				include('languages.php');
 			}
+			*/
 			$buffer .= "NOTICE $nick :Done, rehashed everything ($mcnt modules, $xlines lines of code) in ".(microtime(true) - $mtime)." seconds.\n";
 			$GLOBALS['rid']++;
 			sendserv($buffer);
