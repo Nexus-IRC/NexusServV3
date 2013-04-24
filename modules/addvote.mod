@@ -1,4 +1,4 @@
-if (strtolower($cbase) == "vote") {
+if (strtolower($cbase) == "addvote") {
 	global $userinfo; global $chans; global $botnick; global $god;
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
@@ -50,13 +50,13 @@ if (strtolower($cbase) == "vote") {
 	if ($tsets['changevote'] == '') {
 		$tsets['changevote'] = '400';
 	}
-	if ($axs < $tsets['vote']) {
+	if ($axs < $tsets['changevote']) {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	}
 	else {
 		if ($paramzz == "") {
-			sendserv("NOTICE $nick :\002vote\002 requires more parameters:");
-			sendserv("NOTICE $nick : <OPTION-ID>");
+			sendserv("NOTICE $nick :\002addvote\002 requires more parameters:");
+			sendserv("NOTICE $nick : <QUESTION>");
 			return(0);
 		}
 		$ffop = fopen('votes.conf','r+');
@@ -66,28 +66,14 @@ if (strtolower($cbase) == "vote") {
 			$varray = unserialize($ffg);
 		}
 		fclose($ffop);
-		if ($varray[$tchan] == "") {
-			sendserv("NOTICE $nick :There is no voting on \002$cname\002.");
+		if ($varray[$tchan] != "") {
+			sendserv("NOTICE $nick :There is already a voting on \002$cname\002.");
 			return(0);
 		}
-		$uauth = strtolower($userinfo[$lnick]['auth']);
-		if ($varray[$tchan]['voted'][$uauth] == 1) {
-			sendserv("NOTICE $nick :You already voted.");
-			return(0);
-		}
-		if ($varray[$tchan]['start'] != 1) {
-			sendserv("NOTICE $nick :The voting on \002$cname\002 is not started.");
-			return(0);
-		}
-		if ($varray[$tchan]['options'][$paramzz] == "") {
-			sendserv("NOTICE $nick :This option ID is not existing on \002$cname\002.");
-			return(0);
-		}
-		$varray[$tchan]['votes'][$paramzz]++;
-		$varray[$tchan]['voted'][$uauth] = 1;
+		$varray[$tchan] = array('question' => $paramzz);
 		$ffop = fopen('votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
-		sendserv("NOTICE $nick :You voted for ID#$paramzz (".$varray[$tchan]['options'][$paramzz].")");
+		sendserv("NOTICE $nick :Voting was added to \002$cname\002 with question \002$paramzz\002");
 	}
 }

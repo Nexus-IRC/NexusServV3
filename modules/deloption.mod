@@ -1,4 +1,4 @@
-if (strtolower($cbase) == "vote") {
+if (strtolower($cbase) == "deloption") {
 	global $userinfo; global $chans; global $botnick; global $god;
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
@@ -50,12 +50,12 @@ if (strtolower($cbase) == "vote") {
 	if ($tsets['changevote'] == '') {
 		$tsets['changevote'] = '400';
 	}
-	if ($axs < $tsets['vote']) {
+	if ($axs < $tsets['changevote']) {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	}
 	else {
 		if ($paramzz == "") {
-			sendserv("NOTICE $nick :\002vote\002 requires more parameters:");
+			sendserv("NOTICE $nick :\002deloption\002 requires more parameters:");
 			sendserv("NOTICE $nick : <OPTION-ID>");
 			return(0);
 		}
@@ -70,24 +70,23 @@ if (strtolower($cbase) == "vote") {
 			sendserv("NOTICE $nick :There is no voting on \002$cname\002.");
 			return(0);
 		}
-		$uauth = strtolower($userinfo[$lnick]['auth']);
-		if ($varray[$tchan]['voted'][$uauth] == 1) {
-			sendserv("NOTICE $nick :You already voted.");
-			return(0);
-		}
-		if ($varray[$tchan]['start'] != 1) {
-			sendserv("NOTICE $nick :The voting on \002$cname\002 is not started.");
+		if ($varray[$tchan]['start'] == 1) {
+			sendserv("NOTICE $nick :The voting on \002$cname\002 was already started.");
 			return(0);
 		}
 		if ($varray[$tchan]['options'][$paramzz] == "") {
 			sendserv("NOTICE $nick :This option ID is not existing on \002$cname\002.");
 			return(0);
 		}
-		$varray[$tchan]['votes'][$paramzz]++;
-		$varray[$tchan]['voted'][$uauth] = 1;
+		unset($varray[$tchan]['options'][$paramzz]);
+		$vk = $varray[$tchan]['options'];
+		unset($varray[$tchan]['options']);
+		foreach ($vk as $vkint) {
+			$varray[$tchan]['options'][] = $vkint;
+		}
 		$ffop = fopen('votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
-		sendserv("NOTICE $nick :You voted for ID#$paramzz (".$varray[$tchan]['options'][$paramzz].")");
+		sendserv("NOTICE $nick :Option was deleted.");
 	}
 }

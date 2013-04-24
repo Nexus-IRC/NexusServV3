@@ -1,4 +1,4 @@
-if (strtolower($cbase) == "vote") {
+if (strtolower($cbase) == "voting") {
 	global $userinfo; global $chans; global $botnick; global $god;
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
@@ -47,18 +47,10 @@ if (strtolower($cbase) == "vote") {
 		sendserv("NOTICE $nick :Votings are disabled in \002$cname\002.");
 		return(0);
 	}
-	if ($tsets['changevote'] == '') {
-		$tsets['changevote'] = '400';
-	}
-	if ($axs < $tsets['vote']) {
+	if ($axs < -1000) {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	}
 	else {
-		if ($paramzz == "") {
-			sendserv("NOTICE $nick :\002vote\002 requires more parameters:");
-			sendserv("NOTICE $nick : <OPTION-ID>");
-			return(0);
-		}
 		$ffop = fopen('votes.conf','r+');
 		while ($ffg = fgets($ffop)) {
 			$ffg = str_replace("\r","",$ffg);
@@ -70,24 +62,21 @@ if (strtolower($cbase) == "vote") {
 			sendserv("NOTICE $nick :There is no voting on \002$cname\002.");
 			return(0);
 		}
-		$uauth = strtolower($userinfo[$lnick]['auth']);
-		if ($varray[$tchan]['voted'][$uauth] == 1) {
-			sendserv("NOTICE $nick :You already voted.");
-			return(0);
+		sendserv("NOTICE $nick :\002Voting info for $cname:\002");
+		sendserv("NOTICE $nick :Question: ".$varray[$tchan]['question']);
+		sendserv("NOTICE $nick :Options:");
+		foreach ($varray[$tchan]['options'] as $optnr => $optarg) {
+			$vtimes = $varray[$tchan]['votes'][$optnr];
+			if ($vtimes == "") {
+				$vtimes = "0";
+			}
+			sendserv("NOTICE $nick :    $optnr -> $optarg (Voted ".$vtimes." times)");
 		}
-		if ($varray[$tchan]['start'] != 1) {
-			sendserv("NOTICE $nick :The voting on \002$cname\002 is not started.");
-			return(0);
+		if ($varray[$tchan]['start'] == 1) {
+			sendserv("NOTICE $nick :- The voting on \002$cname\002 is started.");
 		}
-		if ($varray[$tchan]['options'][$paramzz] == "") {
-			sendserv("NOTICE $nick :This option ID is not existing on \002$cname\002.");
-			return(0);
-		}
-		$varray[$tchan]['votes'][$paramzz]++;
-		$varray[$tchan]['voted'][$uauth] = 1;
 		$ffop = fopen('votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
-		sendserv("NOTICE $nick :You voted for ID#$paramzz (".$varray[$tchan]['options'][$paramzz].")");
 	}
 }

@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-// cbase: watchdog
-// cbase: info
 if (strtolower($cbase) == "watchdog") {
 	global $userinfo; global $botnick; global $god; global $chans;
 	$lbotnick = strtolower($botnick);
