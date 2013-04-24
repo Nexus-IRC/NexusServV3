@@ -39,7 +39,7 @@ class FeedClass {
 
     private static function parseRSSFeed($xml) {
 		foreach ($xml->channel->item as $item) {
-			$item->pubDate = self::getTimeStamp($item->pubDate);
+			$item->pubDate = self::getTime($item->pubDate);
 			$item->description = html_entity_decode($item->description);
 			$data[] = $item;
 		} 
