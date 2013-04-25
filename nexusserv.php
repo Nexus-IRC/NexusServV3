@@ -18,7 +18,7 @@
 @(include('./inc/fnmatch.php'));
 error_reporting(E_ALL & ~E_NOTICE);
 $modules = array();
-foreach (glob("./modules/*.mod") as $filename) {
+foreach (glob("./modules/*.cmd") as $filename) {
 	$fop = fopen($filename,"r+");
 	while ($fg = fgets($fop)) {
 		$modules["$filename"] .= $fg;
@@ -1008,23 +1008,23 @@ while (true) {
 function cmd_parser ($nick, $user, $host, $command, $cchan, $target, $params) {
 	$lnick = strtolower($nick); global $isev; global $userinfo;
 	$cf = 0;
-	$fop = fopen("./conf/bind.conf","r+");
-	while ($fra = fgets($fop)) {
+	$fopa = fopen("./conf/bind.conf","r+");
+	while ($fra = fgets($fopa)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
 		$fgr = explode(" ",$fra);
 		if (strtolower($fgr[0]) == strtolower($command)) {
 			$cmdparams = substr("$fra",strlen("$fgr[0] $fgr[1] "));
 			if ($command != "events") {
-				$fp = fopen("./inc/events.log","a+");
-				fwrite($fp,"\r\n".strtolower($target)." ".time()." ".$nick."?".$userinfo["$lnick"]["auth"]." $command $params");
-				fclose($fop);
+				$fopb = fopen("./inc/events.log","a+");
+				fwrite($fopb,"\r\n".strtolower($target)." ".time()." ".$nick."?".$userinfo["$lnick"]["auth"]." $command $params");
+				fclose($fopb);
 			}
 			call_user_func("bot_".$fgr[1],$nick,$user,$host,$cchan,$target,$cmdparams.$params);
 			$cf = 1;
 		}
 	}
-	fclose($fop);
+	fclose($fopa);
 	if ($cf == 0 && $cchan[0] != "#") {
 		sendserv("NOTICE $nick :\002$command\002 is an unknown command.");
 	}
@@ -1037,7 +1037,7 @@ function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	$cbase = $pp[1];
 	$paramzz = substr($params,strlen($pp[0]." ".$pp[1]." "));
 	#print_r($modules);
-	eval($modules["./modules/".$modbase]);
+	eval($modules["./modules/".$modbase.".cmd"]);
 }
 
 function bmask ($line) { // Escapes patterns
