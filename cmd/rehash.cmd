@@ -39,10 +39,10 @@ if ($saxs >= 950) {
 	$xlines = 0;
 	$mcnt = 0;
 	$mtime = microtime(true);
-	$buffer .= "NOTICE $nick :Rehashing modules...\n";
+	$buffer .= "NOTICE $nick :Rehashing commands...\n";
 	global $modules;
 	$modules = array();
-	foreach (glob("./modules/*.cmd") as $filename) {
+	foreach (glob("./cmd/*.cmd") as $filename) {
 		$mcnt++;
 		$cnt = 0; $lcnt = 0;
 		$fop = fopen($filename,"r+");
@@ -54,10 +54,9 @@ if ($saxs >= 950) {
 			$lcnt++;
 		}
 		fclose($fop);
-		/* $buffer .= "NOTICE $nick :Loaded module ".str_replace(".cmd","",$filename)." ($filename) ; $cnt commands; $lcnt lines of code.\n"; */
 		$xlines = $xlines + $lcnt;
 	}
-	$buffer .= "NOTICE $nick :Done, rehashed everything ($mcnt modules, $xlines lines of code) in ".(microtime(true) - $mtime)." seconds.\n";
+	$buffer .= "NOTICE $nick :Done, rehashed everything ($mcnt commands, $xlines lines of code) in ".(microtime(true) - $mtime)." seconds.\n";
 	$GLOBALS['rid']++;
 	sendserv($buffer);
 } else {

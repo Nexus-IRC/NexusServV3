@@ -18,7 +18,7 @@
 @(include('./inc/fnmatch.php'));
 error_reporting(E_ALL & ~E_NOTICE);
 $modules = array();
-foreach (glob("./modules/*.cmd") as $filename) {
+foreach (glob("./cmd/*.cmd") as $filename) {
 	$fop = fopen($filename,"r+");
 	while ($fg = fgets($fop)) {
 		$modules["$filename"] .= $fg;
@@ -1037,7 +1037,7 @@ function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	$cbase = $pp[1];
 	$paramzz = substr($params,strlen($pp[0]." ".$pp[1]." "));
 	#print_r($modules);
-	eval($modules["./modules/".$modbase.".cmd"]);
+	eval($modules["./cmd/".$modbase.".cmd"]);
 }
 
 function bmask ($line) { // Escapes patterns
