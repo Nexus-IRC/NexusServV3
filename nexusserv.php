@@ -1037,7 +1037,7 @@ function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	$cbase = $pp[1];
 	$paramzz = substr($params,strlen($pp[0]." ".$pp[1]." "));
 	#print_r($modules);
-	eval($modules["modules/".$modbase]);
+	eval($modules["./modules/".$modbase]);
 }
 
 function bmask ($line) { // Escapes patterns
