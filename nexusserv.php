@@ -136,7 +136,7 @@ while (true) {
 
 		$bfcont = "";
 		$carea = "";
-		$bfop = fopen("bans.conf","r+");
+		$bfop = fopen("conf/bans.conf","r+");
 		while ($fra = fgets($bfop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -157,7 +157,7 @@ while (true) {
 			}
 		}
 		fclose($bfop);
-		$bfop = fopen("bans.conf","w+");
+		$bfop = fopen("conf/bans.conf","w+");
 		fwrite($bfop,$bfcont);
 		fclose($bfop);
 	}
@@ -210,7 +210,7 @@ while (true) {
 				$axs = 0;
 				$cfound = 0;
 				$acc = $userinfo["$lnick"]["auth"];
-				$fop = fopen("users.conf","r+");
+				$fop = fopen("conf/users.conf","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -229,7 +229,7 @@ while (true) {
 				}
 				fclose($fop);
 				$area = "";
-				$fop = fopen("settings.conf","r+");
+				$fop = fopen("conf/settings.conf","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -305,7 +305,7 @@ while (true) {
 				$axs = 0;
 				$cfound = 0;
 				$acc = $userinfo["$lnick"]["auth"];
-				$fop = fopen("users.conf","r+");
+				$fop = fopen("conf/users.conf","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -324,7 +324,7 @@ while (true) {
 				}
 				fclose($fop);
 				$area = "";
-				$fop = fopen("settings.conf","r+");
+				$fop = fopen("conf/settings.conf","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -357,7 +357,7 @@ while (true) {
 				global $userinfo;
 				$uauth = strtolower($userinfo["$lnick"]["auth"]);
 
-				$fopi = fopen("users.conf","r+");
+				$fopi = fopen("conf/users.conf","r+");
 
 
 				$temp = file_get_contents("conf/lastseen.txt");
@@ -589,7 +589,7 @@ while (true) {
 
 
 				$car = "";
-				$bfop = fopen("bans.conf","r+");
+				$bfop = fopen("conf/bans.conf","r+");
 				while ($fra = fgets($bfop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -648,7 +648,7 @@ while (true) {
 				$botnick = $e[2];
 				sendserv("mode ".$botnick." +xiIn");
 				if ($autojoin == 1) {
-					$fop = fopen("users.conf","r+");
+					$fop = fopen("conf/users.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -754,7 +754,7 @@ while (true) {
 					$strig = '';
 					$tsets = array();
 					// TRIGGER SET END
-					$fop = fopen("settings.conf","r+");
+					$fop = fopen("conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -769,7 +769,7 @@ while (true) {
 						}
 					}
 					fclose($fop);
-					$fop = fopen("users.conf","r+");
+					$fop = fopen("conf/users.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -1008,7 +1008,7 @@ while (true) {
 function cmd_parser ($nick, $user, $host, $command, $cchan, $target, $params) {
 	$lnick = strtolower($nick); global $isev; global $userinfo;
 	$cf = 0;
-	$fop = fopen("bind.conf","r+");
+	$fop = fopen("conf/bind.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1037,7 +1037,8 @@ function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	$modbase = $pp[0];
 	$cbase = $pp[1];
 	$paramzz = substr($params,strlen($pp[0]." ".$pp[1]." "));
-	eval($modules["$modbase"]);
+	#print_r($modules);
+	eval($modules["modules/".$modbase]);
 }
 
 function bmask ($line) { // Escapes patterns
@@ -1158,14 +1159,14 @@ function sendserv_dump ($line) {
 
 function sendserv ($line) {
 	global $socket; global $floodtime; global $flood; global $bnclients; global $sendwith;
-	$fopi = fopen("aset.conf","r+");
+	$fopi = fopen("conf/aset.conf","r+");
 	while ($fro = fgets($fopi)) {
 		$fro = str_replace("\r","",$fro);
 		$fro = str_replace("\n","",$fro);
 		$aset = unserialize($fro);
 	}
 	fclose($fopi);
-	$fopi = fopen("aset.conf","w+");
+	$fopi = fopen("conf/aset.conf","w+");
 	fwrite($fopi,serialize($aset));
 	fclose($fopi);
 	$laine = explode(" ",$line);
@@ -1328,7 +1329,7 @@ function timer_evnts ($time, $call) {
 		}
 		elseif ($timtime[0] == "DYNLIMIT") {
 			$cchan = strtolower($timtime[1]);
-			$fop = fopen("settings.conf","r+");
+			$fop = fopen("conf/settings.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -1359,7 +1360,7 @@ function timer_evnts ($time, $call) {
 
 function staffname ($account) {
 	global $staffl;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1388,7 +1389,7 @@ function staffname ($account) {
 
 function staffstat ($account) {
 	global $staffl;
-	$fop = fopen("staff.conf","r+");
+	$fop = fopen("conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1421,7 +1422,7 @@ function join_event ($nick, $chan, $wfa) {
 	unset($tsets);
 	$tlchan = strtolower($chan);
 	$area = "";
-	$fop = fopen("settings.conf","r+");
+	$fop = fopen("conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1460,7 +1461,7 @@ function join_event ($nick, $chan, $wfa) {
 	$noamodes = 0;
 	$setinfo = "";
 	$axs = "0";
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1546,7 +1547,7 @@ function join_event ($nick, $chan, $wfa) {
 	}
 	if ($xxx == 1) {
 		foreach ($chans as $clname => $carray) {
-			$fop = fopen("users.conf","r+");
+			$fop = fopen("conf/users.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);
@@ -1755,7 +1756,7 @@ function vaccess ($level,$maxlvl) { // validates 1 to 500 (for staff - adduser <
 
 function addChanUser ($chan, $auth, $access) {
 	$afound = 0;
-	$fop = fopen("accs.conf","r+");
+	$fop = fopen("conf/accs.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1765,14 +1766,14 @@ function addChanUser ($chan, $auth, $access) {
 	}
 	fclose($fop);
 	if ($afound == 0) {
-		$fop = fopen("accs.conf","a+");
+		$fop = fopen("conf/accs.conf","a+");
 		fwrite($fop,"\n$auth\n");
 		fclose($fop);
 	}
 
 
 	$ctarg = strtolower($chan);
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1792,7 +1793,7 @@ function addChanUser ($chan, $auth, $access) {
 	fclose($fop);
 
 
-	$fop = fopen("users.conf","r+");
+	$fop = fopen("conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -1809,7 +1810,7 @@ function addChanUser ($chan, $auth, $access) {
 		}
 	}
 	fclose($fp);
-	$fop = fopen("users.conf","w+");
+	$fop = fopen("conf/users.conf","w+");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	return("Ok");
