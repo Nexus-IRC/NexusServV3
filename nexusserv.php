@@ -1035,8 +1035,17 @@ function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	$pp = explode(" ",$params);
 	$modbase = $pp[0];
 	$cbase = $pp[1];
-	$paramzz = substr($params,strlen($pp[0]." ".$pp[1]." "));
-	#print_r($modules);
+	$pp1 = "";
+	foreach($pp as $pq) {
+		if($pq == $modbase) { } else {
+			if($pp1 == "") {
+				$pp1 .= $pq;
+			} else {
+				$pp1 .= " ".$pq;
+			}
+		}
+	}
+	$paramzz = $pp1;
 	eval($modules["./cmd/".$modbase.".cmd"]);
 }
 

@@ -41,17 +41,13 @@ sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 if ($saxs >= 950) {
 	sendserv("NOTICE $nick :\002Loaded modules - status report:\002");
 	foreach ($modules as $modname => $modcontent) {
-		$mcc = 0; $mlc = 0;
+		$mlc = 0;
 		$modexp = explode("\n",$modules[$modname]);
 		foreach ($modexp as $modexps) {
-			$modexpsex = explode(' ',$modexps);
-			if ($modexpsex[0] == '//' && $modexpsex[1] == 'cbase:') {
-				$mcc++;
-			}
 			$mlc++;
 		}
-		sendserv("NOTICE $nick :".str_replace(".cmd","",$modname)." ($modname), $mcc commands ($mlc lines)");
-		$amcc = $amcc + $mcc;
+		sendserv("NOTICE $nick :".str_replace("./cmd/","",$modname).", 1 command ($mlc lines)");
+		$amcc = $amcc + 1;
 		$amlc = $amlc + $mlc;
 	}
 	$mcode = file('nexusserv.php');
