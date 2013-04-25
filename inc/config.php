@@ -1,5 +1,5 @@
 <?php
-/* config.php - NexusServV3
+/* inc/config.php - NexusServV3
  * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
