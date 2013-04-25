@@ -4,7 +4,7 @@ if (strtolower($cbase) == "timecmd") {
 	if ($pp[0] == "") {
 		$xy = 0;
 		sendserv("NOTICE $nick :Missing parameters: <command> [parameters]");
-		$fop = fopen("conf/bind.conf","r+");
+		$fop = fopen("./conf/bind.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);

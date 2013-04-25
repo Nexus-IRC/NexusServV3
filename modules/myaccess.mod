@@ -13,7 +13,7 @@ if (strtolower($cbase) == "myaccess") {
 			sendserv("NOTICE $nick :$nick is not authed with \002AuthServ\002.");
 			return(0);
 		}
-		$fop = fopen("conf/settings.conf","r+");
+		$fop = fopen("./conf/settings.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -28,7 +28,7 @@ if (strtolower($cbase) == "myaccess") {
 		fclose($fop);
 		$owncnt = 0;
 		sendserv("NOTICE $nick :Showing all channel entries for \002".$userinfo["$lnick"]["auth"]."\002:");
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -88,14 +88,14 @@ if (strtolower($cbase) == "myaccess") {
 		}
 		else {
 			if ($paramzz[0] == "*") {
-				$fop = fopen("conf/accs.conf","r+");
+				$fop = fopen("./conf/accs.conf","r+");
 				// TODO: Add accountcheck
 				fclose($fop);
 			}
 
 			$owncnt = 0;
 			sendserv("NOTICE $nick :Showing all channel entries for \002".$paramzz."\002:");
-			$fop = fopen("conf/users.conf","r+");
+			$fop = fopen("./conf/users.conf","r+");
 			while ($fra = fgets($fop)) {
 				$fra = str_replace("\r","",$fra);
 				$fra = str_replace("\n","",$fra);

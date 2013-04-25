@@ -5,7 +5,7 @@ if (strtolower($cbase) == "unbind") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -16,7 +16,7 @@ if (strtolower($cbase) == "unbind") {
 	}
 	fclose($fop);
 	if ($saxs >= 800) {
-		$fope = fopen("conf/bind.conf","r+");
+		$fope = fopen("./conf/bind.conf","r+");
 		$found = 0;
 		$fcont = "";
 		while ($frae = fgets($fope)) {
@@ -33,7 +33,7 @@ if (strtolower($cbase) == "unbind") {
 		}
 		fclose($fope);
 		if ($found == 1) {
-			$fope = fopen("conf/bind.conf","w+");
+			$fope = fopen("./conf/bind.conf","w+");
 			fwrite($fope,$fcont);
 			fclose($fope);
 			sendserv("NOTICE $nick :Command \002$paz[0]\002 unbound from the bot.");

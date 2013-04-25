@@ -3,7 +3,7 @@ if (strtolower($cbase) == "addoption") {
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -23,7 +23,7 @@ if (strtolower($cbase) == "addoption") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -59,7 +59,7 @@ if (strtolower($cbase) == "addoption") {
 			sendserv("NOTICE $nick : <ANSWER>");
 			return(0);
 		}
-		$ffop = fopen('conf/votes.conf','r+');
+		$ffop = fopen('./conf/votes.conf','r+');
 		while ($ffg = fgets($ffop)) {
 			$ffg = str_replace("\r","",$ffg);
 			$ffg = str_replace("\n","",$ffg);
@@ -75,7 +75,7 @@ if (strtolower($cbase) == "addoption") {
 			return(0);
 		}
 		$varray[$tchan]['options'][] = $paramzz;
-		$ffop = fopen('conf/votes.conf','w+');
+		$ffop = fopen('./conf/votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
 		sendserv("NOTICE $nick :Question on \002$cname\002 is: ".$varray[$tchan]['question']);

@@ -7,7 +7,7 @@ if (strtolower($cbase) == "etopics") {
 	$cfound = 0;
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -26,7 +26,7 @@ if (strtolower($cbase) == "etopics") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -59,7 +59,7 @@ if (strtolower($cbase) == "etopics") {
 		return(0);
 	}
 	sendserv("NOTICE $nick :\002EnhancedTopic values for ".chr(31).$chans["$tchan"]["name"].chr(31).":");
-	$etopics = getArrayFromFile("conf/etopics.conf");
+	$etopics = getArrayFromFile("./conf/etopics.conf");
 	sendserv("NOTICE $nick :1         = ".$etopics[$tchan][1]);
 	sendserv("NOTICE $nick :2         = ".$etopics[$tchan][2]);
 	sendserv("NOTICE $nick :3         = ".$etopics[$tchan][3]);
@@ -76,6 +76,6 @@ if (strtolower($cbase) == "etopics") {
 	sendserv("NOTICE $nick :14        = ".$etopics[$tchan][14]);
 	sendserv("NOTICE $nick :15        = ".$etopics[$tchan][15]);
 	sendserv("NOTICE $nick ---");
-	sendArrayToFile("conf/etopics.conf",$etopics);
+	sendArrayToFile("./conf/etopics.conf",$etopics);
 	}
 }

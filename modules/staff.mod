@@ -1,6 +1,6 @@
 if (strtolower($cbase) == "staff") {
 	global $userinfo; global $botnick; global $god;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

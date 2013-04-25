@@ -7,7 +7,7 @@ if (strtolower($cbase) == "bans") {
 	$cfound = 0;
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -26,7 +26,7 @@ if (strtolower($cbase) == "bans") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -55,7 +55,7 @@ if (strtolower($cbase) == "bans") {
 	$hl = strlen("Host");
 	$nl = strlen("Set By");
 	$ele = strlen("Expires");
-	$fop = fopen("conf/bans.conf","r+");
+	$fop = fopen("./conf/bans.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

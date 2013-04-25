@@ -1,5 +1,5 @@
 if (strtolower($cbase) == "webinfo") {
-	require_once("inc/Feed.class.php");
+	require_once("./inc/Feed.class.php");
 	$feed = new FeedClass;
 	$data = $feed->parseFeed("http://board.nexus-irc.de/index.php?page=CNewsFeed&categoryID=1");
 	foreach($data as $v) {

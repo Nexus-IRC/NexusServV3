@@ -5,7 +5,7 @@ if (strtolower($cbase) == "rename") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -18,7 +18,7 @@ if (strtolower($cbase) == "rename") {
 	if ($saxs >= 200) {
 		$fcont = "";
 		$found = "";
-		$fope = fopen("conf/accs.conf","r+");
+		$fope = fopen("./conf/accs.conf","r+");
 		while ($frae = fgets($fope)) {
 			$frae = str_replace("\r","",$frae);
 			$frae = str_replace("\n","",$frae);
@@ -32,7 +32,7 @@ if (strtolower($cbase) == "rename") {
 		}
 		fclose($fope);
 		$ffcont = "";
-		$fope = fopen("conf/users.conf","r+");
+		$fope = fopen("./conf/users.conf","r+");
 		while ($frae = fgets($fope)) {
 			$frae = str_replace("\r","",$frae);
 			$frae = str_replace("\n","",$frae);
@@ -46,7 +46,7 @@ if (strtolower($cbase) == "rename") {
 		}
 		fclose($fope);
 		$fffcont = "";
-		$fope = fopen("conf/staff.conf","r+");
+		$fope = fopen("./conf/staff.conf","r+");
 		while ($frae = fgets($fope)) {
 			$frae = str_replace("\r","",$frae);
 			$frae = str_replace("\n","",$frae);
@@ -64,13 +64,13 @@ if (strtolower($cbase) == "rename") {
 			if($showdebug == true){
 				sendserv("PRIVMSG $debugchannel :$nick renamed account $found to $paz[1].");
 			}
-			$fope = fopen("conf/accs.conf","w+");
+			$fope = fopen("./conf/accs.conf","w+");
 			fwrite($fope,$fcont);
 			fclose($fope);
-			$fope = fopen("conf/users.conf","w+");
+			$fope = fopen("./conf/users.conf","w+");
 			fwrite($fope,$ffcont);
 			fclose($fope);
-			$fope = fopen("conf/staff.conf","w+");
+			$fope = fopen("./conf/staff.conf","w+");
 			fwrite($fope,$fffcont);
 			fclose($fope);
 		}

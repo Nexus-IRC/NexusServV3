@@ -8,7 +8,7 @@ if (strtolower($cbase) == "banall")  {
 	$uaxs = array();
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -28,7 +28,7 @@ if (strtolower($cbase) == "banall")  {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -52,7 +52,7 @@ if (strtolower($cbase) == "banall")  {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	}
 	else {
-		$fop = fopen("conf/bans.conf","r+");
+		$fop = fopen("./conf/bans.conf","r+");
 		$ccnt = 0;
 		$cmodes = "";
 		$cparms = "";

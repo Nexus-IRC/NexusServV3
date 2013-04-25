@@ -13,7 +13,7 @@ if (strtolower($cbase) == "deluser") {
 	$ctarg = strtolower($target);
 	$tchan = $ctarg;
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -41,7 +41,7 @@ if (strtolower($cbase) == "deluser") {
 		$tsets['clvl'] = $tsets['changeusers'];
 	}	
 	$cname = $chans["$ctarg"]["name"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -57,7 +57,7 @@ if (strtolower($cbase) == "deluser") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("conf/accs.conf","r+");
+	$fop = fopen("./conf/accs.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -105,7 +105,7 @@ if (strtolower($cbase) == "deluser") {
 		}
 		$area = "";
 		$fcont = "";
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -126,7 +126,7 @@ if (strtolower($cbase) == "deluser") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		sendserv("NOTICE $nick :$tacc has been removed from the $cname userlist (access ".$axs["$tacc"].")");
@@ -152,7 +152,7 @@ if (strtolower($cbase) == "deluser") {
 		$pa = $userinfo["$pn"]["auth"];
 		$pal = strtolower($pa);
 		if ($accs["$pal"] == "") {
-			$fop = fopen("conf/accs.conf","a+");
+			$fop = fopen("./conf/accs.conf","a+");
 			fwrite($fop,"\r\n$pa");
 			fclose($fop);
 			$tacc = $pa;
@@ -174,7 +174,7 @@ if (strtolower($cbase) == "deluser") {
 		}
 		$area = "";
 		$fcont = "";
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -195,7 +195,7 @@ if (strtolower($cbase) == "deluser") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		sendserv("NOTICE $nick :$pnnick ($tacc) has been removed from the $cname userlist (access ".$axs["$tacc"].")");

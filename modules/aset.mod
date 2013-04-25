@@ -9,7 +9,7 @@ if (strtolower($cbase) == "aset") {
 	}
 	$paz = explode(" ",$paramzz);
 	if ($paramzz == "") {
-		$aset = getArrayFromFile("conf/aset.conf");
+		$aset = getArrayFromFile("./conf/aset.conf");
 		sendserv("NOTICE $nick :\002Account settings for $uauth:\002");
 		sendserv("NOTICE $nick :\002PrivMsg         \002 ".binsetting($aset[strtolower($uauth)]['privmsg']));
 		sendserv("NOTICE $nick :\002Language        \002 ".strsetting("English (en)"));
@@ -18,19 +18,19 @@ if (strtolower($cbase) == "aset") {
 	}
 	elseif (strtolower($paz[0]) == "privmsg") {
 		if ($paz[1] == "") {
-			$aset = getArrayFromFile("conf/aset.conf");
+			$aset = getArrayFromFile("./conf/aset.conf");
 			sendserv("NOTICE $nick :\002PrivMsg         \002 ".binsetting($aset[strtolower($uauth)]['privmsg']));
 		}
 		elseif ($paz[1] == "1" || strtolower($paz[1]) == "on") {
-			$aset = getArrayFromFile("conf/aset.conf");
+			$aset = getArrayFromFile("./conf/aset.conf");
 			$aset[strtolower($uauth)]['privmsg'] = 1;
-			sendArrayToFile("conf/aset.conf",$aset);
+			sendArrayToFile("./conf/aset.conf",$aset);
 			sendserv("NOTICE $nick :\002PrivMsg         \002 ".binsetting($aset[strtolower($uauth)]['privmsg']));
 		}
 		elseif ($paz[1] == "0" || strtolower($paz[1]) == "off") {
-			$aset = getArrayFromFile("conf/aset.conf");
+			$aset = getArrayFromFile("./conf/aset.conf");
 			unset($aset[strtolower($uauth)]['privmsg']);
-			sendArrayToFile("conf/aset.conf",$aset);
+			sendArrayToFile("./conf/aset.conf",$aset);
 			sendserv("NOTICE $nick :\002PrivMsg         \002 ".binsetting($aset[strtolower($uauth)]['privmsg']));
 		}
 		else {
@@ -46,15 +46,15 @@ if (strtolower($cbase) == "aset") {
 		}
 		else {
 			if (substr($paramzz,strlen($paz[0]." ")) == "*") {
-				$aset = getArrayFromFile("conf/aset.conf");
+				$aset = getArrayFromFile("./conf/aset.conf");
 				unset($aset[strtolower($uauth)]['info']);
-				sendArrayToFile("conf/aset.conf",$aset);
+				sendArrayToFile("./conf/aset.conf",$aset);
 				sendserv("NOTICE $nick :\002Info            \002 ".strsetting($aset[strtolower($uauth)]['info']));
 			}
 			else {
-				$aset = getArrayFromFile("conf/aset.conf");
+				$aset = getArrayFromFile("./conf/aset.conf");
 				$aset[strtolower($uauth)]['info'] = substr($paramzz,strlen($paz[0]." "));
-				sendArrayToFile("conf/aset.conf",$aset);
+				sendArrayToFile("./conf/aset.conf",$aset);
 				sendserv("NOTICE $nick :\002Info            \002 ".strsetting($aset[strtolower($uauth)]['info']));
 			}
 		}

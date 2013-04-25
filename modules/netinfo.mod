@@ -1,7 +1,7 @@
 if (strtolower($cbase) == "netinfo") {
 	global $server; global $botnick; global $userinfo; global $stime;
 	$chancount = 0;
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		if ($fra{0} == "-") {
 			$chancount++;
@@ -9,7 +9,7 @@ if (strtolower($cbase) == "netinfo") {
 	}
 	fclose($fop);
 	$acccount = 0;
-	$fop = fopen("conf/accs.conf","r+");
+	$fop = fopen("./conf/accs.conf","r+");
 	while ($fra = fgets($fop)) {
 		$acccount++;
 	}

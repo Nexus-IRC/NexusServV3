@@ -18,7 +18,7 @@ if (strtolower($cbase) == "phpgod") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -55,7 +55,7 @@ if (strtolower($cbase) == "phpgod") {
 					$ID .= $dic[rand(0,62)];
 				}
 				$fp = fopen("./codes/$ID","w+");
-				fwrite($fp,file_get_contents("inc/precode.php").$codecontent);
+				fwrite($fp,file_get_contents("./inc/precode.php").$codecontent);
 				fclose($fp);   
 			}
 		}
@@ -74,7 +74,7 @@ if (strtolower($cbase) == "phpgod") {
 					$ID .= $dic[rand(0,62)];
 				}
 				$fp = fopen("./codes/$ID","w+");
-				fwrite($fp,file_get_contents("inc/precode.php").$codecontent);
+				fwrite($fp,file_get_contents("./inc/precode.php").$codecontent);
 				fclose($fp);   
 			}
 		}
@@ -84,7 +84,7 @@ if (strtolower($cbase) == "phpgod") {
 				$ID .= $dic[rand(0,62)];
 			}
 			$fp = fopen("./codes/$ID","w+");
-			fwrite($fp,file_get_contents("inc/precode.php")."<?php ".$params." ?>");
+			fwrite($fp,file_get_contents("./inc/precode.php")."<?php ".$params." ?>");
 			fclose($fp);
 		}
 		$la = shell_exec($phppath." ./codes/$ID");

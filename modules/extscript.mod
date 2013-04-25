@@ -1,7 +1,7 @@
 if (strtolower($cbase) == "extscript") {
 	$phppath = 'php'; // Linux Path FOR EVERY FUNCTION IN THIS MODULE!
 	$tchan = strtolower($cchan);
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

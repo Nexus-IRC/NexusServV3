@@ -7,7 +7,7 @@ if (strtolower($cbase) == "checkchans") {
 	$chansnoop = array();
 	$chansnoton = array();
 	$cpcount = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -28,7 +28,7 @@ if (strtolower($cbase) == "checkchans") {
 					}
 				}
 			}
-			$fop = fopen("conf/users.conf","r+");
+			$fop = fopen("./conf/users.conf","r+");
 			while ($fr = fgets($fop)) {
 				$fi = explode(" ",$fr);
 				if ($fi[0] == "-" && $chans["$fi[1]"]["name"] == "") {

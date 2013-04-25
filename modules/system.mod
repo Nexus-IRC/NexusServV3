@@ -23,7 +23,7 @@ if (strtolower($cbase) == "bot") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -108,10 +108,10 @@ if (strtolower($cbase) == "bot") {
 				$amlc = $amlc + $mlc;
 			}
 			$mcode = file('nexusserv.php');
-			$tcode = file('inc/time_handler.php');
+			$tcode = file('./inc/time_handler.php');
 			$amlc = $amlc + count($mcode) + count($tcode);
 			sendserv("NOTICE $nick :Main Code (Core) : ".round(filesize('nexusserv.php')/1024,0)."KBytes (".count($mcode)." Lines)");
-			sendserv("NOTICE $nick :Time Handler Code: ".round(filesize('inc/time_handler.php')/1024,0)."KBytes (".count($tcode)." Lines)");
+			sendserv("NOTICE $nick :Time Handler Code: ".round(filesize('./inc/time_handler.php')/1024,0)."KBytes (".count($tcode)." Lines)");
 			sendserv("NOTICE $nick :\002End of list.\002 $amcc Commands ($amlc Lines)");
 		}
 		else {
@@ -141,7 +141,7 @@ if (strtolower($cbase) == "debug") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -199,7 +199,7 @@ elseif (strtolower($cbase) == "raw") {
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
 	$saxs = 0;
-	$fop = fopen("conf/staff.conf","r+");
+	$fop = fopen("./conf/staff.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

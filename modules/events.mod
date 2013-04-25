@@ -7,7 +7,7 @@ if (strtolower($cbase) == "events") {
 	$cfound = 0;
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -47,7 +47,7 @@ if (strtolower($cbase) == "events") {
 	}
 	$evcnt = 0;
 	if ($axs >= 200) {
-		$fop = fopen("events.log","r+");
+		$fop = fopen("./inc/events.log","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);

@@ -14,7 +14,7 @@ if (strtolower($cbase) == "up") {
 		return(0);
 	}
 	$cname = $chans["$ctarg"]["name"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -30,7 +30,7 @@ if (strtolower($cbase) == "up") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

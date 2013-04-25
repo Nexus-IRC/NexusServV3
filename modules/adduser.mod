@@ -25,7 +25,7 @@ if (strtolower($cbase) == "adduser") {
 	$tchan = $ctarg;
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -72,7 +72,7 @@ if (strtolower($cbase) == "adduser") {
 	elseif ($params[0] == "*") {
 		$pa = substr($pa,1);
 		$pe = $pp[1];
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -115,7 +115,7 @@ if (strtolower($cbase) == "adduser") {
 			return(0);
 		}
 		$accfound = "";
-		$fop = fopen("conf/accs.conf","r+");
+		$fop = fopen("./conf/accs.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -129,7 +129,7 @@ if (strtolower($cbase) == "adduser") {
 			return(0);
 		}
 		$fcont = "";
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -146,7 +146,7 @@ if (strtolower($cbase) == "adduser") {
 			}
 		}
 		fclose($fp);
-		$fop = fopen("conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		sendserv("NOTICE $nick :$accfound has been added to the $cname user list with access $ppe");
@@ -171,7 +171,7 @@ if (strtolower($cbase) == "adduser") {
 		$pnnick = $userinfo["$pn"]["nick"];
 		$pa = $userinfo["$pn"]["auth"];
 		$pe = $pp[1];
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -214,7 +214,7 @@ if (strtolower($cbase) == "adduser") {
 			return(0);
 		}
 		$accfound = "";
-		$fop = fopen("conf/accs.conf","r+");
+		$fop = fopen("./conf/accs.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -224,13 +224,13 @@ if (strtolower($cbase) == "adduser") {
 			}
 		}
 		if ($accfound == "") {
-			$fop = fopen("conf/accs.conf","a+");
+			$fop = fopen("./conf/accs.conf","a+");
 			fwrite($fop,"\r\n$pa");
 			fclose($fop);
 			$accfound = $pa;
 		}
 		$fcont = "";
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -247,7 +247,7 @@ if (strtolower($cbase) == "adduser") {
 			}
 		}
 		fclose($fp);
-		$fop = fopen("conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		sendserv("NOTICE $nick :$pnnick ($accfound) has been added to the $cname user list with access $ppe");

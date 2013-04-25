@@ -3,7 +3,7 @@ if (strtolower($cbase) == "startvote") {
 	$tchan = strtolower($target);
 	$lnick = strtolower($nick);
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -23,7 +23,7 @@ if (strtolower($cbase) == "startvote") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -54,7 +54,7 @@ if (strtolower($cbase) == "startvote") {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	}
 	else {
-		$ffop = fopen('conf/votes.conf','r+');
+		$ffop = fopen('./conf/votes.conf','r+');
 		while ($ffg = fgets($ffop)) {
 			$ffg = str_replace("\r","",$ffg);
 			$ffg = str_replace("\n","",$ffg);
@@ -78,7 +78,7 @@ if (strtolower($cbase) == "startvote") {
 			return(0);
 		}
 		$varray[$tchan]['start'] = 1;
-		$ffop = fopen('conf/votes.conf','w+');
+		$ffop = fopen('./conf/votes.conf','w+');
 		fwrite($ffop,serialize($varray));
 		fclose($ffop);
 		sendserv("NOTICE $nick :The voting was started.");

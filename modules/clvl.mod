@@ -25,7 +25,7 @@ if (strtolower($cbase) == "clvl") {
 		sendserv("NOTICE $nick :\002$pe\002 is an invalid access level.");
 		return(0);
 	}
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -53,7 +53,7 @@ if (strtolower($cbase) == "clvl") {
 		$tsets['clvl'] = $tsets['changeusers']; 
 	}
 	$cname = $chans["$ctarg"]["name"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -69,7 +69,7 @@ if (strtolower($cbase) == "clvl") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("conf/accs.conf","r+");
+	$fop = fopen("./conf/accs.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -125,7 +125,7 @@ if (strtolower($cbase) == "clvl") {
 		}
 		$area = "";
 		$fcont = "";
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -146,7 +146,7 @@ if (strtolower($cbase) == "clvl") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		sendserv("NOTICE $nick :$tacc now has access $pe (before the user had ".$axs["$tacc"].")");
@@ -172,7 +172,7 @@ if (strtolower($cbase) == "clvl") {
 		$pa = $userinfo["$pn"]["auth"];
 		$pal = strtolower($pa);
 		if ($accs["$pal"] == "") {
-			$fop = fopen("conf/accs.conf","a+");
+			$fop = fopen("./conf/accs.conf","a+");
 			fwrite($fop,"\r\n$pa");
 			fclose($fop);
 			$tacc = $pa;
@@ -198,7 +198,7 @@ if (strtolower($cbase) == "clvl") {
 		}
 		$area = "";
 		$fcont = "";
-		$fop = fopen("conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -219,7 +219,7 @@ if (strtolower($cbase) == "clvl") {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		sendserv("NOTICE $nick :$pnnick ($tacc) now has access $pe (before the user had ".$axs["$tacc"].")");

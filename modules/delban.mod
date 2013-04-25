@@ -8,7 +8,7 @@ if (strtolower($cbase) == "delban") {
 	$uaxs = array();
 	global $userinfo; global $chans; global $botnick; global $god;
 	$acc = $userinfo["$lnick"]["auth"];
-	$fop = fopen("conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -28,7 +28,7 @@ if (strtolower($cbase) == "delban") {
 	}
 	fclose($fop);
 	$area = "";
-	$fop = fopen("conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -73,7 +73,7 @@ if (strtolower($cbase) == "delban") {
 	$bcfound = 0;
 	$xx = 0;
 	$fcont = "";
-	$fop = fopen("conf/bans.conf","r+");
+	$fop = fopen("./conf/bans.conf","r+");
 	$ccnt = 0;
 	$cmodes = "";
 	$cparms = "";
@@ -117,7 +117,7 @@ if (strtolower($cbase) == "delban") {
 		$fcont .= "- $tchan\r\n";
 		$fcont .= "$targ $acc p $reason\r\n";
 	}
-	$fop = fopen("conf/bans.conf","w+");
+	$fop = fopen("./conf/bans.conf","w+");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	if ($cmodes != "") {
