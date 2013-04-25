@@ -18,7 +18,7 @@
 @(include('./inc/fnmatch.php'));
 error_reporting(E_ALL & ~E_NOTICE);
 $modules = array();
-foreach (glob("modules/*.mod") as $filename) {
+foreach (glob("./modules/*.mod") as $filename) {
 	$fop = fopen($filename,"r+");
 	while ($fg = fgets($fop)) {
 		$modules["$filename"] .= $fg;

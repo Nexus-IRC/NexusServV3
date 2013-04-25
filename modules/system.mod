@@ -58,7 +58,7 @@ if (strtolower($cbase) == "bot") {
 			$buffer .= "NOTICE $nick :Rehashing modules...\n";
 			global $modules;
 			$modules = array();
-			foreach (glob("modules/*.mod") as $filename) {
+			foreach (glob("./modules/*.mod") as $filename) {
 				/* $buffer .= "NOTICE $nick :Loading module $filename ...\n"; */
 				$mcnt++;
 				$cnt = 0; $lcnt = 0;
