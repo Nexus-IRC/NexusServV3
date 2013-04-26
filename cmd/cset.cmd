@@ -2525,7 +2525,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("TOPIC $target :$pe");
@@ -2539,7 +2539,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2569,8 +2569,8 @@ else {
 						$fcont .= "topicmask $pe\r\n";
 					}
 				}
-				unlink("./conf/./conf/settings.conf");
-				$fop = fopen("./conf/./conf/settings.conf","w+");
+				unlink("./conf/settings.conf");
+				$fop = fopen("./conf/settings.conf","w+");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002TopicMask              \002 ".strsetting($pe));
@@ -2583,7 +2583,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2613,8 +2613,8 @@ else {
 						$fcont .= "alttopicmask $pe\r\n";
 					}
 				}
-				unlink("./conf/./conf/settings.conf");
-				$fop = fopen("./conf/./conf/settings.conf","w+");
+				unlink("./conf/settings.conf");
+				$fop = fopen("./conf/settings.conf","w+");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002AltTopicMask           \002 ".strsetting($pe));

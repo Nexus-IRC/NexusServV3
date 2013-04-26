@@ -62,7 +62,7 @@ else {
 }
 $evcnt = 0;
 if ($axs >= 200) {
-	$fop = fopen("./inc/events.log","r+");
+	$fop = fopen("./conf/events.log","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

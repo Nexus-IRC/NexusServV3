@@ -100,7 +100,7 @@ $staffl["8"] = "Hoster";
 $floodtime = time();
 $flood = "0";
 
-require_once("./inc/config.php");
+require_once("./conf/config.php");
 $socket = fsockopen($server,$port,$errstr,$errno,2);
 $dltimer = array();
 $timer = time();
@@ -1016,7 +1016,7 @@ function cmd_parser ($nick, $user, $host, $command, $cchan, $target, $params) {
 		if (strtolower($fgr[0]) == strtolower($command)) {
 			$cmdparams = substr("$fra",strlen("$fgr[0] $fgr[1] "));
 			if ($command != "events") {
-				$fopb = fopen("./inc/events.log","a+");
+				$fopb = fopen("./conf/events.log","a+");
 				fwrite($fopb,"\r\n".strtolower($target)." ".time()." ".$nick."?".$userinfo["$lnick"]["auth"]." $command $params");
 				fclose($fopb);
 			}
@@ -1032,20 +1032,10 @@ function cmd_parser ($nick, $user, $host, $command, $cchan, $target, $params) {
 
 function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	global $modules;
-	$pp = explode(" ",$params);
+	$pp = explode(" ",$params,2);
 	$modbase = $pp[0];
-	$cbase = $pp[1];
-	$pp1 = "";
-	foreach($pp as $pq) {
-		if($pq == $modbase) { } else {
-			if($pp1 == "") {
-				$pp1 .= $pq;
-			} else {
-				$pp1 .= " ".$pq;
-			}
-		}
-	}
-	$paramzz = $pp1;
+	/* $cbase = $pp[1]; */
+	$paramzz = $pp[1];
 	eval($modules["./cmd/".$modbase.".cmd"]);
 }
 

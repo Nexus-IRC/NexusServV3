@@ -19,7 +19,7 @@
 # PLEASE DO NOT MODIFY THIS     #
 #################################
 
-@(include("time_handler.php")) OR die("ERROR #01: Included php-script missing: \002time_handler.php\002.\n");
+@(include("./inc/time_handler.php")) OR die("ERROR #01: Included php-script missing: \002time_handler.php\002.\n");
 
 define("PHPGOD_VERSION","1.2.0"); $php = new phpgod;
 
@@ -32,7 +32,7 @@ class phpgod {
 		echo("- core code 1.0 calisto-phpgod-public\n");
 	}
 	public function bot_version () {
-		include("config.php");
+		include("./conf/config.php");
 		echo("NexusServ ".$bofficial." ".$bversion." (".$bcodename.") Release ".$brelease."\n");
 		echo("Core ".$core);
 	}

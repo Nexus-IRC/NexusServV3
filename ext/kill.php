@@ -24,7 +24,7 @@ if ($chan[0] == "#") {
 	}
 	elseif ($toys == "2") {
 		$exp = explode(" ",$params);
-		$xslap = file_get_contents("killcount.z");
+		$xslap = file_get_contents("./conf/killcount.z");
 		$nfound = false;
 		$nname = "";
 		$nnick = $exp[0];
