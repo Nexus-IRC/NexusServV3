@@ -32,9 +32,9 @@ $staffchan = "#nexus-staff";
 $supchan = "#nexus-support";
 $bversion = "2013/w16d2";
 $bcodename = "Nexus-IRC";
-$brelease = "807";
-$core = "808";
-$bofficial = ".example";
+$brelease = "823";
+$core = "3.1";
+$bofficial = "3.6.1";
 $version = "$bofficial $bversion ($bcodename) Release $brelease on Core $core";
 $autojoin = 1;
 ?>
