@@ -21,18 +21,59 @@ if($param[0] == "4") {
 } elseif($param[0] == "6") {
 	$ping = shell_exec("ping6 -c4 ".$param[1]);
 }
-if(isset($param[1])) {
-	if(isset($ping)){
-		$exp = explode("\n",$ping);
-		foreach($exp as $rec){
-			if($rec != "") {
-				echo("PRIVMSG $chan :".$rec."\n");
-			}
-		}
-	} else {
-		echo("PRIVMSG $chan :ping: unknown host ".$param[1]);
+
+
+if ($chan[0] == "#") {
+	if ($toys == "" || $toys == "0") {
+		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
 	}
-} else {
-	echo("NOTICE $nick :\002ping_ip\002 requires more parameters.");
+	elseif ($toys == "1") {
+		if(isset($param[1])) {
+			if(isset($ping)){
+				$exp = explode("\n",$ping);
+				foreach($exp as $rec){
+					if($rec != "") {
+						echo("NOTICE $nick :".$rec."\n");
+					}
+				}
+			} else {
+				echo("NOTICE $nick :ping: unknown host ".$param[1]);
+			}
+		} else {
+			echo("NOTICE $nick :\002ping_ip\002 requires more parameters.");
+		}
+	}
+	elseif ($toys == "2") {
+		if(isset($param[1])) {
+			if(isset($ping)){
+				$exp = explode("\n",$ping);
+				foreach($exp as $rec){
+					if($rec != "") {
+						echo("PRIVMSG $chan :".$rec."\n");
+					}
+				}
+			} else {
+				echo("PRIVMSG $chan :ping: unknown host ".$param[1]);
+			}
+		} else {
+			echo("NOTICE $nick :\002ping_ip\002 requires more parameters.");
+		}
+	}
+}
+else {
+		if(isset($param[1])) {
+			if(isset($ping)){
+				$exp = explode("\n",$ping);
+				foreach($exp as $rec){
+					if($rec != "") {
+						echo("NOTICE $nick :".$rec."\n");
+					}
+				}
+			} else {
+				echo("NOTICE $nick :ping: unknown host ".$param[1]);
+			}
+		} else {
+			echo("NOTICE $nick :\002ping_ip\002 requires more parameters.");
+		}
 }
 ?>

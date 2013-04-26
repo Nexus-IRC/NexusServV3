@@ -19,9 +19,30 @@ $param = explode(" ",$params);
 include("./inc/dns.class.php");
 $dns = new dns;
 $exp = explode("\n",$dns->get($param[0],$param[1]));
-foreach($exp as $rec){
-	if($rec != "") {
-		echo("PRIVMSG $chan :".$rec."\n");
+if ($chan[0] == "#") {
+	if ($toys == "" || $toys == "0") {
+		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
+	}
+	elseif ($toys == "1") {
+		foreach($exp as $rec){
+			if($rec != "") {
+				echo("NOTICE $nick :".$rec."\n");
+			}
+		}
+	}
+	elseif ($toys == "2") {
+		foreach($exp as $rec){
+			if($rec != "") {
+				echo("PRIVMSG $chan :".$rec."\n");
+			}
+		}
+	}
+}
+else {
+	foreach($exp as $rec){
+		if($rec != "") {
+			echo("NOTICE $nick :".$rec."\n");
+		}
 	}
 }
 ?>
