@@ -1,5 +1,5 @@
 <?php
-/* ext/dns.php - NexusServV3
+/* ext/iplocate.php - NexusServV3
  * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,35 +15,28 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
+$apikey = "";   //you can get your key here: http://ipinfodb.com/login.php after account activation you get your apikey
+                //when you have add your key bind this script with this command =bind iplocate extscript iplocate.php
 $param = explode(" ",$params);
 if($param[0] == "") { echo("NOTICE $nick :\002iplocate\002 requires more parameters."); die(); }
-include("./inc/dns.class.php");
-$dns = new dns;
-$exp = explode("\n",$dns->get($param[0],$param[1]));
+$url = "http://api.ipinfodb.com/v3/ip-city/?key=".$apikey."&ip=".$param[0];
+$data = file_get_contents($url);
+$data = explode(";",$data);
+if($data[0] != "OK") { echo("PRIVMSG $debugchan :!!!!!!!!!!!!IPLOCATE INTERNAL ERROR!!!!!\n"); die(); }
+$return = "Country: ".$data[4]." (".$data[3].") State/Province: ".$data[5]." City: ".$data[6]."";
 if ($chan[0] == "#") {
 	if ($toys == "" || $toys == "0") {
 		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
 	}
 	elseif ($toys == "1") {
-		foreach($exp as $rec){
-			if($rec != "") {
-				echo("NOTICE $nick :".$rec."\n");
-			}
-		}
+		echo("NOTICE $nick :".$return."\n");
 	}
 	elseif ($toys == "2") {
-		foreach($exp as $rec){
-			if($rec != "") {
-				echo("PRIVMSG $chan :".$rec."\n");
-			}
-		}
+		echo("PRIVMSG $chan :".$return."\n");
 	}
 }
 else {
-	foreach($exp as $rec){
-		if($rec != "") {
-			echo("NOTICE $nick :".$rec."\n");
-		}
-	}
+	echo("NOTICE $nick :".$return."\n");
 }
-?>
+
+?> 
