@@ -78,8 +78,8 @@ else {
 		return(0);
 	}
 }
-if(isset($tsets['enfops'])){ $enfops = $tsets['enfops']; } else { $enfops = "300"; }
-if(isset($tsets['enfvoice'])){ $enfvoice = $tsets['enfvoice']; } else { $enfvoice = "200"; }
+if(isset($tsets['giveops'])){ $giveops = $tsets['giveops']; } else { $giveops = "300"; }
+if(isset($tsets['givevoice'])){ $givevoice = $tsets['givevoice']; } else { $givevoice = "200"; }
 $uc = 0;
 $ufound = "";
 global $botnick;
@@ -87,17 +87,17 @@ global $chans;
 foreach ($chans[strtolower($target)]['users'] as $uname => $uaccs) {
 	if ($userinfo[$uname]['auth'] != "") {
 		if (str_replace("@","",$uaccs) != $uaccs) {
-			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],$enfops) == "Ok") {
+			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],$giveops) == "Ok") {
 				$ua = $userinfo[$uname]['auth'];
 				$uc++;
-				sendserv("NOTICE $nick :Added \002$uname\002 ($ua) with access \002200\002");
+				sendserv("NOTICE $nick :Added \002$uname\002 ($ua) with access \002$giveops\002");
 			}
 		}
 		if (str_replace("+","",$uaccs) != $uaccs) {
-			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],$enfvoice) == "Ok") {
+			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],$givevoice) == "Ok") {
 				$ua = $userinfo[$uname]['auth'];
 				$uc++;
-				sendserv("NOTICE $nick :Added \002$uname\002 ($ua) with access \002100\002");
+				sendserv("NOTICE $nick :Added \002$uname\002 ($ua) with access \002$givevoice\002");
 			}
 		}
 	}

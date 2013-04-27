@@ -1807,7 +1807,7 @@ function addChanUser ($chan, $auth, $access) {
 			$fcont .= $fra."\r\n";
 		}
 	}
-	fclose($fp);
+	fclose($fop);
 	$fop = fopen("./conf/users.conf","w+");
 	fwrite($fop,$fcont);
 	fclose($fop);
