@@ -68,7 +68,7 @@ if ($chan[0] == "#") {
 		}
 		echo("PRIVMSG $chan :\001ACTION kills $nname with everything he finds...\001\n");
 		echo("PRIVMSG $chan :\001ACTION has already Killed ".$xslap." users!\001\n");
-		$fp = fopen("killcount.z","w+");
+		$fp = fopen("./conf/killcount.z","w+");
 		fputs($fp,$xslap);
 		fclose($fp);
 	}
