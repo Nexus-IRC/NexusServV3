@@ -28,7 +28,7 @@ $ctarg = strtolower($target);
 $cname = $chans["$ctarg"]["name"];
 $tsets = array();
 $axs = array();
-if($pp[0] == "FORCE"){
+if(strtoupper($pp[1]) == "FORCE"){
 	$fop = fopen("./conf/users.conf","r+");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
@@ -72,11 +72,12 @@ if($pp[0] == "FORCE"){
 	if ($cfound == 0) {
 		sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002$botnick\002.");
 	}
-	if ($acc == "") {
-		sendserv("NOTICE $nick :$nick is not authed with \002AuthServ\002.");
-		return(0);
+	if(isset($tsets['enfops'])){
+		$enfops = $tsets['enfops'];
+	} else {
+		$enfops = "300";
 	}
-	if ($axs["$acc"] < 200 && $god["$acc"] != "1") {
+	if ($axs["$acc"] < $enfops && $god["$acc"] != "1") {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 		return(0);
 	}
