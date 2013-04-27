@@ -27,9 +27,7 @@ $ui = $GLOBALS['userinfo'];
 // ---
 $notc=false;
 $params = $paramzz;
-global $userinfo; global $botnick; global $god; $hand = new irc_handle;
-$chans = new IRC_Chan;
-$users = new IRC_User;
+global $userinfo; global $botnick; global $god; 
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
