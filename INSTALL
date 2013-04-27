@@ -1,0 +1,6 @@
+              NexusServ Installation Instructions
+			  
+Introduction:
+----------
+copy all files from /conf/example to /conf
+and modify the config.php
