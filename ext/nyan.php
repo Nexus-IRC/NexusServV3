@@ -16,33 +16,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 if ($chan[0] == "#") {
-    $unichar = "\u203f";
 	if ($toys == "" || $toys == "0") {
 		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
 	}
 	elseif ($toys == "1") {
 		echo("NOTICE $nick :\0034-_-_-_-_-_-_-_\003,------,\n");
 		echo("NOTICE $nick :\0038_-_-_-_-_-_-_-\003|   /\_/\\n");
-		echo("NOTICE $nick :\0039-_-_-_-_-_-_-\003~|__( ^"json_decode('"'.$unichar1.'"')json_decode('"'.$unichar1.'"')"^)\n");
-		echo("NOTICE $nick :\00312_-_-_-_-_-_-_-\003".chr(34)..chr(34)." ".chr(34)..chr(34)."\n");
+		echo("NOTICE $nick :\0039-_-_-_-_-_-_-\003~|__( ^__^)\n");
+		echo("NOTICE $nick :\00312_-_-_-_-_-_-_-\003".chr(34).chr(34)." ".chr(34).chr(34)."\n");
 	}
 	elseif ($toys == "2") {
 		echo("PRIVMSG $chan :\0034-_-_-_-_-_-_-_\003,------,\n");
-	    echo("PRIVMSG $chan :\0038_-_-_-_-_-_-_-\003|   /\_/\\n");
-		echo("PRIVMSG $chan :\0039-_-_-_-_-_-_-\003~|__( ^"json_decode('"'.$unichar1.'"')json_decode('"'.$unichar1.'"')"^)\n");
-		echo("PRIVMSG $chan :\00312_-_-_-_-_-_-_-\003".chr(34)..chr(34)." ".chr(34)..chr(34)."\n");
+	    echo("PRIVMSG $chan :\0038_-_-_-_-_-_-_-\003|   /\_/\\\n");
+		echo("PRIVMSG $chan :\0039-_-_-_-_-_-_-\003~|__( ^__^)\n");
+		echo("PRIVMSG $chan :\00312_-_-_-_-_-_-_-\003".chr(34).chr(34)." ".chr(34).chr(34)."\n");
 	}
 }
 else {
 	echo("NOTICE $nick :\0034-_-_-_-_-_-_-_\003,------,\n");
 	echo("NOTICE $nick :\0038_-_-_-_-_-_-_-\003|   /\_/\\n");
-	echo("NOTICE $nick :\0039-_-_-_-_-_-_-\003~|__( ^"json_decode('"'.$unichar1.'"')json_decode('"'.$unichar1.'"')"^)\n");
-	echo("NOTICE $nick :\00312_-_-_-_-_-_-_-\003".chr(34)..chr(34)." ".chr(34)..chr(34)."\n");
+	echo("NOTICE $nick :\0039-_-_-_-_-_-_-\003~|__( ^__^)\n");
+	echo("NOTICE $nick :\00312_-_-_-_-_-_-_-\003".chr(34).chr(34)." ".chr(34).chr(34)."\n");
 }
 /*
-4-_-_-_-_-_-_-_,------,
-8_-_-_-_-_-_-_-|   /\_/\
-9-_-_-_-_-_-_-~|__( ^__^)
-12_-_-_-_-_-_-_-"" ""
+-_-_-_-_-_-_-_,------,
+_-_-_-_-_-_-_-|   /\_/\
+-_-_-_-_-_-_-~|__( ^__^)
+_-_-_-_-_-_-_-"" ""
 */
 ?>
