@@ -15,4 +15,18 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
- echo('NOTICE $nick :'.date('d.m.y H:i:s').' GMT +01:00'); ?>
+if ($chan[0] == "#") {
+	if ($toys == "" || $toys == "0") {
+		echo("NOTICE ".$nick." :Toys are disabled in \002$chan\002.\n");
+	}
+	elseif ($toys == "1") {
+		echo('NOTICE '.$nick.' :'.date('d.m.y H:i:s').' GMT +01:00');
+	}
+	elseif ($toys == "2") {
+		echo('PRIVMSG '.$chan.' :'.date('d.m.y H:i:s').' GMT +01:00');
+	}
+}
+else {
+	echo('NOTICE '.$nick.' :'.date('d.m.y H:i:s').' GMT +01:00');
+}
+?>
