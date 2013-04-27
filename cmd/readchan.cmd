@@ -78,7 +78,8 @@ else {
 		return(0);
 	}
 }
-
+if(isset($tsets['enfops'])){ $enfops = $tsets['enfops']; } else { $enfops = "300"; }
+if(isset($tsets['enfvoice'])){ $enfvoice = $tsets['enfvoice']; } else { $enfvoice = "200"; }
 $uc = 0;
 $ufound = "";
 global $botnick;
@@ -86,14 +87,14 @@ global $chans;
 foreach ($chans[strtolower($target)]['users'] as $uname => $uaccs) {
 	if ($userinfo[$uname]['auth'] != "") {
 		if (str_replace("@","",$uaccs) != $uaccs) {
-			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],200) == "Ok") {
+			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],$enfops) == "Ok") {
 				$ua = $userinfo[$uname]['auth'];
 				$uc++;
 				sendserv("NOTICE $nick :Added \002$uname\002 ($ua) with access \002200\002");
 			}
 		}
 		if (str_replace("+","",$uaccs) != $uaccs) {
-			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],100) == "Ok") {
+			if (addChanUser(strtolower($target),$userinfo[$uname]['auth'],$enfvoice) == "Ok") {
 				$ua = $userinfo[$uname]['auth'];
 				$uc++;
 				sendserv("NOTICE $nick :Added \002$uname\002 ($ua) with access \002100\002");
