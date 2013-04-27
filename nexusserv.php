@@ -80,8 +80,7 @@ class irc_handle {
 		return($ret);
 	}
 }
-#  NexusServ Channel Service
-#  made by DarkFly
+
 include("./inc/time_handler.php");
 set_time_limit(0);
 $devline    = " ";
@@ -95,7 +94,6 @@ $staffl["4"] = "Bot Admin";
 $staffl["5"] = "Admin";
 $staffl["6"] = "Bot";
 $staffl["7"] = "Developer";
-$staffl["8"] = "Hoster";
 
 $floodtime = time();
 $flood = "0";
@@ -110,7 +108,6 @@ sendserv("NICK $botnick");
 sendserv("USER $botident - - :$botreal");
 $god[$botnick] = 1;
 
-// /server -m 127.0.0.1:8018
 while (true) {
 	if (feof($socket)) {
 		global $userinfo; global $chans;
@@ -174,25 +171,6 @@ while (true) {
 			if ($e[0] == "PING") {
 				sendserv("PONG $e[1]");
 			}
-			// <- :DevNull.WebGamesNet.net 401 AfkFly lala :No such nick
-			// <- :DevNull.WebGamesNet.net 311 AfkFly Shaw Shaw Shaw.master.WebGamesNet * :Shaw|| WGN Admin
-			// <- :DevNull.WebGamesNet.net 319 AfkFly Shaw :@#blablatest.ShawTest *#blablatest @#lirandus @#xero` #WGNBot *#zium.team @#srvx *+#team.bgg *@#moonlight.fr-trials *@#HeavensGate.de-Team *@#HeavensGate.de-Admin *@#moonlight.fr-interview *@#moonlight.fr-admin *@#staff.wiki *@#Interview *@#private @#opers @#Arctic-Support @#Shaw @#HeavensGate.de @#devnull.admin @#Accueil @#aide #moonlight.fr *@#Meeting @#DevNull @#support *@#moonlight.fr-Team @#WebGamesNet @#hamster *@#staff @#help @#Arctic @#DarkFly 
-			// <- :DevNull.WebGamesNet.net 319 AfkFly Shaw :*@#Arctic-Team *@#staff-trial @#Zium 
-			// <- :DevNull.WebGamesNet.net 312 AfkFly Shaw DevNull.WebGamesNet.net :WebGamesNet dev/null
-			// <- :DevNull.WebGamesNet.net 313 AfkFly Shaw :is an IRC Operator
-			// <- :DevNull.WebGamesNet.net 330 AfkFly Shaw Shaw :is logged in as
-			// <- :DevNull.WebGamesNet.net 338 AfkFly Shaw Shaw@80-93-90-198.eXolia.fr 127.0.0.1 :Actual user@host, Actual IP
-			// <- :DevNull.WebGamesNet.net 317 AfkFly Shaw 8 1273347518 :seconds idle, signon time
-			// <- :DevNull.WebGamesNet.net 318 AfkFly shaw :End of /WHOIS list.
-			// -> DevNull.WebGamesNet.net WHO #help %cnauhf
-			// <- :DevNull.WebGamesNet.net 354 AfkFly #help ~watchcat watching.is.just.the.beginning Watchcat H*@iwgx pk910
-			//                                        c      u        h                              n        f       a
-			// <- :DevNull.WebGamesNet.net 367 AfkFly #DarkFly *!*@test.* AfkFly 1273603103
-			// <- :DevNull.WebGamesNet.net 368 AfkFly #DarkFly :End of Channel Ban List
-			// <- :DevNull.WebGamesNet.net 324 AfkFly #help +CMNcntz
-			// <- :DevNull.WebGamesNet.net 352 DarkFly #DarkFly DarkFly ip-90-186-171-66.web.vodafone.de irc.WebGamesNet.net Fly H+i :1 DarkFly
-			// 332 = TOPIC
-			// 333 = TOPICSET
 			if ($e[1] == "332") {
 				$cchan = strtolower($e[3]);
 				$chans["$cchan"]["topic"] = substr($mdata,strlen("$e[0] $e[1] $e[2] $e[3] :"));
@@ -203,7 +181,6 @@ while (true) {
 			}
 			if ($e[1] == "TOPIC") {
 				$cchan = strtolower($e[2]);
-				// ##################################################################
 				$tchan = $cchan;
 				$lnick = strtolower(getnick($e[0]));
 				$area = "";
@@ -251,7 +228,6 @@ while (true) {
 					sendserv("TOPIC $tchan :".$chans["$tchan"]["topic"]);
 					sendserv("NOTICE ".getnick($e[0])." :The $e[2] topic is locked, you may not change it. You need at least \002".$tsets['modtopic']."\002 access.");
 				}
-				// ##################################################################
 				$chans["$cchan"]["topic"] = substr($mdata,strlen("$e[0] $e[1] $e[2] :"));
 				$chans["$cchan"]["topic_by"] = getnick($e[0]);
 			}
@@ -297,7 +273,6 @@ while (true) {
 				$target = $e[2];
 				$modes = substr($mdata,strlen($e[0]." ".$e[1]." ".$e[2]." "));
 				parse_modes($sender, $target, $modes);
-				// ##################################################################
 				unset($tsets);
 				$tchan = strtolower($target);
 				$lnick = strtolower(getnick($e[0]));
@@ -345,7 +320,6 @@ while (true) {
 				if ($axs < $tsets["enfmodes"] && $god["$acc"] != "1" && $lnick != strtolower($botnick)) {
 					bot_mod_mod($botnick,$botnick,$botnick,$tchan,$tchan,"chan.mod mode ".$tsets["modes"]);
 				}
-				// ##################################################################
 			}
 			if ($e[1] == "PART") {
 				$cchan = strtolower($e[2]);
@@ -356,12 +330,8 @@ while (true) {
 				}
 				global $userinfo;
 				$uauth = strtolower($userinfo["$lnick"]["auth"]);
-
 				$fopi = fopen("./conf/users.conf","r+");
-
-
 				$temp = file_get_contents("./conf/lastseen.txt");
-
 				$washere = unserialize($temp);
 				$washere[$cchan][$uauth] = time();
 				$fop = fopen("./conf/lastseen.txt","w+");
@@ -383,7 +353,7 @@ while (true) {
 							unset($userinfo["$unick"]);
 						}
 					}
-				unset($chans["$cchan"]);
+					unset($chans["$cchan"]);
 				}
 
 				$nexttime = time() + 10;
@@ -553,7 +523,6 @@ while (true) {
 						cmd_parser($nick,$ident,$host,$command,$callchan,$target,$params);
 						$sendwith = -1;
 					}
-					//        $waitfor["$lnick"][$wfc] = "CMD $command $nick $ident $host $e[2] $targetchan $params";
 					unset($waitfor["$lnick"][$wfnum]);
 				}
 				$ucf = 0;
@@ -733,13 +702,15 @@ while (true) {
 				if ($e[3] == ":\001FINGER\001") {
 					sendserv("NOTICE $nick :\001FINGER Stop fingering a bot, man!\001");
 				}
+				if ($e[3] == ":\001UPTIME\001") {
+					sendserv("NOTICE $nick :\001UPTIME ".time2str(time() - $stime)."\001");
+				}
+				if ($e[3] == ":\001PING") {
+					$ping = ($e[4] - (60*60*1337 + 42*60));
+					sendserv("NOTICE $nick :\001PING ".$ping."\001");
+				}
 			}
 			elseif ($e[1] == "PRIVMSG") {
-				// ##################################### Test Area
-				if ($e[2][0] == "#") {
-					$nick = getnick($e[0]);
-				}
-				// #####################################
 				if ($e[2][0] == "#") {
 					$nick = getnick($e[0]);
 					$lnick = strtolower($nick);
@@ -753,7 +724,6 @@ while (true) {
 					$atrig = '';
 					$strig = '';
 					$tsets = array();
-					// TRIGGER SET END
 					$fop = fopen("./conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
@@ -828,12 +798,7 @@ while (true) {
 					}
 					if ($mm[0][0] == $atrig && $axs < $tsets["pubcmd"]) {
 						$atrig = str_repeat("?",145);
-						$strig = str_repeat("?",145);
 						sendserv("NOTICE $nick :Public commands are restricted in \002".$e[2]."\002.");
-					}
-					// TRIGGER SET END
-					if ($mm[0][0] == $strig) {
-						// -
 					}
 					if ($mm[0][0] == $atrig) {
 						if ($mm[0][1] == "#") {
@@ -1034,7 +999,6 @@ function bot_mod_mod ($nick,$user,$host,$cchan,$target,$params) {
 	global $modules;
 	$pp = explode(" ",$params,2);
 	$modbase = $pp[0];
-	/* $cbase = $pp[1]; */
 	$paramzz = $pp[1];
 	eval($modules["./cmd/".$modbase.".cmd"]);
 }
@@ -1812,112 +1776,5 @@ function addChanUser ($chan, $auth, $access) {
 	fwrite($fop,$fcont);
 	fclose($fop);
 	return("Ok");
-}
-
-// NexusServ 4.0 Area
-// -- Info --
-// All functions and classes in this area are tests to prepare myself for coding NexusServ 4.0
-// All functions above are NOT used in any function of the bot. Remove it, if you don't want these
-// classes ;)
-
-class IRC_User {
-	function getUserByNick ($nick) {
-		$a = new IRC_Users;
-		$a->nick = $GLOBALS['userinfo'][strtolower($nick)]['nick'];
-		$a->ident = $GLOBALS['userinfo'][strtolower($nick)]['ident'];
-		$a->host = $GLOBALS['userinfo'][strtolower($nick)]['host'];
-		$a->auth = $GLOBALS['userinfo'][strtolower($nick)]['auth'];
-		return $a;
-	}
-}
-class IRC_Users {
-	function getAuth () {
-		return $this->auth;
-	}
-	function getHost () {
-		return $this->host;
-	}
-	function getIdent() {
-		return $this->ident;
-	}
-	function getNick() {
-		return $this->nick;
-	}
-	function kickFrom($chan) {
-		$chan = IRC_Chan::getChanByName($chan);
-		$chan->kickUser(IRC_User::getUserByNick($this->nick));
-	}
-}
-
-class IRC_Chan {
-	function getChanByName ($target) {
-		$chan = new IRC_Chans;
-		$cchan = strtolower($target);
-		$chan->chan = $GLOBALS['chans'][$cchan]['name'];
-		$chan->users = $GLOBALS['chans'][$cchan]['users'];
-		$chan->topic = $GLOBALS['chans'][$cchan]['topic'];
-		$chan->topicby = $GLOBALS['chans'][$cchan]['topic_by'];
-		$chan->modes = $GLOBALS['chans'][$cchan]['modes'];
-		$chan->key = $GLOBALS['chans'][$cchan]['key'];
-		$chan->limit = $GLOBALS['chans'][$cchan]['limit'];
-		return($chan);
-	}
-}
-
-
-
-
-class IRC_Chans {
-	function kickNick ($nick) {
-		$this->kickUser(IRC_User::getUserByNick($nick));
-	}
-	function setTopic ($newtopic) {
-		sendserv("TOPIC ".$this->chan." :".$newtopic);
-	}
-	function getTopic () {
-		return $this->topic;
-	}
-	function kickUser ($obj_user) {
-		if (is_object($obj_user) != true) {
-			echo("\0034ERROR:\003 kickUser: Parameter is \002not\002 a valid object.");
-			return(0);
-		}
-		$this->usernick = $obj_user->getNick();
-		$this->perform_kick($this->chan,$this->usernick);
-	}
-	function perform_kick ($chan, $nick) {
-		sendserv("KICK $chan $nick :$chan $nick");
-	}
-	function getNickList () {
-		$nickz = new IRC_NickList;
-		foreach ($this->users as $unick => $umodes) {
-			$nickz->$unick = IRC_User::getUserByNick($unick);
-		}
-		return $nickz;
-	}
-	function banAll () {
-		$bla = $this->getNickList();
-		foreach ($bla as $key => $val) {
-			sendserv("MODE ".$this->chan." +b ".$val->getHost());
-		}
-	}
-	function AllHosts () {
-		$bla = $this->getNickList();
-		foreach ($bla as $key => $val) {
-			echo($this->getNickList()->$key->getHost()."\n");
-		}
-	}
-	function ison ($user) {
-		$this->nicklist = $this->getNickList();
-		$nick = strtolower($user->getNick());
-		if ($this->nicklist->$nick != NULL) {
-			return("ISON");
-		}
-		else {
-			return("ISNOTON");
-		}
-	}
-} 
-class IRC_NickList {
 }
 ?>

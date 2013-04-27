@@ -32,8 +32,6 @@ foreach ($userinfo as $lnick => $uar) {
 }
 sendserv("NOTICE $nick :\002Developers\002");
 sendserv("NOTICE $nick :".$staffs["7"]); // Developers
-sendserv("NOTICE $nick :\002Hosters\002");
-sendserv("NOTICE $nick :".$staffs["8"]); // Hoster
 sendserv("NOTICE $nick :\002Admins\002");
 sendserv("NOTICE $nick :".$staffs["5"].$staffs["4"]); // Admin, Botadmin 
 sendserv("NOTICE $nick :\002Managers\002");
