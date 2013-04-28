@@ -17,15 +17,21 @@
  */
 $param = explode(" ",$params);
 if($param[0] == "") { echo("NOTICE $nick :\002google\002 requires more parameters."); die(); }
-function object_to_array($data) {
-	if(is_array($data) || is_object($data)) {
-		$result = array();
-		foreach($data as $key => $value) {
-			$result[$key] = object_to_array($value);
-		}
-		return $result;
+function object_to_array($object){
+	$new=NULL;
+	if(is_object($object)){
+		$object=(array)$object;
 	}
-	return $data;
+	if(is_array($object)){
+		$new=array();
+		foreach($object as $key => $val) {
+			$key=preg_replace("/^\\0(.*)\\0/","",$key);
+			$new[$key]=object_to_array($val);
+		}
+	}else{
+		$new=$object;
+	}
+	return $new;
 }
 function from_google($query){
 	$query=urlencode($query);
