@@ -120,6 +120,10 @@ else {
 	if ($tsets["trigger"] == "") {
 		$tsets["trigger"] = "=";
 	}
+	if ($tsets["funbot"] == "") {
+		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
+		$tsets["funbot"] = "0";
+	}
 	if ($tsets["spamservtrigger"] == "") {
 		$tsets["spamservtrigger"] = "$";
 	}
@@ -167,6 +171,7 @@ else {
 				sendserv("NOTICE $nick :\002        ExceptLevel    \002 ".asetting($tsets["watchdogexceptlevel"]));
 			}
 			sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($tsets["nodelete"]));
+			sendserv("NOTICE $nick :\002FunBot                 \002 ".asetting($tsets["funbot"]));
 			sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($tsets["toys"]));
 			sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($tsets["protect"]));
 			sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($tsets['trigger']));

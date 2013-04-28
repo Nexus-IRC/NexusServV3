@@ -120,15 +120,8 @@ else {
 	if ($tsets["trigger"] == "") {
 		$tsets["trigger"] = "=";
 	}
-	if($tsets["funbot"] == "0") {
-		sendserv("privmsg nexusfun :unreg ".$tchan);
-		$tsets["funbot"] = "0";
-	}elseif($tsets["funbot"] == "1"){
-		sendserv("invite nexusfun ".$tchan);
-		sendserv("privmsg nexusfun :reg ".$tchan);
-		$tsets["funbot"] = "1";
-	}else{
-		sendserv("privmsg nexusfun :unreg ".$tchan);
+	if ($tsets["funbot"] == "") {
+		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
 		$tsets["funbot"] = "0";
 	}
 	if ($tsets["spamservtrigger"] == "") {
