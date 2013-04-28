@@ -42,13 +42,19 @@ function from_google($query){
 	$array = object_to_array($json);
 	return $array;
 }
+function decode_entities($text) {
+	$text= html_entity_decode($text,ENT_QUOTES,"UTF-8");
+	$text= preg_replace('/&#(\d+);/me',"chr(\\1)",$text);
+	$text= preg_replace('/&#x([a-f0-9]+);/mei',"chr(0x\\1)",$text);
+	return $text;
+}
 $google=from_google($params);
 if(isset($google['responseData']['results'][0]['titleNoFormatting'])){
-	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][0]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][0]['url']));
-	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][1]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][1]['url']));
-	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][2]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][2]['url']));
-	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][3]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][3]['url']));
-	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][4]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][4]['url']));
+	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][0]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][0]['url']));
+	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][1]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][1]['url']));
+	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][2]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][2]['url']));
+	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][3]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][3]['url']));
+	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][4]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][4]['url']));
 }else{
 	privmsg($chan,"\002Google\002: Your search - ".$params." - did not match any documents. ");
 }
