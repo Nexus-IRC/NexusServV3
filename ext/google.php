@@ -18,23 +18,22 @@
 $param = explode(" ",$params);
 if($param[0] == "") { echo("NOTICE $nick :\002google\002 requires more parameters."); die(); }
 function object_to_array($data) {
-    if(is_array($data) || is_object($data)) {
-        $result = array();
-        foreach($data as $key => $value) {
-            $result[$key] = object_to_array($value);
-        }
-        return $result;
-    }
-    return $data;
-} 
-
+	if(is_array($data) || is_object($data)) {
+		$result = array();
+		foreach($data as $key => $value) {
+			$result[$key] = object_to_array($value);
+		}
+		return $result;
+	}
+	return $data;
+}
 function from_google($query){
-    $query=urlencode($query);
-    $array=array();
-    $url = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=".$query."&rsz=large";
+	$query=urlencode($query);
+	$array=array();
+	$url = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=".$query."&rsz=large";
 	$data = file_get_contents($url);
-    $json = json_decode($data);
-    $array = object_to_array($json);
+	$json = json_decode($data);
+	$array = object_to_array($json);
 	return $array;
 }
 $google=from_google($params);
@@ -45,7 +44,7 @@ if(isset($google['responseData']['results'][0]['titleNoFormatting'])){
 	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][3]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][3]['url']));
 	privmsg($chan,"\002Google\002: ".$google['responseData']['results'][4]['titleNoFormatting'] . " => " . urldecode($google['responseData']['results'][4]['url']));
 }else{
-	privmsg($chan,"\002Google\002: Your search - ".$act2[1]." - did not match any documents. ");
+	privmsg($chan,"\002Google\002: Your search - ".$params." - did not match any documents. ");
 }
 function privmsg ($chan, $line) {
 	echo("PRIVMSG ".$chan." :".$line."\n");

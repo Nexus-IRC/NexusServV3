@@ -61,13 +61,11 @@ class dns {
 		return $str;
 	}
 
-	public $record_order = array("SOA", "NS", "A", "AAAA", "MX");
-
 	function show_subrecords($host) {
 		$return = "";
 		$dns = dns_get_record($host, DNS_ALL);
 		if(count($dns)) {
-			usort($dns, array('self',"sort_records"));
+			usort($dns, array($this, "sort_records"));
 			foreach($dns as $record) {
 				switch($record['type']) {
 					case "A":
@@ -86,7 +84,7 @@ class dns {
 	}
 
 	static function sort_records($a, $b) {
-		global $record_order;
+		$record_order = array("SOA", "NS", "A", "AAAA", "MX");
 		$index_a = array_search($a['type'], $record_order);
 		if($index_a === FALSE) $index_a = count($record_order);
 		$index_b = array_search($b['type'], $record_order);
@@ -123,7 +121,7 @@ class dns {
 				$return .=" (".$show_record.")";
 			$return .="\n";
 			if(count($dns)) {
-				usort($dns, array('self',"sort_records"));
+				usort($dns, array($this, "sort_records"));
 				foreach($dns as $record) {
 					if($show_record != "" && $show_record != "*" && $show_record != "ANY" && $show_record != $record['type'])
 						continue;
