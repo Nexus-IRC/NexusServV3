@@ -1,4 +1,4 @@
-/* cmd/unloadmod.cmd - NexusServV3
+/* cmd/part.cmd - NexusServV3
  * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $modules;
-$params = $paramzz;
+$params = explode(" ",$paramzz);
 global $userinfo; global $botnick; global $god;
+global $debugchannel, $showdebug;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
@@ -34,18 +34,13 @@ $ccchan = $cchan;
 if ($cchan[0] != "#") {
 	$ccchan = "";
 }
-$command = $GLOBALS['msg'];
-if ($saxs >= 950) {
-	if ($modules["$paz[1].mod"] != "") {
-		unset($modules["$paz[1].mod"]);
-		sendserv("NOTICE $nick :Module unloaded.");
-	}
-	else {
-		sendserv("NOTICE $nick :I don't know this module.");
-	}
+$command = $GLOBALS['command'];
+if ($saxs >= 200) {
+	sendserv("part #".$params[1]." part");
 	if($showdebug == true){
-		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
+		sendserv("privmsg $debugchannel :($ccchan) [$nick:$acc] $command $params[1]");
 	}
-} else {
-	sendserv("NOTICE $nick :You lack sufficient staff access to use this command!");
+}
+else {
+	sendserv("NOTICE $nick :You lack sufficient staff access to use this command.");
 }

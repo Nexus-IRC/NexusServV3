@@ -37,7 +37,6 @@ if ($cchan[0] != "#") {
 	$ccchan = "";
 }
 $command = $GLOBALS['msg'];
-sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 if ($saxs >= 950) {
 	sendserv("NOTICE $nick :\002Loaded modules - status report:\002");
 	foreach ($modules as $modname => $modcontent) {
@@ -56,6 +55,9 @@ if ($saxs >= 950) {
 	sendserv("NOTICE $nick :Main Code (Core) : ".round(filesize('nexusserv.php')/1024,0)."KBytes (".count($mcode)." Lines)");
 	sendserv("NOTICE $nick :Time Handler Code: ".round(filesize('./inc/time_handler.php')/1024,0)."KBytes (".count($tcode)." Lines)");
 	sendserv("NOTICE $nick :\002End of list.\002 $amcc Commands ($amlc Lines)");
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
+	}
 } else {
 	sendserv("NOTICE $nick :You lack sufficient staff access to use this command!");
 }

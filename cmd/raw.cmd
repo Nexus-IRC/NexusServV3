@@ -34,11 +34,11 @@ if ($cchan[0] != "#") {
 	$ccchan = "";
 }
 $command = $GLOBALS['command'];
-if($showdebug == true){
-	sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
-}
 if ($saxs >= 1000) {
 	sendserv($params);
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
+	}
 }
 else {
 	sendserv("NOTICE $nick :You lack sufficient staff access to use this command.");

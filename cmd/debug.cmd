@@ -45,7 +45,6 @@ if ($cchan[0] != "#") {
 	$ccchan = "";
 }
 $command = $GLOBALS['command'];
-sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
 if ($saxs >= 1000) {
 	if ($paramzz == "") {
 		sendserv("NOTICE $nick :More parameters required:");
@@ -76,6 +75,9 @@ if ($saxs >= 1000) {
 	if ($notc != false) {
 		sendserv("NOTICE $nick :Successfully executed the command in ".(microtime(true) - $xy)."s:");
 		sendserv("NOTICE $nick :$params");
+	}
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
 	}
 }
 else {

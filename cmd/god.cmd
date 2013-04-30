@@ -33,7 +33,6 @@ if ($cchan[0] != "#") {
 	$ccchan = "";
 }
 $command = $GLOBALS['msg'];
-sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 if ($saxs >= 200) {
 	if ($god["$acc"] != 1) {
 		$god["$acc"] = 1;
@@ -42,6 +41,9 @@ if ($saxs >= 200) {
 	else {
 		$god["$acc"] = 0;
 		sendserv("NOTICE $nick :Security override has been disabled.");
+	}
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
 	}
 }
 else {

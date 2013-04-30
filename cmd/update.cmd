@@ -34,7 +34,6 @@ if ($cchan[0] != "#") {
 	$ccchan = "";
 }
 $command = $GLOBALS['msg'];
-sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 if ($saxs >= 950) {
 	if(is_dir(".git")){
 		sendserv("NOTICE $nick :Update bot\n");
@@ -48,6 +47,9 @@ if ($saxs >= 950) {
 		}
 	} else {
 		sendserv("NOTICE $nick :you dont have clone NexusServ with git\n");
+	}
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
 	}
 } else {
 	sendserv("NOTICE $nick :You lack sufficient staff access to use this command!");

@@ -34,7 +34,6 @@ if ($cchan[0] != "#") {
 	$ccchan = "";
 }
 $command = $GLOBALS['msg'];
-sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command");
 if ($saxs >= 950) {
 	$xlines = 0;
 	$mcnt = 0;
@@ -59,6 +58,9 @@ if ($saxs >= 950) {
 	$buffer .= "NOTICE $nick :Done, rehashed everything ($mcnt commands, $xlines lines of code) in ".(microtime(true) - $mtime)." seconds.\n";
 	$GLOBALS['rid']++;
 	sendserv($buffer);
+	if($showdebug == true){
+		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
+	}
 } else {
 	sendserv("NOTICE $nick :You lack sufficient staff access to use this command!");
 }
