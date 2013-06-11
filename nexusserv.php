@@ -634,6 +634,27 @@ while (true) {
 				$stime = time();
 			}
 			if ($e[1] == "NOTICE") {
+				//echo($mdata);
+				//:mgn1.massivegamesnet.net NOTICE NexusServ :Your connection class is: AdminBot
+				//:mgn1.massivegamesnet.net NOTICE NexusServ :You have no channel number limitation.
+				//:mgn1.massivegamesnet.net NOTICE NexusServ :Your connection class is: User
+				//:mgn1.massivegamesnet.net NOTICE NexusServ :You may join 20 channels.
+				// begin the new connection class / maxchannel parser
+				if (stristr($mdata, ":Your connection class is:") == true) {
+					$class=explode(":",$mdata);
+					$class=str_replace(" ","",$class[3]);
+					$netdata["class"]=$class;
+				}
+				if (stristr($mdata, ":You have no channel number limitation.") == true) {
+					$maxchannels = "No Limit";
+					$netdata['MAXCHANNELS']=$maxchannels;
+				} elseif (stristr($mdata, ":You may join") == true) {
+					$maxchannels = explode(":You may join ",$mdata);
+					$maxchannels = explode(" channels.",$maxchannels[1]);
+					$maxchannels = $maxchannels[0];
+					$netdata['MAXCHANNELS']=$maxchannels;
+				}
+				// end connection class / maxchannel parser
 				$nick = getnick($e[0]);
 				$msg = str_replace("\002","",unspacer(substr($mdata,strlen($e[0]." ".$e[1]." ".$e[2]." :"))));
 				$mm = explode(" ",$msg);
