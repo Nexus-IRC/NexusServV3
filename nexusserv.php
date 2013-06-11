@@ -635,6 +635,7 @@ while (true) {
 			}
 			if ($e[1] == "NOTICE") {
 				//echo($mdata);
+				//work not when the bot is connected over a znc
 				//:mgn1.massivegamesnet.net NOTICE NexusServ :Your connection class is: AdminBot
 				//:mgn1.massivegamesnet.net NOTICE NexusServ :You have no channel number limitation.
 				//:mgn1.massivegamesnet.net NOTICE NexusServ :Your connection class is: User
@@ -654,6 +655,7 @@ while (true) {
 					$maxchannels = $maxchannels[0];
 					$netdata['MAXCHANNELS']=$maxchannels;
 				}
+				//work not when the bot is connected over a znc
 				// end connection class / maxchannel parser
 				$nick = getnick($e[0]);
 				$msg = str_replace("\002","",unspacer(substr($mdata,strlen($e[0]." ".$e[1]." ".$e[2]." :"))));

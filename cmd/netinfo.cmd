@@ -34,7 +34,9 @@ sendserv("NOTICE $nick :\002Network            \002  ".$GLOBALS['netdata']['NETW
 sendserv("NOTICE $nick :\002Bot Uptime         \002  ".time2str(time() - $stime));
 sendserv("NOTICE $nick :\002Channels registered\002  $chancount");
 sendserv("NOTICE $nick :\002Maximum channels   \002  ".$GLOBALS['netdata']['MAXCHANNELS']);
-sendserv("NOTICE $nick :\002Connection Class   \002  ".$GLOBALS['netdata']['class']);
+if(isset($GLOBALS['netdata']['class'])) {//work not when the bot is connected over a znc
+	sendserv("NOTICE $nick :\002Connection Class   \002  ".$GLOBALS['netdata']['class']);
+}
 sendserv("NOTICE $nick :\002Accounts known     \002  $acccount");
 sendserv("NOTICE $nick :\002Users visible      \002  ".count($userinfo));
 $auc = 0;
