@@ -38,9 +38,12 @@ if ($saxs >= 200) {
 			sendserv("PRIVMSG ChanServ :UP $ctarg");
 			sendserv("PRIVMSG Centravi :UP $ctarg");
 			sendserv("PRIVMSG NeonServ :UP $ctarg");
+		    sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusFun mode $ctarg +o $botnick");
+		    sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusStats mode $ctarg +o $botnick");
+		    sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusNews mode $ctarg +o $botnick");
 		}
 	}
-	sendserv("NOTICE $nick :all done");
+	sendserv("NOTICE $nick :Finished reopping in all channels.");
 }
 else {
 	sendserv("NOTICE $nick :You lack sufficient staff access to use this command.");

@@ -6,6 +6,7 @@
   CHANNEL         Channel management
   BAN MANAGEMENT  Ban management
   INFORMATION     Informative commands
+  TOYS            Fun commands and useful tools
   STAFF           Staff only commands
 [USER]
  [b]User Management:[b]
@@ -50,13 +51,16 @@
   DELBAN      Remove the specified permanent ban from memory.
   UNBANALL    Remove all bans from a channel.
 [INFORMATION]
- [b]Information:[b]
+ [b]Informative Commands:[b]
   VERSION     Check the current running version of $B.
   NETINFO     Check current network-wide information.
   STAFF       Get a list of all the current staff.
   PEEK        Reveal information on a channel's modes, topic and ops.
   SEEN        Find out the last time a user was in a channel.
   COMMAND     Display some information about a command.
+  WEBINFO     Show the recent news about the Nexus project.
+  V1-HISTORY  Displays info about ArcticServ 1.0.
+  DEVS        Get a list of all the current developers.
 [STAFF]
  [b]Staff Commands:[b]
   SAY         Have $B say a message in a channel.
@@ -65,6 +69,26 @@
   OPCHAN      Force $B to op itself in a channel.
   REGISTER    Register a new channel with $B.
   UNREGISTER  Remove $B from a registered channel.
+  RENAME      Rename the NexusServ account of a user.
+  PHP         Run a snippet of PHP directly. (Developers only)
+  RAW         Simulate a command regardless of access. (Developers only)
+[TOYS]
+ [b]Fun Commands and Tools:[b]
+  PING        Pong!
+  PONG        Ping!
+  8BALL       All your questions will soon be answered.
+  DICE        Take your chances.
+  SEX         Will you get lucky?
+  UNF         Self-explanatory
+  COW         Moooooooooooooooooo.
+  USAY        Make $B say something in the channel.
+  SLAP        Make $B slap someone or several people.
+  GAY         $B will predict how gay you are.
+  KILL        Make $B kill someone or several people.
+  NEXUS       Draw the Nexus logo.
+  PYRAMID     Draw a pyramid.
+  WRITE       Make $B write something in large letters.
+
 [SET]
  [b]SET[b]
   /msg $B SET <#channel> [<parameter> [setting]]
@@ -247,9 +271,21 @@
 [OPCHAN]
  /msg $B OPCHAN <#channel>
  This command makes $B op itself in the specified channel.
+[OPCHANALL]
+ /msg $B OPCHANALL
+ This command makes $B op itself in all channels it has access to.
 [REGISTER]
  /msg $B REGISTER <#channel> [user|*account]
  Registers a channel with [b]$B[b], automatically granting owner access to the specified user. If no user is provided, [b]$B[b] gives owner access to the user executing the command.
 [UNREGISTER]
  /msg $B UNREGISTER <#channel>
  Unregisters a channel that is registered with [b]$B[b]. [b]IMPORTANT[b]: Once the channel is unregistered, the userlist and its settings [b]cannot[b] be recovered.
+[RENAME]
+ /msg $B RENAME <oldauth> <newauth>
+ Use this to change the authname of a user who has had their AuthServ account name changed.
+[PHP]
+ /msg $B PHP <command(s)>
+ Runs a snippet of PHP for debugging purposes.
+[RAW]
+ /msg $B RAW <command(s)>
+ Makes $B simulate a command regardless of the user's access, basically overriding all security.
