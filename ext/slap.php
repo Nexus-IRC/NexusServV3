@@ -74,6 +74,6 @@ if ($chan[0] == "#") {
 	}
 }
 else {
-	echo("NOTICE $nick :Slapping is just available to channels.\n");
+	echo("NOTICE $nick :Slapping is only available in channels.\n");
 }
 ?>

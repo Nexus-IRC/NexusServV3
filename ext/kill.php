@@ -67,13 +67,13 @@ if ($chan[0] == "#") {
 			}
 		}
 		echo("PRIVMSG $chan :\001ACTION kills $nname with everything he finds...\001\n");
-		echo("PRIVMSG $chan :\001ACTION has already Killed ".$xslap." users!\001\n");
+		echo("PRIVMSG $chan :\001ACTION has already killed ".$xslap." users!\001\n");
 		$fp = fopen("./conf/killcount.z","w+");
 		fputs($fp,$xslap);
 		fclose($fp);
 	}
 }
 else {
-	echo("NOTICE $nick :Killing is just available to channels.\n");
+	echo("NOTICE $nick :Killing is only available in channels.\n");
 }
 ?>

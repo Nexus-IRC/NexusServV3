@@ -21,5 +21,3 @@ sendserv("PRIVMSG Centravi :UP $target");
 sendserv("PRIVMSG NeonServ :UP $target");
 sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusFun mode $target +o $botnick");
 sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusStats mode $target +o $botnick");
-sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusNews mode $target +o $botnick");
-sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusSpam mode $target +o $botnick");

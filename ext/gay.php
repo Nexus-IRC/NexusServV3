@@ -29,13 +29,13 @@ if ($chan[0] == "#") {
 		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
 	}
 	elseif ($toys == "1") {
-		echo("NOTICE $nick :You are gay ".modulo_str($nick,101)."%!\n");
+		echo("NOTICE $nick :You are ".modulo_str($nick,101)."% gay!\n");
 	}
 	elseif ($toys == "2") {
-		echo("PRIVMSG $chan :\002$nick\002: You are gay ".modulo_str($nick,101)."%!\n");
+		echo("PRIVMSG $chan :\002$nick\002: You are ".modulo_str($nick,101)."% gay!\n");
 	}
 }
 else {
-	echo("NOTICE $nick :You are gay ".modulo_str($nick,101)."%!\n");
+	echo("NOTICE $nick :You are ".modulo_str($nick,101)."% gay!\n");
 }
 ?>
