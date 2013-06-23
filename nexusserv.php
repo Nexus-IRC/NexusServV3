@@ -36,51 +36,6 @@ function d_userinfo ($unick) {
 	return($ret);
 }
 
-class irc_handle {
-	function raw_return ($line) {
-		return($line);
-	}
-	function userinfo ($nick) {
-		$nnick = strtolower($nick);
-		global $userinfo;
-		$ret = "";
-		foreach ($userinfo[$nnick] as $aname => $aval) {
-			$ret .= "$aname => $aval\n";
-		}
-		return($ret);
-	}
-	function send ($line) {
-		global $socket;
-		socket_write($socket,$line."\r\n"); 
-	}
-	function cache ($action, $criteria, $match) {
-		$ret = "start\n";
-		if ($criteria == "USERS") {
-			$cnt = 0;
-			global $userinfo;
-			foreach ($userinfo as $uname => $uarray) {
-				if (fnmatch($match,$uname) == 1) {
-					if ($action == "PRINT") {
-						$ret .= "$uname => array(\n";
-						foreach ($uarray as $aname => $avalue) {
-							$ret .= "$aname => $avalue\n";
-						}
-						$ret .= ");\n";
-						$cnt++;
-					}
-					elseif ($action == "COUNT") {
-						foreach ($uarray as $aname => $avalue) {
-						}
-						$cnt++;
-					}
-				}
-			}
-			$ret .= "Found \002$cnt\002 matches.\n";
-		}
-		return($ret);
-	}
-}
-
 include("./inc/time_handler.php");
 set_time_limit(0);
 $devline    = " ";
@@ -636,13 +591,6 @@ while (true) {
 				$stime = time();
 			}
 			if ($e[1] == "NOTICE") {
-				//echo($mdata);
-				//work not when the bot is connected over a znc
-				//:mgn1.massivegamesnet.net NOTICE NexusServ :Your connection class is: AdminBot
-				//:mgn1.massivegamesnet.net NOTICE NexusServ :You have no channel number limitation.
-				//:mgn1.massivegamesnet.net NOTICE NexusServ :Your connection class is: User
-				//:mgn1.massivegamesnet.net NOTICE NexusServ :You may join 20 channels.
-				// begin the new connection class / maxchannel parser
 				if (stristr($mdata, ":Your connection class is:") == true) {
 					$class=explode(":",$mdata);
 					$class=str_replace(" ","",$class[3]);
@@ -657,8 +605,6 @@ while (true) {
 					$maxchannels = $maxchannels[0];
 					$netdata['MAXCHANNELS']=$maxchannels;
 				}
-				//work not when the bot is connected over a znc
-				// end connection class / maxchannel parser
 				$nick = getnick($e[0]);
 				$msg = str_replace("\002","",unspacer(substr($mdata,strlen($e[0]." ".$e[1]." ".$e[2]." :"))));
 				$mm = explode(" ",$msg);

@@ -15,22 +15,11 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-######  #####  #####  #  #   #  #####         ####   #####  #   #  #####  #
-#       #   #  #      #  ##  #  #   #         #   #  #   #  #   #  #   #  #
-#       #####  #####  #  # # #  #   #  #####  ####   #   #  #####  #####  #
-#       #   #      #  #  #  ##  #   #         #  #   #   #    #    #   #  #
-######  #   #  #####  #  #   #  #####         #  #   #####    #    #   #  #####
-
-// Like this text, IRC input will be converted to big letters made from ASCII chars.
-// Example *write casino-royal
-
 /*
-
-TODO:
-	1.	Add UTF-8 Support                                           [done]
-	2.	Add more letters (KLMNOPQRSTUVWXYZ)                         [done]
-	3.	Add more special chars ($ maybe... and.... other chars...)  [ongoing]
-
+ *TODO:
+ *	1.	Add UTF-8 Support                                           [done]
+ *	2.	Add more letters (KLMNOPQRSTUVWXYZ)                         [done]
+ *	3.	Add more special chars ($ maybe... and.... other chars...)  [ongoing]
 */
 
 class phpText {
