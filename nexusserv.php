@@ -337,6 +337,7 @@ while (true) {
 				$fop = fopen("./conf/lastseen.txt","w+");
 				fwrite($fop,serialize($washere));
 				fclose($fop);
+				fclose($fopi);
 
 				if ($nick == $botnick) {
 					foreach ($chans["$cchan"]["users"] as $unick => $uarray) {
@@ -630,6 +631,7 @@ while (true) {
 							}
 						}
 					}
+					fclose($fop);
 				}
 				$stime = time();
 			}
@@ -1465,6 +1467,7 @@ function join_event ($nick, $chan, $wfa) {
 			}
 		}
 	}
+	fclose($fop);
 	$uauth = strtolower($userinfo["$lnick"]["auth"]);
 
 	$fop = fopen("./conf/lastseen.txt","r+");

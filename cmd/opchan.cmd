@@ -14,10 +14,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $botnick;
+global $botnick; global $cansimulzncs;
 sendserv("NOTICE $nick :If I'm not opped on ".$target.", I'll attempt to reop myself now.");
 sendserv("PRIVMSG ChanServ :UP $target");
 sendserv("PRIVMSG Centravi :UP $target");
 sendserv("PRIVMSG NeonServ :UP $target");
-sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusFun mode $target +o $botnick");
-sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusStats mode $target +o $botnick");
+if($cansimulzncs) {
+	sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusFun mode $target +o $botnick");
+	sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusStats mode $target +o $botnick");
+}
