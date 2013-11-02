@@ -379,11 +379,11 @@ class phpText {
 		$this->ar4["4"] = "   # ";
 		$this->ar5["4"] = "   # ";
 			// 5
-		$this->ar1["5"] = " ####";
+		$this->ar1["5"] = "#####";
 		$this->ar2["5"] = "#    ";
 		$this->ar3["5"] = "#####";
 		$this->ar4["5"] = "    #";
-		$this->ar5["5"] = "#####";
+		$this->ar5["5"] = "#### ";
 			// 6
 		$this->ar1["6"] = "#####";
 		$this->ar2["6"] = "#    ";
@@ -414,6 +414,24 @@ class phpText {
 		$this->ar3["ß"] = "ß";
 		$this->ar4["ß"] = "ß";
 		$this->ar5["ß"] = "ß";
+			// %
+		$this->ar1["%"] = "###   #  ";
+		$this->ar2["%"] = "# #  #   ";
+		$this->ar3["%"] = "### # ###";
+		$this->ar4["%"] = "   #  # #";
+		$this->ar5["%"] = "  #   ###";
+			// `
+		$this->ar1["`"] = "# ";
+		$this->ar2["`"] = " #";
+		$this->ar3["`"] = "  ";
+		$this->ar4["`"] = "  ";
+		$this->ar5["`"] = "  ";
+			// ~
+		$this->ar1["~"] = "       ";
+		$this->ar2["~"] = " ##    ";
+		$this->ar3["~"] = "#  #  #";
+		$this->ar4["~"] = "    ## ";
+		$this->ar5["~"] = "       ";
 		// --- end ---
 		$xchar = (func_get_arg(0) != "") ? func_get_arg(0) : "#"; // The char to use for "big letters"
 		$this->xchar = $xchar;

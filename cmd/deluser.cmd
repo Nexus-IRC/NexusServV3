@@ -111,11 +111,11 @@ elseif ($params[0] == "*") {
 		return(0);
 	}
 	if ($acc == $tacc && $god["$acc"] != "1") {
-		sendserv("NOTICE $nick :You cant delete yourself with \002deluser\002.");
+		sendserv("NOTICE $nick :You can't delete yourself with \002deluser\002.");
 		return(0);
 	}
 	if ($axs["$tacc"] >= $axs["$acc"] && $god["$acc"] != "1") {
-		sendserv("NOTICE $nick :Command has no effect (User $tacc ranks you off.);");
+		sendserv("NOTICE $nick :Command has no effect (User $tacc outranks you.)");
 		return(0);
 	}
 	$area = "";
@@ -180,11 +180,11 @@ else {
 		return(0);
 	}
 	if ($acc == $tacc && $god["$acc"] != "1") {
-		sendserv("NOTICE $nick :You cant delete yourself with \002deluser\002.");
+		sendserv("NOTICE $nick :You can't delete yourself with \002deluser\002.");
 		return(0);
 	}
 	if ($axs["$tacc"] >= $axs["$acc"] && $god["$acc"] != "1") {
-		sendserv("NOTICE $nick :Command has no effect (User $pnnick ($tacc) ranks you off.);");
+		sendserv("NOTICE $nick :Command has no effect (User $pnnick ($tacc) outranks you.)");
 		return(0);
 	}
 	$area = "";

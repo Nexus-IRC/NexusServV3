@@ -126,7 +126,7 @@ elseif ($params[0] == "*") {
 		return(0);
 	}
 	if ($pe >= $axs && $god["$acc"] != 1) {
-		sendserv("NOTICE $nick :You may not add a user with access equal to or higher as your own.");
+		sendserv("NOTICE $nick :You may not add a user with access equal to or higher than your own.");
 		return(0);
 	}
 	$accfound = "";
@@ -225,7 +225,7 @@ else {
 		return(0);
 	}
 	if ($pe >= $axs && $god["$acc"] != 1) {
-		sendserv("NOTICE $nick :You may not add a user with access equal to or higher as your own.");
+		sendserv("NOTICE $nick :You may not add a user with access equal to or higher than your own.");
 		return(0);
 	}
 	$accfound = "";
