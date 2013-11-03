@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $param = explode(" ",$params);
+echo "actually not work"; die();
 if($param[0] == "") { echo("NOTICE $nick :\002google\002 requires more parameters."); die(); }
 function object_to_array($object){
 	$new=NULL;

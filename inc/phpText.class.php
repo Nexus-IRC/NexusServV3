@@ -1,5 +1,5 @@
 <?php
-/* inc/phpTextWrite.class.php - NexusServV3
+/* inc/phpText.class.php - NexusServV3
  * Copyright (C) 2012-2013  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -14,8 +14,8 @@
  * 
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
- */
-/*
+ *
+ *
  *TODO:
  *	1.	Add UTF-8 Support                                           [done]
  *	2.	Add more letters (KLMNOPQRSTUVWXYZ)                         [done]
