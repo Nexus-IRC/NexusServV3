@@ -15,13 +15,26 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-$a=str_replace('\r', '',str_replace('\n', '', file_get_contents("http://git.nexus-irc.de/git_v.php?git=NexusServV3.git")));
-$b=explode("<br>",$a);
-notice($nick,$b[0]);
-notice($nick,$b[1]);
-notice($nick,$b[2]);
-notice($nick,$b[3]);
-notice($nick,$b[4]);
+$param = explode(" ",$params);
+if($param[0] == "") {
+	$a=str_replace('\r', '',str_replace('\n', '', file_get_contents("http://git.nexus-irc.de/git_v.php?git=NexusServV3.git")));
+	$b=explode("<br>",$a);
+	notice($nick,$b[0]);
+	notice($nick,$b[1]);
+	notice($nick,$b[2]);
+	notice($nick,$b[3]);
+	notice($nick,$b[4]);
+}
+else {
+	$repo = $param[0];
+	$a=str_replace('\r', '',str_replace('\n', '', file_get_contents("http://git.nexus-irc.de/git_v.php?git=".$repo.".git")));
+	$b=explode("<br>",$a);
+	notice($nick,$b[0]);
+	notice($nick,$b[1]);
+	notice($nick,$b[2]);
+	notice($nick,$b[3]);
+	notice($nick,$b[4]);
+}
 function notice ($nick, $line) {
 	echo("NOTICE ".$nick." :".$line."\n");
 }
