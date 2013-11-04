@@ -54,13 +54,12 @@ if ($saxs >= 200) {
 		sendserv("NOTICE $nick :\002Channel Check\002");
 		sendserv("NOTICE $nick :\002Chans where I'm not opped:\002");
 		foreach ($chansnoop as $cname => $carg) {
-			sendserv("NOTICE $nick :$cname");
+			sendserv("NOTICE $nick : $cname");
 		}
 		sendserv("NOTICE $nick :\002Chans where I'm not on:\002");
 		foreach ($chansnoton as $cname => $carg) {
-			sendserv("NOTICE $nick :- $cname");
+			sendserv("NOTICE $nick : $cname");
 		}
-		sendserv("NOTICE $nick :---");
 		sendserv("NOTICE $nick :Found a total amount of \002$cpcount\002 problems.");
 	}
 	else {

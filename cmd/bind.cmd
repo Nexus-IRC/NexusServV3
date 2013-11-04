@@ -58,7 +58,7 @@ if ($saxs >= 800) {
 		}
 	}
 	else {
-		sendserv("NOTICE $nick :There is no module with name \002$pazz[0]\002.");
+		sendserv("NOTICE $nick :There is no module with the name \002$pazz[0]\002.");
 	}
 }
 else {

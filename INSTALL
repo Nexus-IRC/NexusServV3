@@ -2,5 +2,6 @@
 			  
 Introduction:
 ----------
-copy all files from /conf/example to /conf
-and modify the config.php
+- copy all files from /conf/example to /conf
+- modify the config.php and staff.conf
+- run nexusserv.php

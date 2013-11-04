@@ -91,7 +91,7 @@ if ($params[0] == "*") {
 			sendserv("NOTICE $nick :$afound lacks access to ".$chans["$lchan"]["name"]."$xstr.");
 		}
 		else {
-			sendserv("NOTICE $nick :This account (\002$acc\002) is unknown to me.");
+			sendserv("NOTICE $nick :The account \002$acc\002 is unknown to me.");
 		}
 	}
 }
@@ -178,7 +178,7 @@ elseif ($params == "") {
 			sendserv("NOTICE $nick :".$userinfo["$lnick"]["nick"]." ($afound) lacks access to ".$chans["$lchan"]["name"]."$xstr.");
 		}
 		else {
-			sendserv("NOTICE $nick :This account (\002$acc\002) is unknown to me.");
+			sendserv("NOTICE $nick :The account \002$acc\002 is unknown to me.");
 		}
 	}
 }
