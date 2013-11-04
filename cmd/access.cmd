@@ -21,7 +21,7 @@ $access = 0;
 $lchan = strtolower($target);
 $lnick = strtolower($nick);
 $xstr = "";
-global $chans; global $userinfo; global $botnick; global $god;
+global $chans, $userinfo, $botnick, $god, $waitfor;
 if ($params[0] == "*") {
 	$acc = substr($params,1);
 	$fop = fopen("./conf/users.conf","r+");
@@ -99,7 +99,6 @@ if ($params[0] == "*") {
 
 elseif ($params == "") {
 	if ($userinfo["$lnick"]["nick"] == "") {
-		global $waitfor;
 		$wfc = count($waitfor["$lnick"]) + 1;
 		$waitfor["$lnick"][$wfc] == "CMD access $nick $user $host $cchan $target $params";
 		sendserv("WHOIS $nick");
@@ -189,7 +188,6 @@ else {
 	$lpam = strtolower($params);
 	if ($userinfo["$lpam"]["nick"] == "") {
 		if ($userinfo["$lpam"]["unknown"] != "1") {
-			global $waitfor;
 			$wfc = count($waitfor["$lpam"]) + 1;
 			$waitfor["$lpam"][$wfc] = "CMD access $nick $user $host $cchan $target $params";
 			sendserv("WHOIS $lpam");

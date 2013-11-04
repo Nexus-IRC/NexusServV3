@@ -27,7 +27,7 @@ if ($paz[2] == "") {
 }
 $params = $paz[0];
 $sul = 6;
-global $chans; global $god;
+global $chans, $god;
 $ctarg = strtolower($target);
 $mc = 0;
 if ($params != "") {

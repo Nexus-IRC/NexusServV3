@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $userinfo; global $botnick; global $god; global $chans;
+global $userinfo, $botnick, $god, $chans;
 $lbotnick = strtolower($botnick);
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];

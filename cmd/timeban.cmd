@@ -21,7 +21,7 @@ $area = "";
 $axs = 0;
 $cfound = 0;
 $uaxs = array();
-global $userinfo; global $chans; global $botnick; global $god; global $botnick;
+global $userinfo, $chans, $botnick, $god, $botnick;
 $lbotnick = strtolower($botnick);
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");

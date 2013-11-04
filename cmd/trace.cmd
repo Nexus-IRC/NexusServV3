@@ -26,7 +26,7 @@ else {
 	sendserv("NOTICE $nick :\002$paz[0]\002 is an invalid AuthTrace action.");
 	return("ERROR: Invalid ATRACE");
 }
-global $userinfo; global $botnick; global $god;
+global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;

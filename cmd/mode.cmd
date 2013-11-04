@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
-global $chans; global $userinfo; global $god; global $botnick;
+global $chans, $userinfo, $god, $botnick;
 $ctarg = strtolower($target);
 $axs = array();
 $tsets = array();

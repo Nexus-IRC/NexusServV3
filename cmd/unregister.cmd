@@ -52,7 +52,7 @@ while ($fra = fgets($fop)) {
 	}
 }
 fclose($fop);
-global $userinfo; global $botnick; global $god; global $chans;
+global $userinfo, $botnick, $god, $chans;
 $lnick = strtolower($nick);
 $lchan = strtolower($target);
 $acc = $userinfo["$lnick"]["auth"];

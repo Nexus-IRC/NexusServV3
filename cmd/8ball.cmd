@@ -20,7 +20,7 @@ $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-global $userinfo; global $chans; global $botnick; global $god;
+global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
 while ($fra = fgets($fop)) {

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $userinfo; global $botnick; global $god;
+global $userinfo, $botnick, $god;
 $fop = fopen("./conf/staff.conf","r+");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);

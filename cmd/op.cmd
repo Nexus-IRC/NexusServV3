@@ -21,7 +21,7 @@ $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-global $userinfo; global $chans; global $botnick; global $god;
+global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
 while ($fra = fgets($fop)) {
@@ -64,14 +64,12 @@ if ($cfound != 0) {
 		$xyxx = 0;
 		while ($ps[$xyxx] != "") {
 			sendserv("MODE $target +o ".$ps[$xyxx]);
-			global $userinfo;
 			if ($userinfo[strtolower($ps[$xyxx])]['nick'] == "") {
 				$fail = 1;
 			}
 			$xyxx++;
 		}
 		if ($fail == 1) {
-			global $botnick;
 			sendserv("NOTICE $nick :\002$botnick\002 couldn't process with some nicks you provided.");
 		}
 		sendserv("NOTICE $nick :User(s) have been opped in $cname.");

@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
-global $userinfo; global $botnick; global $god;
+global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
@@ -40,7 +40,7 @@ if ($saxs >= 950) {
 		$cmd = shell_exec("git pull");
 		$pos = strpos($cmd, "nicht gefunden");
 		$pos2 = strpos($cmd, "not found");
-		if ($pos === false || $pos === false) {
+		if ($pos === false || $pos2 === false) {
 			sendserv("NOTICE $nick :bot updated pls restart");
 		} else {
 			sendserv("NOTICE $nick :GIT not found on your server");

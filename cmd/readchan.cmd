@@ -20,7 +20,7 @@ $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-global $userinfo; global $chans; global $botnick; global $god;
+global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
 while ($fra = fgets($fop)) {
@@ -82,8 +82,6 @@ if(isset($tsets['giveops'])){ $giveops = $tsets['giveops']; } else { $giveops = 
 if(isset($tsets['givevoice'])){ $givevoice = $tsets['givevoice']; } else { $givevoice = "200"; }
 $uc = 0;
 $ufound = "";
-global $botnick;
-global $chans;
 foreach ($chans[strtolower($target)]['users'] as $uname => $uaccs) {
 	if ($userinfo[$uname]['auth'] != "") {
 		if (str_replace("@","",$uaccs) != $uaccs) {

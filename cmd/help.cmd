@@ -21,7 +21,7 @@ if (substr($para[0],0,2) == "::") {
 	$helpfile = "./conf/help".substr($para[0],2).".txt";
 	$params = substr($params,strlen($para[0]." "));
 }
-global $botnick; global $version;
+global $botnick, $version;
 $fop = fopen($helpfile,"r+");
 if ($params == "") {
 	$paramz = "Main";

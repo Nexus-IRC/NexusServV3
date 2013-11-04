@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
-global $userinfo; global $botnick; global $god;
+global $userinfo, $botnick, $god, $modules;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
@@ -39,7 +39,6 @@ if ($saxs >= 950) {
 	$mcnt = 0;
 	$mtime = microtime(true);
 	$buffer .= "NOTICE $nick :Rehashing commands...\n";
-	global $modules;
 	$modules = array();
 	foreach (glob("./cmd/*.cmd") as $filename) {
 		$mcnt++;

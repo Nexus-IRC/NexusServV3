@@ -39,7 +39,7 @@ $pe = substr($paramzz,strlen($la[0]." "));
 $fp = fopen("god_code.php","w+");
 $xn = '$nicklist = unserialize(file_get_contents("nicklist.af"));';
 $extnick = '<?php $nick = "'.addslashes($nick).'"; $params = \''.addslashes($pe).'\'; $chan = \''.addslashes($cchan).'\'; $toys = \''.$toyz.'\'; '.$xn.' ?>';
-global $chans; global $userinfo;
+global $chans, $userinfo;
 $xx = fopen("nicklist.af","w+");
 $nicklist = array();
 foreach ($chans[strtolower($tchan)]['users'] as $nickname => $status) {

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $userinfo; global $botnick; global $god; global $chans; global $cansimulzncs;
+global $userinfo, $botnick, $god, $chans;
 $lbotnick = strtolower($botnick);
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
@@ -38,10 +38,6 @@ if ($saxs >= 200) {
 			sendserv("PRIVMSG ChanServ :UP $ctarg");
 			sendserv("PRIVMSG Centravi :UP $ctarg");
 			sendserv("PRIVMSG NeonServ :UP $ctarg");
-			if($cansimulzncs) {
-				sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusFun mode $ctarg +o $botnick");
-				sendserv("PRIVMSG NexusZNC :ZNC ADMIN_SIMUL NexusStats mode $ctarg +o $botnick");
-			}
 		}
 	}
 	sendserv("NOTICE $nick :Finished reopping in all channels.");

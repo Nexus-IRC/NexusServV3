@@ -65,7 +65,7 @@ $god[$botnick] = 1;
 
 while (true) {
 	if (feof($socket)) {
-		global $userinfo; global $chans;
+		global $userinfo, $chans;
 		unset($userinfo);
 		unset($chans);
 		// Because the old connection has lost, the bot deletes all its infos to users/channels
@@ -942,7 +942,7 @@ while (true) {
 }
 
 function cmd_parser ($nick, $user, $host, $command, $cchan, $target, $params) {
-	$lnick = strtolower($nick); global $isev; global $userinfo;
+	$lnick = strtolower($nick), $isev, $userinfo;
 	$cf = 0;
 	$fopa = fopen("./conf/bind.conf","r+");
 	while ($fra = fgets($fopa)) {
@@ -1091,7 +1091,7 @@ function sendserv_dump ($line) {
 }
 
 function sendserv ($line) {
-	global $socket; global $floodtime; global $flood; global $bnclients; global $sendwith;
+	global $socket, $floodtime, $flood, $bnclients, $sendwith;
 	$fopi = fopen("./conf/aset.conf","r+");
 	while ($fro = fgets($fopi)) {
 		$fro = str_replace("\r","",$fro);
@@ -1117,7 +1117,7 @@ function sendserv ($line) {
 }
 
 function parse_modes ($sender, $target, $modes) {
-	global $chans; global $userinfo; global $botnick;
+	global $chans, $userinfo, $botnick;
 	$chan = strtolower($target);
 	$exclmodes = "";
 	$inclmodes = "";
@@ -1254,7 +1254,7 @@ function create_timer2 ($time, $line) {
 }
 
 function timer_evnts ($time, $call) {
-	global $dltimer; global $chans; global $socket;
+	global $dltimer, $chans, $socket;
 	foreach ($dltimer["$time"] as $timenum => $timeevnt) {
 		$timtime = explode(" ",$timeevnt);
 		if ($timtime[0] == "RAW") {
@@ -1350,7 +1350,7 @@ function staffstat ($account) {
 }
 
 function join_event ($nick, $chan, $wfa) {
-	global $chans; global $userinfo; global $botnick;
+	global $chans, $userinfo, $botnick;
 	$lnick = strtolower($nick);
 	unset($tsets);
 	$tlchan = strtolower($chan);
@@ -1533,7 +1533,7 @@ function protsetting ($val) {
 }
 
 function lseen ($account, $chan) {
-	global $userinfo; global $chans;
+	global $userinfo, $chans;
 	$fp = fopen("./conf/lastseen.txt","r+");
 	while ($fr = fgets($fp)) {
 		$fr = str_replace("\r","",$fr);

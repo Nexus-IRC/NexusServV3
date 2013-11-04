@@ -27,7 +27,7 @@ $ui = $GLOBALS['userinfo'];
 // ---
 $notc=false;
 $params = $paramzz;
-global $userinfo; global $botnick; global $god; 
+global $userinfo, $botnick, $god; 
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;

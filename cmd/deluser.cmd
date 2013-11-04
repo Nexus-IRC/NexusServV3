@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
-global $userinfo; global $chans; global $god; global $waitfor; global $botnick;
+global $userinfo, $chans, $god, $waitfor, $botnick;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $pp = explode(" ",$params);

@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
-global $userinfo; global $botnick; global $god; global $chans; global $waitfor;
+global $userinfo, $botnick, $god, $chans, $waitfor;
 $lnick = strtolower($nick);
 $lchan = strtolower($target);
 $lpam = strtolower($params);

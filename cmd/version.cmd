@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $version; global $devline; global $secdevline;
+global $version, $devline, $secdevline;
 sendserv("NOTICE $nick :\002NexusServ ".$GLOBALS['bofficial']."\002");
 sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].") Release ".$GLOBALS['brelease']." Core ".$GLOBALS['core']."");
 sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at http://nexus-irc.de/nexusserv.html");

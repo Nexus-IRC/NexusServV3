@@ -22,7 +22,7 @@ $axs = 0;
 $cname = array();
 $cfound = 0;
 $cc = 0;
-global $userinfo; global $chans; global $botnick;
+global $userinfo, $chans, $botnick, $god;
 if ($params == "") {
 	if ($userinfo["$lnick"]["auth"] == "") {
 		sendserv("NOTICE $nick :$nick is not authed with \002AuthServ\002.");
@@ -96,7 +96,6 @@ if ($params == "") {
 	sendserv("NOTICE $nick :\002".$userinfo["$lnick"]["auth"]."\002 has access to \002$cc\002 channel(s)".$owntxt.".");
 }
 else {
-	global $god;
 	$uauth = $userinfo["$lnick"]["auth"];
 	if ($god[$uauth] != 1) {
 		sendserv("NOTICE $nick :You might just see access and infolines for yourself using this command without parameters.");
