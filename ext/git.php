@@ -17,25 +17,13 @@
  */
 $param = explode(" ",$params);
 if($param[0] == "") {
-	$a=str_replace('\r', '',str_replace('\n', '', file_get_contents("http://git.nexus-irc.de/git_v.php?git=NexusServV3.git")));
-	$b=explode("<br>",$a);
-	notice($nick,$b[0]);
-	notice($nick,$b[1]);
-	notice($nick,$b[2]);
-	notice($nick,$b[3]);
-	notice($nick,$b[4]);
+	$git = "NexusServV3";
+} else {
+	$git = $param[0];
 }
-else {
-	$repo = $param[0];
-	$a=str_replace('\r', '',str_replace('\n', '', file_get_contents("http://git.nexus-irc.de/git_v.php?git=".$repo.".git")));
-	$b=explode("<br>",$a);
-	notice($nick,$b[0]);
-	notice($nick,$b[1]);
-	notice($nick,$b[2]);
-	notice($nick,$b[3]);
-	notice($nick,$b[4]);
-}
-function notice ($nick, $line) {
-	echo("NOTICE ".$nick." :".$line."\n");
+$commits = file_get_contents("http://git.nexus-irc.de/git_commits.php?git=".$git.".git"));
+if($commits == "404 Not Found - No such project") { echo $commits; die(); }
+foreach (json_decode($commits) as $id => $commit) {
+	echo("NOTICE ".$nick." :".$commit."\n");
 }
 ?>
