@@ -36,17 +36,17 @@ if ($cchan[0] != "#") {
 $command = $GLOBALS['msg'];
 if ($saxs >= 950) {
 	if(is_dir(".git")){
-		sendserv("NOTICE $nick :Update bot\n");
+		sendserv("NOTICE $nick :Updating bot...\n");
 		$cmd = shell_exec("git pull");
 		$pos = strpos($cmd, "nicht gefunden");
 		$pos2 = strpos($cmd, "not found");
 		if ($pos === false || $pos2 === false) {
-			sendserv("NOTICE $nick :bot updated pls restart");
+			sendserv("NOTICE $nick :Bot updated, please restart");
 		} else {
 			sendserv("NOTICE $nick :GIT not found on your server");
 		}
 	} else {
-		sendserv("NOTICE $nick :you dont have clone NexusServ with git\n");
+		sendserv("NOTICE $nick :You have not cloned NexusServ with git\n");
 	}
 	if($showdebug == true){
 		sendserv("NOTICE $debugchannel :($ccchan) [$nick:$acc] $command $paramzz");
