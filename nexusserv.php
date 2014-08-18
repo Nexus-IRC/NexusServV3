@@ -942,7 +942,8 @@ while (true) {
 }
 
 function cmd_parser ($nick, $user, $host, $command, $cchan, $target, $params) {
-	$lnick = strtolower($nick), $isev, $userinfo;
+	$lnick = strtolower($nick);
+	global $isev, $userinfo;
 	$cf = 0;
 	$fopa = fopen("./conf/bind.conf","r+");
 	while ($fra = fgets($fopa)) {
