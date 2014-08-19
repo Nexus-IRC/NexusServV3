@@ -19,7 +19,7 @@ $apikey = "";   //you can get your key here: http://www.worldweatheronline.com/r
                 //when you have add your key bind this script with this command =bind weather extscript weather.php
 $param = explode(" ",$params);
 if($param[0] == "") { echo("NOTICE $nick :\002weather\002 requires more parameters."); die(); }
-$url = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=".urlencode($params)."&format=xml&num_of_days=5&key=".$apikey;
+$url = "https://api.worldweatheronline.com/free/v1/weather.ashx?q=".urlencode($params)."&format=xml&num_of_days=5&key=".$apikey;
 $data = str_replace("]]>", "", str_replace("<![CDATA[", "", file_get_contents($url)));
 function object_to_array($object){
 	$new=NULL;

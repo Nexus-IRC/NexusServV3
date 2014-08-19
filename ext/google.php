@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $param = explode(" ",$params);
-echo "actually not work"; die();
+/*echo "actually not work"; die();*/
 if($param[0] == "") { echo("NOTICE $nick :\002google\002 requires more parameters."); die(); }
 function object_to_array($object){
 	$new=NULL;
@@ -37,7 +37,7 @@ function object_to_array($object){
 function from_google($query){
 	$query=urlencode($query);
 	$array=array();
-	$url = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=".$query."&rsz=large";
+	$url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=".$query."&rsz=large";
 	$data = file_get_contents($url);
 	$json = json_decode($data);
 	$array = object_to_array($json);
@@ -51,13 +51,13 @@ function decode_entities($text) {
 }
 $google=from_google($params);
 if(isset($google['responseData']['results'][0]['titleNoFormatting'])){
-	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][0]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][0]['url']));
-	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][1]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][1]['url']));
-	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][2]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][2]['url']));
-	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][3]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][3]['url']));
-	privmsg($chan,"\002Google\002: ".decode_entities($google['responseData']['results'][4]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][4]['url']));
+	privmsg($chan,"\002[Google]\002 ".decode_entities($google['responseData']['results'][0]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][0]['url']));
+	privmsg($chan,"\002[Google]\002 ".decode_entities($google['responseData']['results'][1]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][1]['url']));
+	privmsg($chan,"\002[Google]\002 ".decode_entities($google['responseData']['results'][2]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][2]['url']));
+	privmsg($chan,"\002[Google]\002 ".decode_entities($google['responseData']['results'][3]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][3]['url']));
+	privmsg($chan,"\002[Google]\002 ".decode_entities($google['responseData']['results'][4]['titleNoFormatting'])." => ".urldecode($google['responseData']['results'][4]['url']));
 }else{
-	privmsg($chan,"\002Google\002: Your search - ".$params." - did not match any documents. ");
+	privmsg($chan,"\002[Google]\002 Your search ".$params." did not match any documents.");
 }
 function privmsg ($chan, $line) {
 	echo("PRIVMSG ".$chan." :".$line."\n");
