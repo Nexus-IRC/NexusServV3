@@ -22,8 +22,12 @@ if($param[0] == "") {
 	$git = $param[0];
 }
 $commits = file_get_contents("https://git.stricted.de/git_commits.php?git=".$git.".git");
-if($commits == "404 Not Found - No such project") { echo $commits; die(); }
-foreach (json_decode($commits) as $id => $commit) {
-	echo("NOTICE ".$nick." :".$commit."\n");
+if($commits == "404 Not Found - No such project") {
+	echo("NOTICE ".$nick." :".$commits);
+	die();
+} else {
+	foreach (json_decode($commits) as $id => $commit) {
+		echo("NOTICE ".$nick." :".$commit."\n");
+	}
 }
 ?>
