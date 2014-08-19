@@ -20,7 +20,7 @@ $trigger = "=";
 $strigger = "$";
 $sendwith = -1;
 $server = "irc.onlinegamesnet.net";
-$port = "+7776";
+$port = 6667;
 $botnick = "NexusServ";
 $botident = "NexusServ";
 $botreal = "Channel Services - #nexus";
