@@ -68,7 +68,7 @@ if ($chan[0] == "#") {
 		}
 		echo("PRIVMSG $chan :\001ACTION slaps $nname around a bit with everything he finds...\001\n");
 		echo("PRIVMSG $chan :\001ACTION has already slapped ".$xslap." users!\001\n");
-		$fp = fopen("slapcount.z","w+");
+		$fp = fopen("./conf/slapcount.z","w+");
 		fputs($fp,$xslap);
 		fclose($fp);
 	}
