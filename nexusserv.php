@@ -1702,7 +1702,7 @@ function addChanUser ($chan, $auth, $access) {
 	fclose($fop);
 	if ($afound == 0) {
 		$fop = fopen("./conf/accs.conf","a+");
-		fwrite($fop,"\n$auth\n");
+		fwrite($fop,"$auth\n");
 		fclose($fop);
 	}
 
