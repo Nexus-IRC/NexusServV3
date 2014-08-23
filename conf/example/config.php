@@ -17,7 +17,6 @@
  */
  
 $trigger = "=";
-$strigger = "$";
 $sendwith = -1;
 $server = "irc.onlinegamesnet.net";
 $port = 6667;

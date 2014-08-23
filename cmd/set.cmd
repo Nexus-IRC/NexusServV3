@@ -124,9 +124,6 @@ else {
 		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
 		$tsets["funbot"] = "0";
 	}
-	if ($tsets["spamservtrigger"] == "") {
-		$tsets["spamservtrigger"] = "$";
-	}
 	if ($axs >= $tsets["setters"] or $god["$acc"] == 1) {
 		if ($params == "") {
 			/*

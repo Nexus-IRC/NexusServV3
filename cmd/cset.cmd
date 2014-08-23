@@ -124,9 +124,6 @@ else {
 		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
 		$tsets["funbot"] = "0";
 	}
-	if ($tsets["spamservtrigger"] == "") {
-		$tsets["spamservtrigger"] = "$";
-	}
 	if ($axs >= $tsets["setters"] or $god["$acc"] == 1) {
 		if ($params == "") {
 			sendserv("NOTICE $nick :\002".$chans["$tchan"]["name"]."\002 setting overview:");
@@ -162,7 +159,6 @@ else {
 			sendserv("NOTICE $nick :\002InviteMe               \002 ".asetting($tsets["inviteme"]));
 			sendserv("NOTICE $nick :\002DynLimit               \002 ".a2setting($tsets["dynlimit"]));
 			sendserv("NOTICE $nick :\002ShowClones             \002 ".binsetting($tsets["showclones"]));
-			sendserv("NOTICE $nick :\002SpamServ               \002 ".binsetting($tsets["spamserv"]));
 			sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
 			if ($tsets['watchdog'] == '1') {
 				sendserv("NOTICE $nick :\002        ScanOps        \002 ".binsetting($tsets["watchdogscanops"]));
@@ -184,9 +180,6 @@ else {
 			}
 			elseif (strtolower($pp[0]) == "trigger" && $pe == "") {
 				sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($tsets['trigger']));
-			}
-			elseif (strtolower($pp[0]) == "spamservtrigger" && $pe == "" && binsetting($tsets["spamserv"]) == "On") {
-				sendserv("NOTICE $nick :\002SpamServTrigger        \002 ".strsetting($tsets['spamservtrigger']));
 			}
 			elseif (strtolower($pp[0]) == "modes" && $pe == "") {
 				sendserv("NOTICE $nick :\002Modes                  \002 ".strsetting($tsets["modes"]));
@@ -243,9 +236,6 @@ else {
 			}
 			elseif (strtolower($pp[0]) == "enhancedtopic" && $pe == "") {
 				sendserv("NOTICE $nick :\002EnhancedTopic          \002 ".binsetting($tsets["enhancedtopic"]));
-			}
-			elseif (strtolower($pp[0]) == "spamserv" && $pe == "") {
-				sendserv("NOTICE $nick :\002SpamServ               \002 ".binsetting($tsets["spamserv"]));
 			}
 			elseif (strtolower($pp[0]) == "watchdog" && $pe == "") {
 				sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -535,55 +525,6 @@ else {
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnhancedTopic          \002 ".binsetting($pe));
-			}
-			elseif (strtolower($pp[0]) == "spamserv" && $pe != "") {
-				if ($pe != "0" && $pe != "1") {
-					sendserv("NOTICE $nick :\002$pe\002 is not a valid binary value.");
-					return(0);
-				}
-				if ($god["$acc"] != "1") {
-					sendserv("NOTICE $nick :You must enable security override (helping mode) to change this setting.");
-					return(0);
-				}
-				$fcont = "";
-				$area = "";
-				$sfound = 0;
-				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
-				while ($fra = fgets($fop)) {
-					$fra = str_replace("\r","",$fra);
-					$fra = str_replace("\n","",$fra);
-					$frg = explode(" ",$fra);
-					if ($frg[0] == "-") {
-						$area = $frg[1];
-						$fcont .= "- $frg[1]\r\n";
-						if ($area == $tchan) {
-							$arfound = 1;
-							$fcont .= "spamserv $pe\r\n";
-						}
-					}
-					else {
-						if ($area == $tchan && $frg[0] == "spamserv") {
-							$sfound = 1;
-							$fcont .= ""; // Ignore old data.
-						}
-						else {
-							$fcont .= "$fra\r\n";
-						}
-					}
-				}
-				fclose($fop);
-				if ($sfound == 0) {
-					if ($arfound == 0) {
-						$fcont .= "- ".$tchan."\r\n";
-						$fcont .= "spamserv $pe\r\n";
-					}
-				}
-				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
-				fwrite($fop,$fcont);
-				fclose($fop);
-				sendserv("NOTICE $nick :\002SpamServ               \002 ".binsetting($pe));
 			}
 			elseif (strtolower($pp[0]) == "watchdog" && substr(strtolower($pe),0,strlen("scanops ")) == "scanops ") {
 				$pe = substr($pe,strlen("scanops "));
@@ -2256,54 +2197,6 @@ else {
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($pe));
-			}
-			elseif (strtolower($pp[0]) == "spamservtrigger" && $pe != "" && binsetting($tsets["spamserv"]) == "On") {
-				if ($pe == " ") {
-					$pe = "=";
-				}
-				if (strlen($pe) > 1) {
-					sendserv("NOTICE $nick :The trigger can't be longer than 1 character.");
-					return(0);
-				}
-				$fcont = "";
-				$area = "";
-				$sfound = 0;
-				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
-				while ($fra = fgets($fop)) {
-					$fra = str_replace("\r","",$fra);
-					$fra = str_replace("\n","",$fra);
-					$frg = explode(" ",$fra);
-					if ($frg[0] == "-") {
-						$area = $frg[1];
-						$fcont .= "- $frg[1]\r\n";
-						if ($area == $tchan) {
-							$arfound = 1;
-							$fcont .= "spamservtrigger $pe\r\n";
-						}
-					}
-					else {
-						if ($area == $tchan && $frg[0] == "spamservtrigger") {
-							$sfound = 1;
-							$fcont .= ""; // Ignore old data.
-						}
-						else {
-							$fcont .= "$fra\r\n";
-						}
-					}
-				}
-				fclose($fop);
-				if ($sfound == 0) {
-					if ($arfound == 0) {
-						$fcont .= "- ".$tchan."\r\n";
-						$fcont .= "spamservtrigger $pe\r\n";
-					}
-				}
-				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
-				fwrite($fop,$fcont);
-				fclose($fop);
-				sendserv("NOTICE $nick :\002SpamServTrigger        \002 ".strsetting($pe));
 			}
 			elseif (strtolower($pp[0]) == "usergreeting" && $pe != "") {
 				if ($pe == "*") {

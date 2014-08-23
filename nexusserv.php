@@ -693,7 +693,6 @@ while (true) {
 					$tchan = strtolower($e[2]);
 					$uauth = $userinfo[strtolower($nick)]['auth'];
 					$atrig = '';
-					$strig = '';
 					$tsets = array();
 					$fop = fopen("./conf/settings.conf","r+");
 					while ($fra = fgets($fop)) {
@@ -729,12 +728,8 @@ while (true) {
 					}
 					fclose($fop);
 					$atrig = $tsets['trigger'];
-					$strig = $tsets['spamservtrigger'];
 					if ($atrig == "") {
 						$atrig = $trigger;
-					}
-					if ($strig == "") {
-						$strig = $strigger;
 					}
 					if ($tsets["watchdogexceptlevel"] == "") {
 						$tsets["watchdogexceptlevel"] = "200";
