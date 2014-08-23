@@ -20,7 +20,7 @@ $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-global $userinfo, $chans, $botnick, $god;
+global $userinfo, $chans, $botnick, $god, $trigger;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
 while ($fra = fgets($fop)) {
@@ -118,7 +118,7 @@ else {
 		$tsets["inviteme"] = "1";
 	}
 	if ($tsets["trigger"] == "") {
-		$tsets["trigger"] = "=";
+		$tsets["trigger"] = $trigger;
 	}
 	if ($tsets["funbot"] == "") {
 		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
@@ -2152,7 +2152,7 @@ else {
 			}
 			elseif (strtolower($pp[0]) == "trigger" && $pe != "") {
 				if ($pe == " ") {
-					$pe = "=";
+					$pe = $trigger;
 				}
 				if (strlen($pe) > 1) {
 					sendserv("NOTICE $nick :The trigger can't be longer than 1 character.");
