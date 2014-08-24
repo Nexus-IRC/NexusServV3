@@ -16,17 +16,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $param = explode(" ",$params);
-if($param[0] == "") {
+if ($param[0] == "") {
 	$git = "NexusServV3";
-} else {
+}
+else {
 	$git = $param[0];
 }
 $commits = file_get_contents("https://git.stricted.de/git_commits.php?git=".$git.".git");
-if($commits == "404 Not Found - No such project") {
+if ($commits == "404 Not Found - No such project") {
 	echo("NOTICE ".$nick." :".$commits);
 	die();
-} else {
+}
+else {
 	foreach (json_decode($commits) as $id => $commit) {
+		$commit = str_replace("\n\n"," ",$commit);
 		echo("NOTICE ".$nick." :".$commit."\n");
 	}
 }
