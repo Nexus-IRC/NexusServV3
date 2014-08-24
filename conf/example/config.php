@@ -36,4 +36,5 @@ $core = "3.1";
 $bofficial = "3.6.1";
 $version = "$bofficial $bversion ($bcodename) Release $brelease on Core $core";
 $autojoin = 1;
+$funbot = "";	//for use with NexusFun
 ?>

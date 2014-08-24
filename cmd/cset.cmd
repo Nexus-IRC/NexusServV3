@@ -20,7 +20,7 @@ $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-global $userinfo, $chans, $botnick, $god, $trigger;
+global $userinfo, $chans, $botnick, $god, $trigger, $funbot;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
 while ($fra = fgets($fop)) {
@@ -120,9 +120,11 @@ else {
 	if ($tsets["trigger"] == "") {
 		$tsets["trigger"] = $trigger;
 	}
-	if ($tsets["funbot"] == "") {
-		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
-		$tsets["funbot"] = "0";
+	if (!empty($funbot)) {
+		if ($tsets["funbot"] == "") {
+			sendserv("PRIVMSG ".$funbot." :unreg ".$tchan);
+			$tsets["funbot"] = "0";
+		}
 	}
 	if ($axs >= $tsets["setters"] or $god["$acc"] == 1) {
 		if ($params == "") {
@@ -167,7 +169,9 @@ else {
 				sendserv("NOTICE $nick :\002        ExceptLevel    \002 ".asetting($tsets["watchdogexceptlevel"]));
 			}
 			sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($tsets["nodelete"]));
-			sendserv("NOTICE $nick :\002FunBot                 \002 ".asetting($tsets["funbot"]));
+			if (!empty($funbot)) {
+				sendserv("NOTICE $nick :\002FunBot                 \002 ".binsetting($tsets["funbot"]));
+			}
 			sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($tsets["toys"]));
 			sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($tsets["protect"]));
 			sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($tsets['trigger']));
@@ -2242,9 +2246,10 @@ else {
 				fclose($fop);
 				sendserv("NOTICE $nick :\002UserGreeting           \002 ".strsetting($pe));
 			}
-			elseif (strtolower($pp[0]) == "funbot" && $pe != "") {
-				if ($pe == "*") {
-					$pe = "";
+			elseif (strtolower($pp[0]) == "funbot" && $pe != "" && !empty($funbot)) {
+				if ($pe != "0" && $pe != "1") {
+					sendserv("NOTICE $nick :\002$pe\002 is not a valid binary value.");
+					return(0);
 				}
 				$fcont = "";
 				$area = "";
@@ -2284,14 +2289,16 @@ else {
 				$fop = fopen("./conf/settings.conf","w+");
 				fwrite($fop,$fcont);
 				fclose($fop);
-				sendserv("NOTICE $nick :\002FunBot           \002 ".strsetting($pe));
-				if($pe == "0") {
+				sendserv("NOTICE $nick :\002FunBot           \002 ".binsetting($pe));
+				if ($pe == "0") {
 					sendserv("PRIVMSG NexusFun :unreg ".$tchan);
-				}elseif($pe == "1"){
-					sendserv("INVITE NexusFun ".$tchan);
-					sendserv("PRIVMSG NexusFun :reg ".$tchan);
-				}else{
-					sendserv("PRIVMSG NexusFun :unreg ".$tchan);
+				}
+				elseif ($pe == "1"){
+					sendserv("INVITE ".$funbot." ".$tchan);
+					sendserv("PRIVMSG ".$funbot." :reg ".$tchan);
+				}
+				else {
+					sendserv("PRIVMSG ".$funbot." :unreg ".$tchan);
 				}
 			}
 			elseif (strtolower($pp[0]) == "topic" && $pe != "") {

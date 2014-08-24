@@ -20,7 +20,7 @@ $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-global $userinfo, $chans, $botnick, $god, $trigger;
+global $userinfo, $chans, $botnick, $god, $trigger, $funbot;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
 while ($fra = fgets($fop)) {
@@ -120,9 +120,11 @@ else {
 	if ($tsets["trigger"] == "") {
 		$tsets["trigger"] = $trigger;
 	}
-	if ($tsets["funbot"] == "") {
-		sendserv("PRIVMSG NexusFun :unreg ".$tchan);
-		$tsets["funbot"] = "0";
+	if (!empty($funbot)) {
+		if ($tsets["funbot"] == "") {
+			sendserv("PRIVMSG ".$funbot." :unreg ".$tchan);
+			$tsets["funbot"] = "0";
+		}
 	}
 	if ($axs >= $tsets["setters"] or $god["$acc"] == 1) {
 		if ($params == "") {
@@ -167,7 +169,9 @@ else {
 			sendserv("NOTICE $nick :\002InviteMe               \002 ".asetting($tsets["inviteme"]));
 			sendserv("NOTICE $nick :\002DynLimit               \002 ".a2setting($tsets["dynlimit"]));
 			sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($tsets["nodelete"]));
-			sendserv("NOTICE $nick :\002FunBot                 \002 ".asetting($tsets["funbot"]));
+			if (!empty($funbot)) {
+				sendserv("NOTICE $nick :\002FunBot                 \002 ".binsetting($tsets["funbot"]));
+			}
 			sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($tsets["toys"]));
 			sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($tsets["protect"]));
 			sendserv("NOTICE $nick :For a complete list of channel settings, please use the \002cset\002 command!");
