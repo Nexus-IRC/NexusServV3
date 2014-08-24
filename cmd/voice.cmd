@@ -70,7 +70,7 @@ if ($cfound != 0) {
 			$xyxx++;
 		}
 		if ($fail == 1) {
-			sendserv("NOTICE $nick :\002$botnick\002 couldn't process with some nicks you provided.");
+			sendserv("NOTICE $nick :\002$botnick\002 couldn't process some of the names you provided.");
 		}
 		sendserv("NOTICE $nick :User(s) have been voiced in $cname.");
 	}

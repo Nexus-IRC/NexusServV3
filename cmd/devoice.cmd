@@ -1,5 +1,5 @@
-/* cmd/op.cmd - NexusServV3
- * Copyright (C) 2012-2013  #Nexus project
+/* cmd/devoice.cmd - NexusServV3
+ * Copyright (C) 2014  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,9 +61,9 @@ $cname = $chans["$tchan"]["name"];
 if ($cfound != 0) {
 	if ($axs >= 200 || $god[$acc] == 1) {
 		$ps = explode(" ",$params);
-		$xyxx = 0;
+		$xyxx = 1;
 		while ($ps[$xyxx] != "") {
-			sendserv("MODE $target +o ".$ps[$xyxx]);
+			sendserv("MODE $target -v ".$ps[$xyxx]);
 			if ($userinfo[strtolower($ps[$xyxx])]['nick'] == "") {
 				$fail = 1;
 			}
@@ -72,7 +72,7 @@ if ($cfound != 0) {
 		if ($fail == 1) {
 			sendserv("NOTICE $nick :\002$botnick\002 couldn't process some of the names you provided.");
 		}
-		sendserv("NOTICE $nick :User(s) have been opped in $cname.");
+		sendserv("NOTICE $nick :User(s) have been devoiced in $cname.");
 	}
 	else {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");

@@ -1,5 +1,5 @@
 /* cmd/deop.cmd - NexusServV3
- * Copyright (C) 2012-2013  #Nexus project
+ * Copyright (C) 2014  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,13 +14,13 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
+$fail = 0;
 $params = $paramzz;
 $tchan = strtolower($target);
 $lnick = strtolower($nick);
 $area = "";
 $axs = 0;
 $cfound = 0;
-$uaxs = array();
 global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
 $fop = fopen("./conf/users.conf","r+");
@@ -36,7 +36,6 @@ while ($fra = fgets($fop)) {
 			if ($frg[0] == $userinfo["$lnick"]["auth"]) {
 				$axs = $frg[1];
 			}
-			$uaxs["$frg[0]"] = $frg[1];
 			$cfound = 1;
 		}
 	}
@@ -58,122 +57,27 @@ while ($fra = fgets($fop)) {
 	}
 }
 fclose($fop);
-if ($cfound == 0) {
-	sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002$botnick\002.");
-	return(0);
-}
 $cname = $chans["$tchan"]["name"];
-if ($axs < 300 || $god[$acc] == 0) {
-	sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
-	return(0);
-}
-$pp = explode(" ",$params);
-$reason = breason(substr($params,strlen($pp[0]." ")));
-$targ = $pp[0];
-if (str_replace("@","",$targ) != $targ) {
-	if (str_replace("!","",$targ) != $targ) {
-		foreach($chans["$tchan"]["users"] as $unick => $ustat) {
-			$userhost = $userinfo["$unick"]["nick"]."!".$userinfo["$unick"]["ident"]."@".$userinfo["$unick"]["host"];
-			$uauth = $userinfo["$unick"]["auth"];
-			if (fnmatch(bmask(strtolower($targ)),strtolower($userhost))) {
-				if ($uaxs["$uauth"] < $axs or $uaxs["$uauth"] == "") {
-					if ($unick != strtolower($botnick)) {
-						sendserv("MODE $target -o $unick");
-						//sendserv("KICK $target $unick :($nick) $reason");
-					}
-				}
-				else {
-					if ($axs >= 500) {
-						if ($unick == strtolower($botnick)) {
-							sendserv("NOTICE $nick :This kickmask matches the bots hostmask, and may not be set.");
-							return(0);
-						}
-						sendserv("MODE $target -o $unick");
-						//sendserv("KICK $target $unick :($nick) $reason");
-					}
-					else {
-						sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) outranks you.");
-						return(0);
-					}
-				}
+if ($cfound != 0) {
+	if ($axs >= 200 || $god[$acc] == 1) {
+		$ps = explode(" ",$params);
+		$xyxx = 1;
+		while ($ps[$xyxx] != "") {
+			sendserv("MODE $target -o ".$ps[$xyxx]);
+			if ($userinfo[strtolower($ps[$xyxx])]['nick'] == "") {
+				$fail = 1;
 			}
+			$xyxx++;
 		}
+		if ($fail == 1) {
+			sendserv("NOTICE $nick :\002$botnick\002 couldn't process some of the names you provided.");
+		}
+		sendserv("NOTICE $nick :User(s) have been deopped in $cname.");
 	}
 	else {
-		sendserv("NOTICE $nick :\002$targ\002 is not a valid ban host.");
-		return(0);
-	}
-}
-elseif ($targ[0] == "*") {
-	$targ = "*!*@".substr($targ,1).".*";
-	if (str_replace("@","",$targ) != $targ) {
-		if (str_replace("!","",$targ) != $targ) {
-			foreach($chans["$tchan"]["users"] as $unick => $ustat) {
-				$userhost = $userinfo["$unick"]["nick"]."!".$userinfo["$unick"]["ident"]."@".$userinfo["$unick"]["host"];
-				$uauth = $userinfo["$unick"]["auth"];
-				if (fnmatch(bmask(strtolower($targ)),strtolower($userhost))) {
-					if ($uaxs["$uauth"] < $axs or $uaxs["$uauth"] == "") {
-						if ($unick != strtolower($botnick)) {
-							sendserv("MODE $target -o $unick");
-							//sendserv("KICK $target $unick :($nick) $reason");
-						}
-					}
-					else {
-						if ($axs >= 500) {
-							if ($unick == strtolower($botnick)) {
-								sendserv("NOTICE $nick :This kickmask matches the bots hostmask, and may not be set.");
-								return(0);
-							}
-							sendserv("MODE $target -o $unick");
-							//sendserv("KICK $target $unick :($nick) $reason");
-						}
-						else {
-							sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) outranks you.");
-							return(0);
-						}
-					}
-				}
-			}
-		}
-		else {
-			sendserv("NOTICE $nick :\002$targ\002 is not a valid kick host.");
-			return(0);
-		}
+		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	}
 }
 else {
-	$targ = $targ."!*@*";
-	if (str_replace("@","",$targ) != $targ) {
-		if (str_replace("!","",$targ) != $targ) {
-			foreach($chans["$tchan"]["users"] as $unick => $ustat) {
-				$userhost = $userinfo["$unick"]["nick"]."!".$userinfo["$unick"]["ident"]."@".$userinfo["$unick"]["host"];
-				$uauth = $userinfo["$unick"]["auth"];
-				if (fnmatch(bmask(strtolower($targ)),strtolower($userhost))) {
-					if ($uaxs["$uauth"] < $axs or $uaxs["$uauth"] == "") {
-						if ($unick != strtolower($botnick)) {
-							sendserv("MODE $target -o $unick");
-							//sendserv("KICK $target $unick :($nick) $reason");
-						}
-					}
-					else {
-						if ($axs >= 500) {
-							if ($unick != strtolower($botnick)) {
-								sendserv("MODE $target -o $unick");
-								//sendserv("KICK $target $unick :($nick) $reason");
-							}
-						}
-						else {
-							sendserv("NOTICE $nick :Deop cannot be done: User ".$userinfo["$unick"]["nick"]." ($uauth) outranks you.");
-							return(0);
-						}
-					}
-				}
-			}
-		}
-		else {
-			sendserv("NOTICE $nick :\002$targ\002 is not a valid ban host.");
-			return(0);
-		}
-	}
+	sendserv("NOTICE $nick :Channel \002$target\002 is not registered with \002$botnick\002.");
 }
-sendserv("NOTICE $nick :User(s) have been deopped in $cname.");
