@@ -1,5 +1,5 @@
 <?php
-/* ext/iplocate.php - NexusServV3
+/* ext/chuck.php - NexusServV3
  * Copyright (C) 2014  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,26 +15,15 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-$param = explode(" ",$params);
-if($param[0] == "") {
-	echo("NOTICE $nick :\002iplocate\002 requires more parameters.");
-	die();
-}
-$url = "https://freegeoip.net/json/".$param[0];
+$url = "http://api.icndb.com/jokes/random";
 $data = file_get_contents($url);
 $data = json_decode($data);
 
-if (empty($data->country_name) && empty($data->region_name) && empty($data->city)) {
-	$return = "Location undetermined.";
-}
-elseif (empty($data->region_name) && empty($data->city)) {
-	$return = "Location: ".$data->country_name;
-}
-elseif (empty($data->region_name) && isset($data->city)) {
-	$return = "Location: ".$data->city.", ".$data->country_name;
+if($data->type !== "success") {
+	$return = "Error.";
 }
 else {
-	$return = "Location: ".$data->city.", ".$data->region_name.", ".$data->country_name;
+	$return = str_replace("&quot;","\042",$data->value->joke);
 }
 
 if ($chan[0] == "#") {
@@ -51,4 +40,4 @@ if ($chan[0] == "#") {
 else {
 	echo("NOTICE $nick :".$return."\n");
 }
-?> 
+?>

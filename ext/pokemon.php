@@ -1,5 +1,5 @@
 <?php
-/* ext/iplocate.php - NexusServV3
+/* ext/pokemon.php - NexusServV3
  * Copyright (C) 2014  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,27 +15,11 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-$param = explode(" ",$params);
-if($param[0] == "") {
-	echo("NOTICE $nick :\002iplocate\002 requires more parameters.");
-	die();
-}
-$url = "https://freegeoip.net/json/".$param[0];
+$url = "http://pokeapi.co/api/v1/pokemon/".rand(1,718);
 $data = file_get_contents($url);
 $data = json_decode($data);
 
-if (empty($data->country_name) && empty($data->region_name) && empty($data->city)) {
-	$return = "Location undetermined.";
-}
-elseif (empty($data->region_name) && empty($data->city)) {
-	$return = "Location: ".$data->country_name;
-}
-elseif (empty($data->region_name) && isset($data->city)) {
-	$return = "Location: ".$data->city.", ".$data->country_name;
-}
-else {
-	$return = "Location: ".$data->city.", ".$data->region_name.", ".$data->country_name;
-}
+$return = "You caught a ".$data->name."!";
 
 if ($chan[0] == "#") {
 	if ($toys == "" || $toys == "0") {
@@ -51,4 +35,4 @@ if ($chan[0] == "#") {
 else {
 	echo("NOTICE $nick :".$return."\n");
 }
-?> 
+?>

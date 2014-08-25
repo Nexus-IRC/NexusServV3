@@ -1,5 +1,5 @@
 <?php
-/* ext/iplocate.php - NexusServV3
+/* ext/lastfm.php - NexusServV3
  * Copyright (C) 2014  #Nexus project
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,26 +15,28 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
+
+//Get your key here: http://www.last.fm/api/account/create
+$apikey = "";
+//Bind command with =bind lastfm extscript lastfm.php
+
 $param = explode(" ",$params);
-if($param[0] == "") {
-	echo("NOTICE $nick :\002iplocate\002 requires more parameters.");
+if ($param[0] == "") {
+	echo("NOTICE $nick :\002lastfm\002 requires more parameters.");
 	die();
 }
-$url = "https://freegeoip.net/json/".$param[0];
+$url = "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=".urlencode($params)."&limit=1&format=json&api_key=".$apikey;
 $data = file_get_contents($url);
-$data = json_decode($data);
+$data = json_decode($data, true);
 
-if (empty($data->country_name) && empty($data->region_name) && empty($data->city)) {
-	$return = "Location undetermined.";
+if (isset($data['error'][0])) {
+	$return = "User does not exist.";
 }
-elseif (empty($data->region_name) && empty($data->city)) {
-	$return = "Location: ".$data->country_name;
-}
-elseif (empty($data->region_name) && isset($data->city)) {
-	$return = "Location: ".$data->city.", ".$data->country_name;
+elseif ($data['recenttracks']['track'][0]['@attr']['nowplaying'] == true) {
+	$return = $data['recenttracks']['@attr']['user']." is now playing \002".$data['recenttracks']['track'][0]['name']."\002 by \002".$data['recenttracks']['track'][0]["artist"]['#text']."\002";
 }
 else {
-	$return = "Location: ".$data->city.", ".$data->region_name.", ".$data->country_name;
+	$return = $data['recenttracks']['@attr']['user']." last played \002".$data['recenttracks']['track']['name']."\002 by \002".$data['recenttracks']['track']['artist']['#text']."\002";
 }
 
 if ($chan[0] == "#") {
@@ -51,4 +53,4 @@ if ($chan[0] == "#") {
 else {
 	echo("NOTICE $nick :".$return."\n");
 }
-?> 
+?>
