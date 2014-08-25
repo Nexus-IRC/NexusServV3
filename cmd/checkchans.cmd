@@ -52,15 +52,29 @@ if ($saxs >= 200) {
 			}
 		}
 		sendserv("NOTICE $nick :\002Channel Check\002");
-		sendserv("NOTICE $nick :\002Chans where I'm not opped:\002");
-		foreach ($chansnoop as $cname => $carg) {
-			sendserv("NOTICE $nick : $cname");
+		if ($cpcount !== 0) {
+			if (!empty($chansnoop)) {
+				sendserv("NOTICE $nick :\002Chans where I'm not opped:\002");
+				foreach ($chansnoop as $cname => $carg) {
+					sendserv("NOTICE $nick : $cname");
+				}
+			}
+			if (!empty($chansnooton)) {
+				sendserv("NOTICE $nick :\002Chans where I'm not on:\002");
+				foreach ($chansnoton as $cname => $carg) {
+					sendserv("NOTICE $nick : $cname");
+				}
+			}
+			if ($cpcount > 1) {
+				sendserv("NOTICE $nick :Found a total amount of \002$cpcount\002 problems.");
+			}
+			if ($cpcount == 1) {
+				sendserv("NOTICE $nick :Found \002$cpcount\002 problem.");
+			}
 		}
-		sendserv("NOTICE $nick :\002Chans where I'm not on:\002");
-		foreach ($chansnoton as $cname => $carg) {
-			sendserv("NOTICE $nick : $cname");
+		else {
+			sendserv("NOTICE $nick :No problems detected. All channels running normally.");
 		}
-		sendserv("NOTICE $nick :Found a total amount of \002$cpcount\002 problems.");
 	}
 	else {
 		sendserv("NOTICE $nick :You must enable security override (helping mode) to use this command.");
