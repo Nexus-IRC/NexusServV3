@@ -60,4 +60,4 @@ sendserv("NOTICE $nick :\002Parser             \002  php".phpversion());
 sendserv("NOTICE $nick :\002Version            \002  ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].")");
 sendserv("NOTICE $nick :\002Core Version       \002  NexusServ v".$GLOBALS['core']);
 sendserv("NOTICE $nick :\002Reloads            \002  ".($GLOBALS['rid']+0));
-sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on http://bugtracker.nexus-irc.de");
+sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on https://github.com/Nexus-IRC/NexusServV3/issues");
