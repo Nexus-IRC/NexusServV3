@@ -30,13 +30,29 @@ foreach ($userinfo as $lnick => $uar) {
 		$staffs["$slevel"] .= $userinfo["$lnick"]["nick"]." ";
 	}
 }
-sendserv("NOTICE $nick :\002Developers\002");
-sendserv("NOTICE $nick :".$staffs["7"]); // Developers
-sendserv("NOTICE $nick :\002Admins\002");
-sendserv("NOTICE $nick :".$staffs["5"].$staffs["4"]); // Admin, Botadmin 
-sendserv("NOTICE $nick :\002Managers\002");
-sendserv("NOTICE $nick :".$staffs["3"]); // Manager
-sendserv("NOTICE $nick :\002Helpers\002");
-sendserv("NOTICE $nick :".$staffs["2"].$staffs["1"]); // Extended Helper
-sendserv("NOTICE $nick :\002Trials\002");
-sendserv("NOTICE $nick :".$staffs["0"]); // Trial
+
+if (empty($staffs)) {
+	sendserv("NOTICE $nick :All staff are currently offline.");
+}
+else {
+	if (!empty($staffs["7"])) {
+		sendserv("NOTICE $nick :\002Developers\002");
+		sendserv("NOTICE $nick :".$staffs["7"]);	//Developers
+	}
+	if (!empty($staffs["5"]) || !empty($staffs["4"])) {
+		sendserv("NOTICE $nick :\002Admins\002");
+		sendserv("NOTICE $nick :".$staffs["5"].$staffs["4"]);	//Admin, Botadmin
+	}
+	if (!empty($staffs["3"])) {
+		sendserv("NOTICE $nick :\002Managers\002");
+		sendserv("NOTICE $nick :".$staffs["3"]);	//Manager
+	}
+	if (!empty($staffs["2"]) || !empty($staffs["1"])) {
+		sendserv("NOTICE $nick :\002Helpers\002");
+		sendserv("NOTICE $nick :".$staffs["2"].$staffs["1"]);	//Extended Helper
+	}
+	if (!empty($staffs["0"])) {
+		sendserv("NOTICE $nick :\002Trials\002");
+		sendserv("NOTICE $nick :".$staffs["0"]);	//Trial
+	}
+}
