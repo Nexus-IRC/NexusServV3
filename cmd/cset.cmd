@@ -305,6 +305,12 @@ else {
 			elseif (strtolower($pp[0]) == "enfmodes" && $pe == "") {
 				sendserv("NOTICE $nick :\002EnfModes               \002 ".asetting($tsets["enfmodes"]));
 			}
+			elseif (strtolower($pp[0]) == "enfops" && $pe == "") {
+				sendserv("NOTICE $nick :\002EnfOps                 \002 ".asetting($tsets["enfops"]));
+			}
+			elseif (strtolower($pp[0]) == "enfvoice" && $pe == "") {
+				sendserv("NOTICE $nick :\002EnfVoice               \002 ".asetting($tsets["enfvoice"]));
+			}
 			elseif (strtolower($pp[0]) == "inviteme" && $pe == "") {
 				sendserv("NOTICE $nick :\002InviteMe               \002 ".asetting($tsets["inviteme"]));
 			}
@@ -1946,6 +1952,124 @@ else {
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnfModes               \002 ".asetting($pe));
+			}
+			elseif (strtolower($pp[0]) == "enfops" && $pe != "") {
+				$xyz = 501;
+				$valid = 0;
+				while ($xyz > -1) {
+					if ($pe == $xyz) {
+						$valid = 1;
+					}
+					$xyz = $xyz - 1;
+				}
+				if ($valid == 0) {
+					sendserv("NOTICE $nick :\002$pe\002 is an invalid access level.");
+					return(0);
+				}
+				if ($axs != 500 && $god["$acc"] != "1") {
+					if ($pe > $axs) {
+						sendserv("NOTICE $nick :You may not change this setting above your own access level.");
+						return(0);
+					}
+				}
+				$fcont = "";
+				$area = "";
+				$sfound = 0;
+				$arfound = 0;
+				$fop = fopen("./conf/settings.conf","r+");
+				while ($fra = fgets($fop)) {
+					$fra = str_replace("\r","",$fra);
+					$fra = str_replace("\n","",$fra);
+					$frg = explode(" ",$fra);
+					if ($frg[0] == "-") {
+						$area = $frg[1];
+						$fcont .= "- $frg[1]\r\n";
+						if ($area == $tchan) {
+							$arfound = 1;
+							$fcont .= "enfops $pe\r\n";
+						}
+					}
+					else {
+						if ($area == $tchan && $frg[0] == "enfops") {
+							$sfound = 1;
+							$fcont .= ""; // Ignore old data.
+						}
+						else {
+							$fcont .= "$fra\r\n";
+						}
+					}
+				}
+				fclose($fop);
+				if ($sfound == 0) {
+					if ($arfound == 0) {
+						$fcont .= "- ".$tchan."\r\n";
+						$fcont .= "enfops $pe\r\n";
+					}
+				}
+				unlink("./conf/settings.conf");
+				$fop = fopen("./conf/settings.conf","w+");
+				fwrite($fop,$fcont);
+				fclose($fop);
+				sendserv("NOTICE $nick :\002EnfOps                 \002 ".asetting($pe));
+			}
+			elseif (strtolower($pp[0]) == "enfvoice" && $pe != "") {
+				$xyz = 501;
+				$valid = 0;
+				while ($xyz > -1) {
+					if ($pe == $xyz) {
+						$valid = 1;
+					}
+					$xyz = $xyz - 1;
+				}
+				if ($valid == 0) {
+					sendserv("NOTICE $nick :\002$pe\002 is an invalid access level.");
+					return(0);
+				}
+				if ($axs != 500 && $god["$acc"] != "1") {
+					if ($pe > $axs) {
+						sendserv("NOTICE $nick :You may not change this setting above your own access level.");
+						return(0);
+					}
+				}
+				$fcont = "";
+				$area = "";
+				$sfound = 0;
+				$arfound = 0;
+				$fop = fopen("./conf/settings.conf","r+");
+				while ($fra = fgets($fop)) {
+					$fra = str_replace("\r","",$fra);
+					$fra = str_replace("\n","",$fra);
+					$frg = explode(" ",$fra);
+					if ($frg[0] == "-") {
+						$area = $frg[1];
+						$fcont .= "- $frg[1]\r\n";
+						if ($area == $tchan) {
+							$arfound = 1;
+							$fcont .= "enfvoice $pe\r\n";
+						}
+					}
+					else {
+						if ($area == $tchan && $frg[0] == "enfvoice") {
+							$sfound = 1;
+							$fcont .= ""; // Ignore old data.
+						}
+						else {
+							$fcont .= "$fra\r\n";
+						}
+					}
+				}
+				fclose($fop);
+				if ($sfound == 0) {
+					if ($arfound == 0) {
+						$fcont .= "- ".$tchan."\r\n";
+						$fcont .= "enfvoice $pe\r\n";
+					}
+				}
+				unlink("./conf/settings.conf");
+				$fop = fopen("./conf/settings.conf","w+");
+				fwrite($fop,$fcont);
+				fclose($fop);
+				sendserv("NOTICE $nick :\002EnfVoice               \002 ".asetting($pe));
 			}
 			elseif (strtolower($pp[0]) == "changetopic" && $pe != "") {
 				$xyz = 501;
