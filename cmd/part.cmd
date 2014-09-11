@@ -35,9 +35,17 @@ if ($cchan[0] != "#") {
 }
 $command = $GLOBALS['command'];
 if ($saxs >= 200) {
-	sendserv("part #".$params[1]." part");
-	if($showdebug == true){
-		sendserv("privmsg $debugchannel :($ccchan) [$nick:$acc] $command $params[1]");
+	if (empty($paramzz)) {
+		sendserv("PART $target :Leaving");
+		if ($showdebug) {
+			sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command $target");
+		}
+	}
+	else {
+		sendserv("PART $target :".$paramzz);
+		if ($showdebug) {
+			sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command $target ".$paramzz);
+		}
 	}
 }
 else {

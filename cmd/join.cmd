@@ -35,9 +35,14 @@ if ($cchan[0] != "#") {
 }
 $command = $GLOBALS['command'];
 if ($saxs >= 200) {
-	sendserv("join #".$params[1]);
-	if($showdebug == true){
-		sendserv("privmsg $debugchannel :($ccchan) [$nick:$acc] $command $params[1]");
+	if ($target == $cchan) {
+		sendserv("NOTICE $nick :Please specify a channel to join.");
+	}
+	else {
+		sendserv("JOIN $target");
+		if ($showdebug) {
+			sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command $target");
+		}
 	}
 }
 else {
