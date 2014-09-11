@@ -58,11 +58,11 @@ class FeedClass {
     }
 
     private static function getTime($time) {
-		return date("d.m.Y H:i:s",intval(strtotime($time)));;
+		return date("d.m.Y H:i:s",intval(strtotime($time)));
 	}
 	
     private static function getTimeStamp($time) {
-		return intval(strtotime($time));;
+		return intval(strtotime($time));
 	}
 
     public static function getFeedType($url = null, $xml = null) {
