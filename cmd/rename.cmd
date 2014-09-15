@@ -20,7 +20,7 @@ global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -33,7 +33,7 @@ fclose($fop);
 if ($saxs >= 200) {
 	$fcont = "";
 	$found = "";
-	$fope = fopen("./conf/accs.conf","r+");
+	$fope = fopen("./conf/accs.conf","r+t");
 	while ($frae = fgets($fope)) {
 		$frae = str_replace("\r","",$frae);
 		$frae = str_replace("\n","",$frae);
@@ -47,7 +47,7 @@ if ($saxs >= 200) {
 	}
 	fclose($fope);
 	$ffcont = "";
-	$fope = fopen("./conf/users.conf","r+");
+	$fope = fopen("./conf/users.conf","r+t");
 	while ($frae = fgets($fope)) {
 		$frae = str_replace("\r","",$frae);
 		$frae = str_replace("\n","",$frae);
@@ -61,7 +61,7 @@ if ($saxs >= 200) {
 	}
 	fclose($fope);
 	$fffcont = "";
-	$fope = fopen("./conf/staff.conf","r+");
+	$fope = fopen("./conf/staff.conf","r+t");
 	while ($frae = fgets($fope)) {
 		$frae = str_replace("\r","",$frae);
 		$frae = str_replace("\n","",$frae);
@@ -79,13 +79,13 @@ if ($saxs >= 200) {
 		if($showdebug == true){
 			sendserv("PRIVMSG $debugchannel :$nick renamed account $found to $paz[1].");
 		}
-		$fope = fopen("./conf/accs.conf","w+");
+		$fope = fopen("./conf/accs.conf","w+t");
 		fwrite($fope,$fcont);
 		fclose($fope);
-		$fope = fopen("./conf/users.conf","w+");
+		$fope = fopen("./conf/users.conf","w+t");
 		fwrite($fope,$ffcont);
 		fclose($fope);
-		$fope = fopen("./conf/staff.conf","w+");
+		$fope = fopen("./conf/staff.conf","w+t");
 		fwrite($fope,$fffcont);
 		fclose($fope);
 	}

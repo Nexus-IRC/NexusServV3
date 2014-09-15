@@ -16,7 +16,7 @@
  */
 global $server, $botnick, $userinfo, $stime;
 $chancount = 0;
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	if ($fra{0} == "-") {
 		$chancount++;
@@ -24,7 +24,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $acccount = 0;
-$fop = fopen("./conf/accs.conf","r+");
+$fop = fopen("./conf/accs.conf","r+t");
 while ($fra = fgets($fop)) {
 	$acccount++;
 }

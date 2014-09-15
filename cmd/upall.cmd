@@ -26,7 +26,7 @@ $cname = $chans["$ctarg"]["name"];
 foreach ($chans as $ctarg => $ctarray) {
 	$axs = array();
 	$targ = $chans["$ctarg"]["name"];
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -42,7 +42,7 @@ foreach ($chans as $ctarg => $ctarray) {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/settings.conf","r+");
+	$fop = fopen("./conf/settings.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

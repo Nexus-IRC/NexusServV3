@@ -26,7 +26,7 @@ $axs = 0;
 $cfound = 0;
 global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -45,7 +45,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);

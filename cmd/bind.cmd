@@ -20,7 +20,7 @@ global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -31,7 +31,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 if ($saxs >= 800) {
-	$fope = fopen("./conf/bind.conf","r+");
+	$fope = fopen("./conf/bind.conf","r+t");
 	$fcont = "";
 	while ($frae = fgets($fope)) {
 		$frae = str_replace("\r","",$frae);
@@ -47,11 +47,11 @@ if ($saxs >= 800) {
 	$found = 0;
 	$pazz = explode(".",$paz[1]);
 	if (file_exists("./cmd/".$pazz[0].".cmd")) {
-		$fope = fopen("./cmd/".$pazz[0].".cmd","r+");
+		$fope = fopen("./cmd/".$pazz[0].".cmd","r+t");
 		while ($frae = fgets($fope)) {
 			$mgs = substr($params,strlen("$paz[0] $paz[1] "))." ";
 			$fcont .= $paz[0]." mod_mod ".$pazz[0].$pazz[1]." ".$mgs;
-			$fope = fopen("./conf/bind.conf","w+");
+			$fope = fopen("./conf/bind.conf","w+t");
 			fwrite($fope,$fcont);
 			fclose($fope);
 			sendserv("NOTICE $nick :New command \002$paz[0]\002 bound to the bot.");

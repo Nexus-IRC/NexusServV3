@@ -40,7 +40,7 @@ if ($valid == 0) {
 	sendserv("NOTICE $nick :\002$pe\002 is an invalid access level.");
 	return(0);
 }
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -68,7 +68,7 @@ if ($tsets['clvl'] == "") {
 	$tsets['clvl'] = $tsets['changeusers']; 
 }
 $cname = $chans["$ctarg"]["name"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -84,7 +84,7 @@ while ($fra = fgets($fop)) {
 	}
 }
 fclose($fop);
-$fop = fopen("./conf/accs.conf","r+");
+$fop = fopen("./conf/accs.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -140,7 +140,7 @@ elseif ($params[0] == "*") {
 	}
 	$area = "";
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -161,7 +161,7 @@ elseif ($params[0] == "*") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :$tacc now has access $pe (before the user had ".$axs["$tacc"].")");
@@ -213,7 +213,7 @@ else {
 	}
 	$area = "";
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -234,7 +234,7 @@ else {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :$pnnick ($tacc) now has access $pe (before the user had ".$axs["$tacc"].")");

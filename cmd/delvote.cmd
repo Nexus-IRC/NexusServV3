@@ -18,7 +18,7 @@ global $userinfo, $chans, $botnick, $god;
 $tchan = strtolower($target);
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -38,7 +38,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -62,7 +62,7 @@ if ($axs < 400) {
 	sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 }
 else {
-	$ffop = fopen('./conf/votes.conf','r+');
+	$ffop = fopen('./conf/votes.conf','r+t');
 	while ($ffg = fgets($ffop)) {
 		$ffg = str_replace("\r","",$ffg);
 		$ffg = str_replace("\n","",$ffg);
@@ -74,7 +74,7 @@ else {
 		return(0);
 	}
 	unset($varray[$tchan]);
-	$ffop = fopen('./conf/votes.conf','w+');
+	$ffop = fopen('./conf/votes.conf','w+t');
 	fwrite($ffop,serialize($varray));
 	fclose($ffop);
 	sendserv("NOTICE $nick :Voting from \002$cname\002 was deleted.");

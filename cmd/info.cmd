@@ -20,7 +20,7 @@ $ctarg = strtolower($target);
 $tchan = $ctarg;
 $axs = 0;
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -41,7 +41,7 @@ fclose($fop);
 $registrar = "not registered";
 $acc = $userinfo["lnick"]["auth"];
 $registered = 0;
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);

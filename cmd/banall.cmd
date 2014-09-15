@@ -23,7 +23,7 @@ $cfound = 0;
 $uaxs = array();
 global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -43,7 +43,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -67,7 +67,7 @@ if ($axs < 400) {
 	sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 }
 else {
-	$fop = fopen("./conf/bans.conf","r+");
+	$fop = fopen("./conf/bans.conf","r+t");
 	$ccnt = 0;
 	$cmodes = "";
 	$cparms = "";

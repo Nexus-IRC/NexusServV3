@@ -24,7 +24,7 @@ $xstr = "";
 global $chans, $userinfo, $botnick, $god, $waitfor;
 if ($params[0] == "*") {
 	$acc = substr($params,1);
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -71,7 +71,7 @@ if ($params[0] == "*") {
 	}
 	elseif ($access == 0) {
 		$afound = "";
-		$fop = fopen("./conf/accs.conf","r+");
+		$fop = fopen("./conf/accs.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -111,7 +111,7 @@ elseif ($params == "") {
 			return(0);
 		}
 	}
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -158,7 +158,7 @@ elseif ($params == "") {
 	}
 	elseif ($access == 0) {
 		$afound = "";
-		$fop = fopen("./conf/accs.conf","r+");
+		$fop = fopen("./conf/accs.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -206,7 +206,7 @@ else {
 			return(0);
 		}
 	}
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -253,7 +253,7 @@ else {
 	}
 	elseif ($access == 0) {
 		$afound = "";
-		$fop = fopen("./conf/accs.conf","r+");
+		$fop = fopen("./conf/accs.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);

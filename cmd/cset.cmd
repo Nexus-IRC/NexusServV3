@@ -22,7 +22,7 @@ $axs = 0;
 $cfound = 0;
 global $userinfo, $chans, $botnick, $god, $trigger, $funbot;
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -41,7 +41,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -201,7 +201,7 @@ else {
 				}
 				else {
 					$fcont = "";
-					$fop = fopen("./conf/settings.conf","r+");
+					$fop = fopen("./conf/settings.conf","r+t");
 					while ($fra = fgets($fop)) {
 						$fra = str_replace("\r","",$fra);
 						$fra = str_replace("\n","",$fra);
@@ -223,7 +223,7 @@ else {
 						}
 					}
 					fclose($fop);
-					$fop = fopen("./conf/settings.conf","w+");
+					$fop = fopen("./conf/settings.conf","w+t");
 					fwrite($fop,$fcont);
 					fclose($fop);
 					sendserv("NOTICE $nick :Channel settings for ".$chans["$tchan"]["name"]." have been reset to default.");
@@ -362,7 +362,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -393,7 +393,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002ShowClones             \002 ".binsetting($pe));
@@ -407,7 +407,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -438,7 +438,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Votings                \002 ".binsetting($pe));
@@ -452,7 +452,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -483,7 +483,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002AutoOpChan             \002 ".binsetting($pe));
@@ -500,7 +500,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -531,7 +531,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnhancedTopic          \002 ".binsetting($pe));
@@ -546,7 +546,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -577,7 +577,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -593,7 +593,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -624,7 +624,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -640,7 +640,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -671,7 +671,7 @@ else {
 				}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -701,7 +701,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -732,7 +732,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($tsets["watchdog"]));
@@ -747,7 +747,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -778,7 +778,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Watchdog               \002 ".binsetting($pe));
@@ -802,7 +802,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -833,7 +833,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002NoDelete               \002 ".binsetting($pe));
@@ -847,7 +847,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -878,7 +878,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Toys                   \002 ".toyssetting($pe));
@@ -892,7 +892,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -923,7 +923,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Protect                \002 ".protsetting($pe));
@@ -951,7 +951,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -982,7 +982,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Setters                \002 ".asetting($pe));
@@ -1010,7 +1010,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1041,7 +1041,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002ModTopic               \002 ".asetting($pe));
@@ -1055,7 +1055,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1086,7 +1086,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				$xx = 0;
@@ -1125,7 +1125,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1156,7 +1156,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002InviteMe               \002 ".asetting($pe));
@@ -1184,7 +1184,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1215,7 +1215,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002GiveOps                \002 ".asetting($pe));
@@ -1243,7 +1243,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1274,7 +1274,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002GiveVoice              \002 ".asetting($pe));
@@ -1302,7 +1302,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1333,7 +1333,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Uset                   \002 ".asetting($pe));
@@ -1361,7 +1361,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1392,7 +1392,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002ChangeUsers            \002 ".asetting($pe));
@@ -1424,7 +1424,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1455,7 +1455,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				if ($pe != "") {
@@ -1491,7 +1491,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1522,7 +1522,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				if ($pe != "") {
@@ -1558,7 +1558,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 					while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1589,7 +1589,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				if ($pe != "") {
@@ -1622,7 +1622,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1653,7 +1653,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002WipeInfo               \002 ".asetting($pe));
@@ -1681,7 +1681,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1712,7 +1712,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002ChangeVote             \002 ".asetting($pe));
@@ -1740,7 +1740,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1771,7 +1771,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Vote                   \002 ".asetting($pe));
@@ -1799,7 +1799,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1830,7 +1830,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Successor              \002 ".asetting($pe));
@@ -1858,7 +1858,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1889,7 +1889,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnfTopic               \002 ".asetting($pe));
@@ -1917,7 +1917,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -1948,7 +1948,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnfModes               \002 ".asetting($pe));
@@ -1976,7 +1976,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2007,7 +2007,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnfOps                 \002 ".asetting($pe));
@@ -2035,7 +2035,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2066,7 +2066,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002EnfVoice               \002 ".asetting($pe));
@@ -2094,7 +2094,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2125,7 +2125,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002ChangeTopic            \002 ".asetting($pe));
@@ -2153,7 +2153,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2184,7 +2184,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002PubCmd                 \002 ".asetting($pe));
@@ -2197,7 +2197,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2228,7 +2228,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				bot_mod_mod($nick,$user,$host,$cchan,$target,"chan.mod mode ".$pe);
@@ -2242,7 +2242,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2273,7 +2273,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Greeting               \002 ".strsetting($pe));
@@ -2290,7 +2290,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2321,7 +2321,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002Trigger                \002 ".strsetting($pe));
@@ -2334,7 +2334,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2365,7 +2365,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002UserGreeting           \002 ".strsetting($pe));
@@ -2379,7 +2379,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2410,7 +2410,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002FunBot           \002 ".binsetting($pe));
@@ -2433,7 +2433,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2464,7 +2464,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("TOPIC $target :$pe");
@@ -2478,7 +2478,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2509,7 +2509,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("TOPIC $target :$pe");
@@ -2523,7 +2523,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2554,7 +2554,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("TOPIC $target :$pe");
@@ -2568,7 +2568,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2599,7 +2599,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002TopicMask              \002 ".strsetting($pe));
@@ -2612,7 +2612,7 @@ else {
 				$area = "";
 				$sfound = 0;
 				$arfound = 0;
-				$fop = fopen("./conf/settings.conf","r+");
+				$fop = fopen("./conf/settings.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);
@@ -2643,7 +2643,7 @@ else {
 					}
 				}
 				unlink("./conf/settings.conf");
-				$fop = fopen("./conf/settings.conf","w+");
+				$fop = fopen("./conf/settings.conf","w+t");
 				fwrite($fop,$fcont);
 				fclose($fop);
 				sendserv("NOTICE $nick :\002AltTopicMask           \002 ".strsetting($pe));

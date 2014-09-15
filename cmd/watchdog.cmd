@@ -22,7 +22,7 @@ $saxs = 0;
 $chansnoop = array();
 $chansnoton = array();
 $cpcount = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -57,7 +57,7 @@ if ($saxs >= 800) {
 	}
 	elseif ($pp[0] == 'list') {
 		sendserv("NOTICE $nick :\002Watchdog List\002");
-		$fop = fopen('./conf/watchdog.txt','r+');
+		$fop = fopen('./conf/watchdog.txt','r+t');
 		while ($fr = fgets($fop)) {
 			$fr = str_replace("\r","",$fr);
 			$fr = str_replace("\n","",$fr);
@@ -67,7 +67,7 @@ if ($saxs >= 800) {
 		sendserv("NOTICE $nick :--- End of List ---");
 	}
 	elseif ($pp[0] == 'add') {
-		$fop = fopen('./conf/watchdog.txt','r+');
+		$fop = fopen('./conf/watchdog.txt','r+t');
 		while ($fr = fgets($fop)) {
 			$fr = str_replace("\r","",$fr);
 			$fr = str_replace("\n","",$fr);
@@ -85,14 +85,14 @@ if ($saxs >= 800) {
 		}
 		fclose($fop);
 
-		$fop = fopen("./conf/watchdog.txt","w+");
+		$fop = fopen("./conf/watchdog.txt","w+t");
 		fwrite($fop,$wac.$pp[1]);
 		fclose($fop);
 		sendserv("NOTICE $nick :\002$pp[1]\002 was added to the Watchdog list.");
 	}
 	elseif ($pp[0] == "del") {
 
-		$fop = fopen('./conf/watchdog.txt','r+');
+		$fop = fopen('./conf/watchdog.txt','r+t');
 		while ($fr = fgets($fop)) {
 			$fr = str_replace("\r","",$fr);
 			$fr = str_replace("\n","",$fr);
@@ -106,7 +106,7 @@ if ($saxs >= 800) {
 		}
 		fclose($fop);
 
-		$fop = fopen("./conf/watchdog.txt","w+");
+		$fop = fopen("./conf/watchdog.txt","w+t");
 		fwrite($fop,$wac);
 		fclose($fop);
 		sendserv("NOTICE $nick :All matches for \002$pp[1]\002 were removed.");

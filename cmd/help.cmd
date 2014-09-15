@@ -22,7 +22,7 @@ if (substr($para[0],0,2) == "::") {
 	$params = substr($params,strlen($para[0]." "));
 }
 global $botnick, $version;
-$fop = fopen($helpfile,"r+");
+$fop = fopen($helpfile,"r+t");
 if ($params == "") {
 	$paramz = "Main";
 }

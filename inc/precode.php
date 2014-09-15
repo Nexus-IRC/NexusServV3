@@ -55,7 +55,7 @@ function prex ($program) {
 }
 
 function getArrayFromFile ($file) {
-	$fp = fopen($file,"r+");
+	$fp = fopen($file,"r+t");
 	while ($fg = fgets($fp)) {
 		$fr .= $fg;
 	}
@@ -69,7 +69,7 @@ function getArrayFromFile ($file) {
 }
 
 function sendArrayToFile ($file, $array) {
-	$fp = fopen($file,"w+");
+	$fp = fopen($file,"w+t");
 	fwrite($fp, serialize($array));
 	fclose($fp);
 }

@@ -28,7 +28,7 @@ $accs = array();
 $ctarg = strtolower($target);
 $tchan = $ctarg;
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -56,7 +56,7 @@ if ($tsets['clvl'] == "") {
 	$tsets['clvl'] = $tsets['changeusers'];
 }	
 $cname = $chans["$ctarg"]["name"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -72,7 +72,7 @@ while ($fra = fgets($fop)) {
 	}
 }
 fclose($fop);
-$fop = fopen("./conf/accs.conf","r+");
+$fop = fopen("./conf/accs.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -120,7 +120,7 @@ elseif ($params[0] == "*") {
 	}
 	$area = "";
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -141,7 +141,7 @@ elseif ($params[0] == "*") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :$tacc has been removed from the $cname userlist (access ".$axs["$tacc"].")");
@@ -189,7 +189,7 @@ else {
 	}
 	$area = "";
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -210,7 +210,7 @@ else {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :$pnnick ($tacc) has been removed from the $cname userlist (access ".$axs["$tacc"].")");

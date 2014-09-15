@@ -31,7 +31,7 @@ if ($chans["$ctarg"]["name"] == "") {
 	return(0);
 }
 $cname = $chans["$ctarg"]["name"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -47,7 +47,7 @@ while ($fra = fgets($fop)) {
 	}
 }
 fclose($fop);
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);

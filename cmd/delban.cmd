@@ -23,7 +23,7 @@ $cfound = 0;
 $uaxs = array();
 global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -43,7 +43,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -88,7 +88,7 @@ else {
 $bcfound = 0;
 $xx = 0;
 $fcont = "";
-$fop = fopen("./conf/bans.conf","r+");
+$fop = fopen("./conf/bans.conf","r+t");
 $ccnt = 0;
 $cmodes = "";
 $cparms = "";
@@ -132,7 +132,7 @@ if ($bcfound == 0) {
 	$fcont .= "- $tchan\r\n";
 	$fcont .= "$targ $acc p $reason\r\n";
 }
-$fop = fopen("./conf/bans.conf","w+");
+$fop = fopen("./conf/bans.conf","w+t");
 fwrite($fop,$fcont);
 fclose($fop);
 if ($cmodes != "") {

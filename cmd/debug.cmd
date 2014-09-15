@@ -30,7 +30,7 @@ global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);

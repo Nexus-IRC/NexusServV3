@@ -17,7 +17,7 @@
 $found = 0;
 $bip = explode(" ",$paramzz);
 if ($bip[0] != "") {
-	$fop = fopen("./conf/bind.conf","r+");
+	$fop = fopen("./conf/bind.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);

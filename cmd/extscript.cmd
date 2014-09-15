@@ -16,7 +16,7 @@
  */
 $phppath = 'php'; // Linux Path FOR EVERY FUNCTION IN THIS MODULE!
 $tchan = strtolower($cchan);
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -36,11 +36,11 @@ $toyz = $tsets['toys'];
 $la = explode(" ",$paramzz);
 ob_start();
 $pe = substr($paramzz,strlen($la[0]." "));
-$fp = fopen("god_code.php","w+");
+$fp = fopen("god_code.php","w+t");
 $xn = '$nicklist = unserialize(file_get_contents("nicklist.af"));';
 $extnick = '<?php $nick = "'.addslashes($nick).'"; $params = \''.addslashes($pe).'\'; $chan = \''.addslashes($cchan).'\'; $toys = \''.$toyz.'\'; '.$xn.' ?>';
 global $chans, $userinfo;
-$xx = fopen("nicklist.af","w+");
+$xx = fopen("nicklist.af","w+t");
 $nicklist = array();
 foreach ($chans[strtolower($tchan)]['users'] as $nickname => $status) {
 	$nicklist[$userinfo[$nickname]['nick']] = $status;

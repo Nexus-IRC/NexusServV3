@@ -18,7 +18,7 @@ global $botnick;
 $cc = 0;
 $lsize = 0;
 sendserv("NOTICE $nick :\002$botnick\002 commands:");
-$fop = fopen("./conf/bind.conf","r+");
+$fop = fopen("./conf/bind.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -31,7 +31,7 @@ while ($fra = fgets($fop)) {
 fclose($fop);
 $fad = 0;
 $fstr = "";
-$fop = fopen("./conf/bind.conf","r+");
+$fop = fopen("./conf/bind.conf","r+t");
 $bcount = 0;
 sendserv("NOTICE $nick :Binding".spaces("Binding",20)." Command");
 while ($fra = fgets($fop)) {

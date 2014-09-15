@@ -19,7 +19,7 @@ global $userinfo, $botnick, $god, $modules;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -43,7 +43,7 @@ if ($saxs >= 950) {
 	foreach (glob("./cmd/*.cmd") as $filename) {
 		$mcnt++;
 		$cnt = 0; $lcnt = 0;
-		$fop = fopen($filename,"r+");
+		$fop = fopen($filename,"r+t");
 		while ($fg = fgets($fop)) {
 			$modules["$filename"] .= $fg;
 			if ($fg{0} == "/") {

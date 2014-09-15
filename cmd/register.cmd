@@ -21,7 +21,7 @@ $lchan = strtolower($target);
 $lpam = strtolower($params);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -37,7 +37,7 @@ if ($saxs >= 200) {
 	}
 	else {
 		$arfound = 0;
-		$fop = fopen("./conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -53,7 +53,7 @@ if ($saxs >= 200) {
 		else {
 			if ($params[0] == "*") {
 				$accfound = "";
-				$fop = fopen("./conf/accs.conf","r+");
+				$fop = fopen("./conf/accs.conf","r+t");
 				while ($fra = fgets($fop)) {
 					$fra = str_replace("\r","",$fra);
 					$fra = str_replace("\n","",$fra);

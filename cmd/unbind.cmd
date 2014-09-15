@@ -20,7 +20,7 @@ global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -31,7 +31,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 if ($saxs >= 800) {
-	$fope = fopen("./conf/bind.conf","r+");
+	$fope = fopen("./conf/bind.conf","r+t");
 	$found = 0;
 	$fcont = "";
 	while ($frae = fgets($fope)) {
@@ -48,7 +48,7 @@ if ($saxs >= 800) {
 	}
 	fclose($fope);
 	if ($found == 1) {
-		$fope = fopen("./conf/bind.conf","w+");
+		$fope = fopen("./conf/bind.conf","w+t");
 		fwrite($fope,$fcont);
 		fclose($fope);
 		sendserv("NOTICE $nick :Command \002$paz[0]\002 unbound from the bot.");

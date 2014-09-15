@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 global $userinfo, $botnick, $god;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);

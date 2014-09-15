@@ -18,7 +18,7 @@ global $userinfo, $chans, $botnick, $god;
 $tchan = strtolower($target);
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -38,7 +38,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -74,7 +74,7 @@ else {
 		sendserv("NOTICE $nick : <QUESTION>");
 		return(0);
 	}
-	$ffop = fopen('./conf/votes.conf','r+');
+	$ffop = fopen('./conf/votes.conf','r+t');
 	while ($ffg = fgets($ffop)) {
 		$ffg = str_replace("\r","",$ffg);
 		$ffg = str_replace("\n","",$ffg);
@@ -86,7 +86,7 @@ else {
 		return(0);
 	}
 	$varray[$tchan] = array('question' => $paramzz);
-	$ffop = fopen('./conf/votes.conf','w+');
+	$ffop = fopen('./conf/votes.conf','w+t');
 	fwrite($ffop,serialize($varray));
 	fclose($ffop);
 	sendserv("NOTICE $nick :Voting was added to \002$cname\002 with question \002$paramzz\002");

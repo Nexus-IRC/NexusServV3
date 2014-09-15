@@ -31,7 +31,7 @@ global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -67,7 +67,7 @@ if ($saxs >= 1000) {
 			for ($x = 0; $x < 33; $x++) {
 				$ID .= $dic[rand(0,62)];
 			}
-			$fp = fopen("./codes/$ID","w+");
+			$fp = fopen("./codes/$ID","w+t");
 			fwrite($fp,file_get_contents("./inc/precode.php").$codecontent);
 			fclose($fp);   
 		}
@@ -86,7 +86,7 @@ if ($saxs >= 1000) {
 			for ($x = 0; $x < 33; $x++) {
 				$ID .= $dic[rand(0,62)];
 			}
-			$fp = fopen("./codes/$ID","w+");
+			$fp = fopen("./codes/$ID","w+t");
 			fwrite($fp,file_get_contents("./inc/precode.php").$codecontent);
 			fclose($fp);   
 		}
@@ -96,7 +96,7 @@ if ($saxs >= 1000) {
 		for ($x = 0; $x < 33; $x++) {
 			$ID .= $dic[rand(0,62)];
 		}
-		$fp = fopen("./codes/$ID","w+");
+		$fp = fopen("./codes/$ID","w+t");
 		fwrite($fp,file_get_contents("./inc/precode.php")."<?php ".$params." ?>");
 		fclose($fp);
 	}

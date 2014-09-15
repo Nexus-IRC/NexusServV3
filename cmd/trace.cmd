@@ -30,7 +30,7 @@ global $userinfo, $botnick, $god;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -42,7 +42,7 @@ while ($fra = fgets($fop)) {
 fclose($fop);
 if ($saxs >= 200) {
 	$cnt = 0;
-	$fope = fopen("./conf/accs.conf","r+");
+	$fope = fopen("./conf/accs.conf","r+t");
 	while ($frae = fgets($fope)) {
 		$frae = str_replace("\r","",$frae);
 		$frae = str_replace("\n","",$frae);

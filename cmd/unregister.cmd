@@ -18,7 +18,7 @@ $params = $paramzz;
 $tchan = strtolower($target);
 $area = "";
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -37,7 +37,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -57,7 +57,7 @@ $lnick = strtolower($nick);
 $lchan = strtolower($target);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -79,7 +79,7 @@ if ($saxs >= 200) {
 		$cfound = 0;
 		$area = "";
 		$fcont = "";
-		$fop = fopen("./conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -100,12 +100,12 @@ if ($saxs >= 200) {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("./conf/users.conf","w+");
+		$fop = fopen("./conf/users.conf","w+t");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		$fcont = "";
 		$area = "";
-		$fop = fopen("./conf/settings.conf","r+");
+		$fop = fopen("./conf/settings.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -123,12 +123,12 @@ if ($saxs >= 200) {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("./conf/settings.conf","w+");
+		$fop = fopen("./conf/settings.conf","w+t");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		$fcont = "";
 		$area = "";
-		$fop = fopen("./conf/bans.conf","r+");
+		$fop = fopen("./conf/bans.conf","r+t");
 		while ($fra = fgets($fop)) {
 			$fra = str_replace("\r","",$fra);
 			$fra = str_replace("\n","",$fra);
@@ -146,7 +146,7 @@ if ($saxs >= 200) {
 			}
 		}
 		fclose($fop);
-		$fop = fopen("./conf/bans.conf","w+");
+		$fop = fopen("./conf/bans.conf","w+t");
 		fwrite($fop,$fcont);
 		fclose($fop);
 		if ($cfound == 1) {

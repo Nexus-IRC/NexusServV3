@@ -25,7 +25,7 @@ $nomodes = "0";
 $info = "";
 global $userinfo, $chans, $botnick, $god;
 $acc = $userinfo["$lnick"]["auth"];
-$fop = fopen("./conf/users.conf","r+");
+$fop = fopen("./conf/users.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -47,7 +47,7 @@ while ($fra = fgets($fop)) {
 }
 fclose($fop);
 $area = "";
-$fop = fopen("./conf/settings.conf","r+");
+$fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -129,7 +129,7 @@ elseif ($pa == "noautoop" && $pb != "" && $axs > $tsets['giveops']) {
 		sendserv("NOTICE $nick :\002$pb\002 is not a valid binary value.");
 	}
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -159,7 +159,7 @@ elseif ($pa == "noautoop" && $pb != "" && $axs > $tsets['giveops']) {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :\002NoAutoOp             \002 ".binsetting($nomodes));
@@ -175,7 +175,7 @@ elseif ($pa == "noautovoice" && $pb != "" && $axs > $tsets['givevoice'] && $axs 
 	sendserv("NOTICE $nick :\002$pb\002 is not a valid binary value.");
 	}
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -205,7 +205,7 @@ elseif ($pa == "noautovoice" && $pb != "" && $axs > $tsets['givevoice'] && $axs 
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :\002NoAutoVoice          \002 ".binsetting($nomodes));
@@ -221,7 +221,7 @@ elseif ($pa == "autoinvite" && $pb != "") {
 		sendserv("NOTICE $nick :\002$pb\002 is not a valid binary value.");
 	}
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -251,7 +251,7 @@ elseif ($pa == "autoinvite" && $pb != "") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :\002AutoInvite           \002 ".binsetting($autoinvite));
@@ -262,7 +262,7 @@ elseif ($pa == "info" && $pc != "") {
 	}
 	$setchange = $pc;
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -292,7 +292,7 @@ elseif ($pa == "info" && $pc != "") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :\002Info                 \002 ".strsetting($infos['info']));
@@ -303,7 +303,7 @@ elseif ($pa == "partinfo" && $pc != "") {
 	}
 	$setchange = $pc;
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -333,7 +333,7 @@ elseif ($pa == "partinfo" && $pc != "") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :\002PartInfo             \002 ".strsetting($infos['pinfo']));
@@ -344,7 +344,7 @@ elseif ($pa == "quitinfo" && $pc != "") {
 	}
 	$setchange = $pc;
 	$fcont = "";
-	$fop = fopen("./conf/users.conf","r+");
+	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
 		$fra = str_replace("\n","",$fra);
@@ -374,7 +374,7 @@ elseif ($pa == "quitinfo" && $pc != "") {
 		}
 	}
 	fclose($fop);
-	$fop = fopen("./conf/users.conf","w+");
+	$fop = fopen("./conf/users.conf","w+t");
 	fwrite($fop,$fcont);
 	fclose($fop);
 	sendserv("NOTICE $nick :\002QuitInfo             \002 ".strsetting($infos['qinfo']));

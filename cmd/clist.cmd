@@ -21,7 +21,7 @@ $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
 $ccnt = 0;
 $cpcount = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -33,7 +33,7 @@ while ($fra = fgets($fop)) {
 fclose($fop);
 if ($saxs >= 200) {
 	sendserv("NOTICE $nick :Channel List");
-	$fp = fopen("./conf/users.conf","r+");
+	$fp = fopen("./conf/users.conf","r+t");
 	while ($fg = fgets($fp)) {
 		$fg = str_replace("\r","",$fg);
 		$fg = str_replace("\n","",$fg);

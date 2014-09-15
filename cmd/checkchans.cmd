@@ -22,7 +22,7 @@ $saxs = 0;
 $chansnoop = array();
 $chansnoton = array();
 $cpcount = 0;
-$fop = fopen("./conf/staff.conf","r+");
+$fop = fopen("./conf/staff.conf","r+t");
 while ($fra = fgets($fop)) {
 	$fra = str_replace("\r","",$fra);
 	$fra = str_replace("\n","",$fra);
@@ -43,7 +43,7 @@ if ($saxs >= 200) {
 				}
 			}
 		}
-		$fop = fopen("./conf/users.conf","r+");
+		$fop = fopen("./conf/users.conf","r+t");
 		while ($fr = fgets($fop)) {
 			$fi = explode(" ",$fr);
 			if ($fi[0] == "-" && $chans["$fi[1]"]["name"] == "") {
