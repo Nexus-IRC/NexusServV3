@@ -15,6 +15,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
+$pp = explode(" ",$params);
+$pa = $pp[0];
 $area = "";
 $found = 0;
 $access = 0;
@@ -23,7 +25,7 @@ $lnick = strtolower($nick);
 $xstr = "";
 global $chans, $userinfo, $botnick, $god, $waitfor;
 if ($params[0] == "*") {
-	$acc = substr($params,1);
+	$acc = substr(trim($pa," "),1);
 	$fop = fopen("./conf/users.conf","r+t");
 	while ($fra = fgets($fop)) {
 		$fra = str_replace("\r","",$fra);
@@ -185,7 +187,7 @@ elseif ($params == "") {
 
 
 else {
-	$lpam = strtolower($params);
+	$lpam = strtolower(trim($pa," "));
 	if ($userinfo["$lpam"]["nick"] == "") {
 		if ($userinfo["$lpam"]["unknown"] != "1") {
 			$wfc = count($waitfor["$lpam"]) + 1;
