@@ -14,8 +14,16 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-global $version, $devline, $secdevline;
-sendserv("NOTICE $nick :\002NexusServ ".$GLOBALS['bofficial']."\002");
-sendserv("NOTICE $nick :NexusServ ".$GLOBALS['bversion']." (".$GLOBALS['bcodename'].") Release ".$GLOBALS['brelease']." Core ".$GLOBALS['core']."");
-sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/nexusserv");
-sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on https://github.com/Nexus-IRC/NexusServV3/issues");
+global $bcodename, $bofficial, $bversion, $core;
+if (empty($bversion)) {
+	sendserv("NOTICE $nick :\002NexusServ ".$bofficial."\002");
+	sendserv("NOTICE $nick :NexusServ Core ".$core." (".$bcodename.")");
+	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/nexusserv");
+	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on https://github.com/Nexus-IRC/NexusServV3/issues");
+}
+else {
+	sendserv("NOTICE $nick :\002NexusServ ".$bofficial."\002");
+	sendserv("NOTICE $nick :NexusServ Core ".$core." (".$bcodename."-".$bversion.")");
+	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/nexusserv");
+	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on https://github.com/Nexus-IRC/NexusServV3/issues");
+}

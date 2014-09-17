@@ -40,7 +40,7 @@ if ($saxs >= 200) {
 	}
 	else {
 		sendserv("JOIN $target");
-		if ($showdebug) {
+		if ($showdebug == true) {
 			sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command $target");
 		}
 	}

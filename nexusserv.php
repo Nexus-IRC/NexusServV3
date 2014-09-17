@@ -63,6 +63,17 @@ sendserv("NICK $botnick");
 sendserv("USER $botident - - :$botreal");
 $god[$botnick] = 1;
 
+if (is_file("./.git/refs/heads/master")) {
+	$fop = fopen("./.git/refs/heads/master","r+t");
+	while ($fra = fgets($fop)) {
+		$fra = str_replace("\r","",$fra);
+		$fra = str_replace("\n","",$fra);
+		$frg = explode(" ",$fra);
+		$bversion = substr($frg[0], 0, 7);
+	}
+	fclose($fop);
+}
+
 while (true) {
 	if (feof($socket)) {
 		global $userinfo, $chans;
@@ -661,8 +672,12 @@ while (true) {
 			if ($e[1] == "PRIVMSG" && $e[3][1] == "\001") {#
 				$nick = getnick($e[0]);
 				if ($e[3] == ":\001VERSION\001") {
-					sendserv("NOTICE $nick :\001VERSION NexusServ v$bversion ($bcodename) Release $brelease :\002:\002: ".$botreal."\001");
-					sendserv("NOTICE $nick :\001VERSION Core NexusServ v$core\001");
+					if (empty($bversion)) {
+						sendserv("NOTICE $nick :\001VERSION NexusServ v$bofficial ($bcodename)\001");
+					}
+					else {
+						sendserv("NOTICE $nick :\001VERSION NexusServ v$bofficial ($bcodename-$bversion)\001");
+					}
 				}
 				if ($e[3] == ":\001CHAT\001") {
 					sendserv("NOTICE $nick :\001CHAT This bot is not an eggdrop.\001");

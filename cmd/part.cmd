@@ -37,13 +37,13 @@ $command = $GLOBALS['command'];
 if ($saxs >= 200) {
 	if (empty($paramzz)) {
 		sendserv("PART $target :Leaving");
-		if ($showdebug) {
+		if ($showdebug == true) {
 			sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command $target");
 		}
 	}
 	else {
 		sendserv("PART $target :".$paramzz);
-		if ($showdebug) {
+		if ($showdebug == true) {
 			sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command $target ".$paramzz);
 		}
 	}

@@ -19,7 +19,7 @@
 # PLEASE DO NOT MODIFY THIS     #
 #################################
 
-@(include("./inc/time_handler.php")) OR die("ERROR #01: Included php-script missing: \002time_handler.php\002.\n");
+@(include("./inc/time_handler.php")) OR die("ERROR: File missing: \002time_handler.php\002.\n");
 
 define("PHPGOD_VERSION","1.2.0"); $php = new phpgod;
 
@@ -29,19 +29,18 @@ class phpgod {
 	}
 	public function version () {
 		echo("NexusServ PHPGod ".PHPGOD_VERSION."\n");
-		echo("- core code 1.0 calisto-phpgod-public\n");
+		echo("Core Code 1.0 calisto-phpgod-public");
 	}
 	public function bot_version () {
 		include("./conf/config.php");
-		echo("NexusServ ".$bofficial." ".$bversion." (".$bcodename.") Release ".$brelease."\n");
-		echo("Core ".$core);
+		echo("NexusServ v".$bofficial);
 	}
 	public function help () {
 		echo("\002PHPGod\002\n");
-		echo("PHPGod is a script, that makes it possible to run PHP code\n");
-		echo("from another script, and it doesnt care, if it crashes.\n");
+		echo("PHPGod is a script that makes it possible to run PHP code\n");
+		echo("from another script, and it doesn't care if it crashes.\n");
 		echo("The code you run is totally separated from your main code.\n");
-		echo("This makes PHPGods very safe.\n");
+		echo("This makes PHPGod very safe.\n");
 		echo(" \n");
 		echo("If you want to know how to create a PHPGod-Script, ask \002Calisto.\002\n");
 		echo(" \n");

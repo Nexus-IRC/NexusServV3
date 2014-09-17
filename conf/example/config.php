@@ -29,12 +29,10 @@ $showdebug = true;
 $debugchannel = "#nexus-debug";
 $staffchan = "#nexus-staff";
 $supchan = "#nexus-support";
-$bversion = "2014/w35d2";
-$bcodename = "Nexus-IRC";
-$brelease = "824";
+$bcodename = "git";
+$bofficial = "3.6.2";
+$bversion = "";
 $core = "3.1";
-$bofficial = "3.6.1";
-$version = "$bofficial $bversion ($bcodename) Release $brelease on Core $core";
 $autojoin = 1;
 $funbot = "";	//for use with NexusFun
 ?>
