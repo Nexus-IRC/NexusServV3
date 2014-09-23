@@ -582,7 +582,7 @@ while (true) {
 			}
 			if ($e[1] == "001") {
 				$botnick = $e[2];
-				sendserv("mode ".$botnick." +xiIn");
+				sendserv("MODE ".$botnick." +".$botmodes);
 				if ($autojoin == 1) {
 					$fop = fopen("./conf/users.conf","r+t");
 					while ($fra = fgets($fop)) {
