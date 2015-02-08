@@ -17,10 +17,14 @@
  */
 $apikey = "";   //you can get your key here: http://www.worldweatheronline.com/register.aspx after account activation you can create your apikey
                 //when you have add your key bind this script with this command =bind time extscript time.php
+$appname = "NexusServ";	//use the application name you used to register for the api key
+
 $param = explode(" ",$params);
 if($param[0] == "") { echo("NOTICE $nick :\002time\002 requires more parameters."); die(); }
-$url = "https://api.worldweatheronline.com/free/v1/tz.ashx?q=".urlencode($params)."&format=json&key=".$apikey;
-$data = file_get_contents($url);
+$url = "https://api.worldweatheronline.com/free/v2/tz.ashx?q=".urlencode($params)."&format=json&key=".$apikey;
+$options = array("http" => array("user_agent" => $appname);
+$context = stream_context_create($options);
+$data = file_get_contents($url,false,$context);
 $data = json_decode($data);
 $return = "The time in \002".$data->data->request[0]->query."\002 is ".$data->data->time_zone[0]->localtime;
 if ($chan[0] == "#") {
