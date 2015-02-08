@@ -16,8 +16,8 @@
  */
 require_once("./inc/Feed.class.php");
 $feed = new FeedClass;
-$data = $feed->parseFeed("https://nexus-irc.de/news/NewsFeed");
+$data = $feed->parseFeed("https://nexus-irc.de/news/index.php/NewsFeed");
 foreach($data as $v) {
 	sendserv("NOTICE $nick :".$v->title." by ".$v->children("dc",true)->creator." (".$v->pubDate.")");
 }
-sendserv("NOTICE $nick :The latest news can be found at https://nexus-irc.de/news/NewsOverview");
+sendserv("NOTICE $nick :The latest news can be found at https://nexus-irc.de/news/index.php/NewsOverview");

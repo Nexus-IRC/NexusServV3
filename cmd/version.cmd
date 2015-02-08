@@ -18,12 +18,12 @@ global $bcodename, $bofficial, $bversion, $core;
 if (empty($bversion)) {
 	sendserv("NOTICE $nick :\002NexusServ ".$bofficial."\002");
 	sendserv("NOTICE $nick :NexusServ Core ".$core." (".$bcodename.")");
-	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/nexusserv");
+	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/index.php/nexusserv");
 	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on https://github.com/Nexus-IRC/NexusServV3/issues");
 }
 else {
 	sendserv("NOTICE $nick :\002NexusServ ".$bofficial."\002");
 	sendserv("NOTICE $nick :NexusServ Core ".$core." (".$bcodename."-".$bversion.")");
-	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/nexusserv");
+	sendserv("NOTICE $nick :NexusServ can be found on #Nexus or at https://nexus-irc.de/index.php/nexusserv");
 	sendserv("NOTICE $nick :If you have found a bug or if you have a good idea report it on https://github.com/Nexus-IRC/NexusServV3/issues");
 }
