@@ -29,8 +29,8 @@ $url = "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=".ur
 $data = file_get_contents($url);
 $data = json_decode($data, true);
 
-if (isset($data['error'][0])) {
-	$return = "User does not exist.";
+if (isset($data['error'])) {
+	$return = "\002Error:\002 ".$data['message'];
 }
 elseif ($data['recenttracks']['track'][0]['@attr']['nowplaying'] == true) {
 	$return = $data['recenttracks']['@attr']['user']." is now playing \002".$data['recenttracks']['track'][0]['name']."\002 by \002".$data['recenttracks']['track'][0]["artist"]['#text']."\002";
