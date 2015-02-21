@@ -15,25 +15,52 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
- 
+
+# All variables set here are only loaded once into the core on startup,
+# any changes made while the bot is running will require a full bot restart.
+
+# Set the bot's trigger
 $trigger = "=";
+
 $sendwith = -1;
+
+# Set the server hostname/IP and port to connect to
 $server = "irc.onlinegamesnet.net";
 $port = 6667;
+
+# Set the IRC attributes
 $botnick = "NexusServ";
 $botident = "NexusServ";
 $botreal = "Channel Services - #nexus";
+
+# The bot will connect exclusively using SASL to the server.
+# Set the authname and password here
 $botauth = "NexusServ";
 $pass = "xxxx";
+
+# Configure the usermodes to set upon connecting; usermodes may vary between servers
 $botmodes = "xiIn";
+
+# Toggle whether to send extra info to the debugging channel
 $showdebug = true;
+
+# Set default channels
 $debugchannel = "#nexus-debug";
 $staffchan = "#nexus-staff";
 $supchan = "#nexus-support";
+
+# Configure versioning system
+# Note: $bversion will be set automatically to the latest commit hash if the
+# repository was cloned with git
 $bcodename = "git";
 $bofficial = "3.6.2";
 $bversion = "";
 $core = "3.1";
+
+# Toggle autojoining registered channels upon connecting
 $autojoin = 1;
-$funbot = "";	//for use with NexusFun
+
+# Optional: Set the name of the funbot (NexusFun)
+$funbot = "";
+
 ?>
