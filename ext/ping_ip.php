@@ -16,52 +16,68 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $param = explode(" ",$params);
-if($param[1] == "") { echo("NOTICE $nick :\002ping_ip\002 requires more parameters."); die(); }
-if($param[0] == "4") {
-	$ping = shell_exec("ping -c4 ".$param[1]);
-} elseif($param[0] == "6") {
-	$ping = shell_exec("ping6 -c4 ".$param[1]);
+if ($param[1] == "") {
+	echo("NOTICE $nick :\002ping_ip\002 requires more parameters.");
+	die();
 }
-
+if (php_uname("s") == "Windows NT") {
+	if ($param[0] == "4") {
+		$ping = shell_exec("ping ".$param[1]);
+	}
+	elseif ($param[0] == "6") {
+		$ping = shell_exec("ping -6 ".$param[1]);
+	}
+}
+else {
+	if ($param[0] == "4") {
+		$ping = shell_exec("ping -c4 ".$param[1]);
+	}
+	elseif ($param[0] == "6") {
+		$ping = shell_exec("ping6 -c4 ".$param[1]);
+	}
+}
 
 if ($chan[0] == "#") {
 	if ($toys == "" || $toys == "0") {
 		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
 	}
 	elseif ($toys == "1") {
-		if(isset($ping)){
+		if (isset($ping)) {
 			$exp = explode("\n",$ping);
-			foreach($exp as $rec){
-				if($rec != "") {
+			foreach ($exp as $rec) {
+				if ($rec != "") {
 					echo("NOTICE $nick :".$rec."\n");
 				}
 			}
-		} else {
+		}
+		else {
 			echo("NOTICE $nick :ping: unknown host ".$param[1]);
 		}
 	}
 	elseif ($toys == "2") {
-		if(isset($ping)){
+		if (isset($ping)) {
 			$exp = explode("\n",$ping);
-			foreach($exp as $rec){
-				if($rec != "") {
+			foreach ($exp as $rec) {
+				if ($rec != "") {
 					echo("PRIVMSG $chan :".$rec."\n");
 				}
 			}
-		} else {
+		}
+		else {
 			echo("PRIVMSG $chan :ping: unknown host ".$param[1]);
 		}
 	}
 }
 else {
-	if(isset($ping)){
+	if (isset($ping)) {
 		$exp = explode("\n",$ping);
-		foreach($exp as $rec){
-			if($rec != "") {
+		foreach ($exp as $rec) {
+			if ($rec != "") {
 				echo("NOTICE $nick :".$rec."\n");
 			}
 		}
-	} else {
+	}
+	else {
 		echo("NOTICE $nick :ping: unknown host ".$param[1]);
 	}
 }
