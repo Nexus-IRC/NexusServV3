@@ -25,8 +25,9 @@ $trigger = "=";
 $sendwith = -1;
 
 # Set the server hostname/IP and port to connect to
+# Note: To connect using TLS add "+" in front of the port number
 $server = "irc.onlinegamesnet.net";
-$port = 6667;
+$port = "+7776";
 
 # Set the IRC attributes
 $botnick = "NexusServ";

@@ -38,8 +38,6 @@ function d_userinfo ($unick) {
 
 include("./inc/time_handler.php");
 set_time_limit(0);
-$devline    = " ";
-$secdevline = "---";
 
 $staffl["0"] = "Trial";
 $staffl["1"] = "Helper";
@@ -54,7 +52,12 @@ $floodtime = time();
 $flood = "0";
 
 require_once("./conf/config.php");
-$socket = fsockopen($server,$port,$errstr,$errno,2);
+if ($port[0] == "+") {
+	$socket = fsockopen("tls://".$server,str_replace("+", "", $port),$errstr,$errno,2);
+}
+else {
+	$socket = fsockopen($server,$port,$errstr,$errno,2);
+}
 $dltimer = array();
 $timer = time();
 stream_set_blocking($socket,0);
@@ -80,7 +83,12 @@ while (true) {
 		unset($userinfo);
 		unset($chans);
 		// Because the old connection has lost, the bot deletes all its infos to users/channels
-		$socket = fsockopen($server,$port,$errstr,$errno,2);
+		if ($port[0] == "+") {
+			$socket = fsockopen("tls://".$server,str_replace("+", "", $port),$errstr,$errno,2);
+		}
+		else {
+			$socket = fsockopen($server,$port,$errstr,$errno,2);
+		}
 		$dltimer = array();
 		$timer = time();
 		stream_set_blocking($socket,0);
