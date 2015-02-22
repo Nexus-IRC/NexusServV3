@@ -16,10 +16,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $param = explode(" ",$params);
-if($param[0] == "") { echo("NOTICE $nick :\002iplocate\002 requires more parameters."); die(); }
+if ($param[0] == "") {
+	echo("NOTICE $nick :\002dns\002 requires more parameters.");
+	die();
+}
+if (!isset($param[1])) {
+	$param[1] = "*";
+}
 include("./inc/dns.class.php");
 $dns = new dns;
 $exp = explode("\n",$dns->get($param[0],$param[1]));
+
 if ($chan[0] == "#") {
 	if ($toys == "" || $toys == "0") {
 		echo("NOTICE $nick :Toys are disabled in \002$chan\002.\n");
