@@ -16,10 +16,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $url = "http://api.icndb.com/jokes/random";
-$data = file_get_contents($url);
+$data = get_contents($url);
 $data = json_decode($data);
 
-if($data->type !== "success") {
+if ($data->type !== "success") {
 	$return = "Error.";
 }
 else {
@@ -39,5 +39,17 @@ if ($chan[0] == "#") {
 }
 else {
 	echo("NOTICE $nick :".$return."\n");
+}
+
+function get_contents ($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
 }
 ?>

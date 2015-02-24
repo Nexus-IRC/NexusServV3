@@ -25,8 +25,8 @@ if ($param[0] == "") {
 	echo("NOTICE $nick :\002lastfm\002 requires more parameters.");
 	die();
 }
-$url = "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=".urlencode($params)."&limit=1&format=json&api_key=".$apikey;
-$data = file_get_contents($url);
+$url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=".urlencode($params)."&limit=1&format=json&api_key=".$apikey;
+$data = get_contents($url);
 $data = json_decode($data, true);
 
 if (isset($data['error'])) {
@@ -52,5 +52,17 @@ if ($chan[0] == "#") {
 }
 else {
 	echo("NOTICE $nick :".$return."\n");
+}
+
+function get_contents ($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
 }
 ?>

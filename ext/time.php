@@ -17,14 +17,14 @@
  */
 $apikey = "";   //you can get your key here: http://www.worldweatheronline.com/register.aspx after account activation you can create your apikey
                 //when you have add your key bind this script with this command =bind time extscript time.php
-$appname = "NexusServ";	//use the application name you used to register for the api key
 
 $param = explode(" ",$params);
-if($param[0] == "") { echo("NOTICE $nick :\002time\002 requires more parameters."); die(); }
-$url = "https://api.worldweatheronline.com/free/v2/tz.ashx?q=".urlencode($params)."&format=json&key=".$apikey;
-$options = array("http" => array("user_agent" => $appname);
-$context = stream_context_create($options);
-$data = file_get_contents($url,false,$context);
+if ($param[0] == "") {
+	echo("NOTICE $nick :\002time\002 requires more parameters.");
+	die();
+}
+$url = "http://api.worldweatheronline.com/free/v2/tz.ashx?q=".urlencode($params)."&format=json&key=".$apikey;
+$data = get_contents($url);
 $data = json_decode($data);
 $return = "The time in \002".$data->data->request[0]->query."\002 is ".$data->data->time_zone[0]->localtime;
 if ($chan[0] == "#") {
@@ -33,7 +33,7 @@ if ($chan[0] == "#") {
 	}
 	elseif ($toys == "1") {
 		if(isset($data->data->error[0]->msg)) {
-			echo("notice $nick :Unable to find a match.");
+			echo("NOTICE $nick :Unable to find a match.");
 		} else {
 			echo("NOTICE $nick :".$return."\n");
 		}
@@ -48,9 +48,21 @@ if ($chan[0] == "#") {
 }
 else {
 	if(isset($data->data->error[0]->msg)) {
-		echo("notice $nick :Unable to find a match.");
+		echo("NOTICE $nick :Unable to find a match.");
 	} else {
 		echo("NOTICE $nick :".$return."\n");
 	}
+}
+
+function get_contents ($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
 }
 ?>

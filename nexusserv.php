@@ -1768,4 +1768,16 @@ function addChanUser ($chan, $auth, $access) {
 	fclose($fop);
 	return("Ok");
 }
+
+function get_contents ($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
+}
 ?>

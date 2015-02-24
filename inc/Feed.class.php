@@ -17,8 +17,20 @@
  */
 class FeedClass {
 	public static function parseFeed($url = null, $xml = null) {
+        function get_contents($url) {
+            global $useragent;
+            $ch = curl_init();
+            curl_setopt_array($ch, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $url,
+                CURLOPT_USERAGENT => $useragent
+            ));
+            return curl_exec($ch);
+            curl_close($ch);
+        }
+        
         if ($xml === null) {
-            $file = file_get_contents($url);
+            $file = get_contents($url);
             $xml = simplexml_load_string($file);
         }
         $type = self::getFeedType(null, $xml);
@@ -34,7 +46,7 @@ class FeedClass {
                 return null;
                 break;
         }
-        return $data;  
+        return $data;
     }
 
     private static function parseRSSFeed($xml) {
@@ -80,11 +92,4 @@ class FeedClass {
         return $type;
     }
 }
-/*
-$feed = new FeedClass;
-$data = $feed->parseFeed("http://board.nexus-irc.de/index.php?page=CNewsFeed&categoryID=1");
-echo"<pre>";
-print_r($data);
-echo $data[0]["title"];
-*/
 ?>

@@ -64,4 +64,7 @@ $autojoin = 1;
 # Optional: Set the name of the funbot (NexusFun)
 $funbot = "";
 
+# Set the user agent used for all HTTP requests
+$useragent = "NexusServ";
+
 ?>

@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
-$url = "http://pokeapi.co/api/v1/pokemon/".rand(1,718);
-$data = file_get_contents($url);
+$url = "http://pokeapi.co/api/v1/pokemon/".rand(1,718)."/";
+$data = get_contents($url);
 $data = json_decode($data);
 
 $return = "You caught a ".$data->name."!";
@@ -34,5 +34,17 @@ if ($chan[0] == "#") {
 }
 else {
 	echo("NOTICE $nick :".$return."\n");
+}
+
+function get_contents($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
 }
 ?>

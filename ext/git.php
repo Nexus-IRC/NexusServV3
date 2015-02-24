@@ -22,7 +22,7 @@ if ($param[0] == "") {
 else {
 	$git = $param[0];
 }
-$commits = file_get_contents("https://git.stricted.de/git_commits.php?git=".$git.".git");
+$commits = get_contents("http://git.stricted.de/git_commits.php?git=".$git.".git");
 if ($commits == "404 Not Found - No such project") {
 	echo("NOTICE ".$nick." :".$commits);
 	die();
@@ -32,5 +32,17 @@ else {
 		$commit = str_replace("\n\n"," ",$commit);
 		echo("NOTICE ".$nick." :".$commit."\n");
 	}
+}
+
+function get_contents ($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
 }
 ?>

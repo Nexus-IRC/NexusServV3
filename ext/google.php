@@ -20,7 +20,7 @@ if ($param[0] == "") {
 	echo("NOTICE $nick :\002google\002 requires more parameters.");
 	die();
 }
-function object_to_array($object){
+function object_to_array($object) {
 	$new = null;
 	if (is_object($object)) {
 		$object = (array)$object;
@@ -37,11 +37,11 @@ function object_to_array($object){
 	}
 	return $new;
 }
-function from_google($query){
+function from_google($query) {
 	$query = urlencode($query);
 	$array = array();
-	$url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=".$query."&rsz=large";
-	$data = file_get_contents($url);
+	$url = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=".$query."&rsz=large";
+	$data = get_contents($url);
 	$json = json_decode($data);
 	$array = object_to_array($json);
 	return $array;
@@ -73,7 +73,20 @@ if (isset($google['responseData']['results'][0]['titleNoFormatting'])) {
 else {
 	privmsg($chan,"\002[Google]\002 Your search ".$params." did not match any documents.");
 }
+
 function privmsg ($chan, $line) {
 	echo("PRIVMSG ".$chan." :".$line."\n");
+}
+
+function get_contents ($url) {
+	global $useragent;
+	$ch = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $url,
+		CURLOPT_USERAGENT => $useragent
+	));
+	return curl_exec($ch);
+	curl_close($ch);
 }
 ?>
