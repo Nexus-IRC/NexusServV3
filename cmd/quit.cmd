@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
 $params = $paramzz;
-global $userinfo, $botnick, $god;
+global $userinfo, $botnick, $god, $showdebug, $debugchannel;
 $lnick = strtolower($nick);
 $acc = $userinfo["$lnick"]["auth"];
 $saxs = 0;
@@ -39,11 +39,9 @@ if ($saxs >= 1000) {
 		sendserv("NOTICE $nick :You must enable security override (helping mode) to use this command.");
 	}
 	else {
-		//usleep(500000);
 		if ((empty($paramzz)) || ($paramzz == " ")) {
 			if ($showdebug == true){
 				sendserv("PRIVMSG $debugchannel :($ccchan) [$nick:$acc] $command");
-				sleep(2);
 				quit_bot("Terminated",true);
 			}
 			else {
