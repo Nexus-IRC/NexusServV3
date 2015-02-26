@@ -24,21 +24,8 @@ $pn = strtolower($pa);
 $axs = 0;
 $pe = $pp[1];
 $ppe = $pp[1];
-$xyz = 500;
-$valid = 0;
-while ($xyz > 0) {
-	if ("$pe" == "$xyz") {
-		$valid = 1;
-	}
-	$xyz = $xyz - 1;
-}
-if ($valid == 0) {
-	sendserv("NOTICE $nick :\002$pe\002 is an invalid access level.");
-	return(0);
-}
 $ctarg = strtolower($target);
 $tchan = $ctarg;
-fclose($fop);
 $area = "";
 $fop = fopen("./conf/settings.conf","r+t");
 while ($fra = fgets($fop)) {
@@ -76,7 +63,7 @@ if ($acc == "") {
 	sendserv("NOTICE $nick :$nick is not authed with \002AuthServ\002.");
 	return(0);
 }
-if ($params == "") {
+if (trim($params) == "") {
 	sendserv("NOTICE $nick :More parameters required: <*account|nick> <access>");
 	return(0);
 }

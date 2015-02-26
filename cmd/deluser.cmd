@@ -92,8 +92,8 @@ if ($axs["$acc"] < $tsets['deluser'] && $god["$acc"] != "1") {
 	sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
 	return(0);
 }
-if ($params == "") {
-	sendserv("NOTICE $nick :More parameters required: <*account|nick> <access>");
+if (trim($params) == "") {
+	sendserv("NOTICE $nick :More parameters required: <*account|nick>");
 	return(0);
 }
 elseif ($params[0] == "*") {

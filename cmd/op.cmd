@@ -60,19 +60,24 @@ fclose($fop);
 $cname = $chans["$tchan"]["name"];
 if ($cfound != 0) {
 	if ($axs >= 200 || $god[$acc] == 1) {
-		$ps = explode(" ",$params);
-		$xyxx = 0;
-		while ($ps[$xyxx] != "") {
-			sendserv("MODE $target +o ".$ps[$xyxx]);
-			if ($userinfo[strtolower($ps[$xyxx])]['nick'] == "") {
-				$fail = 1;
+		if (trim($params) == "") {
+			sendserv("NOTICE $nick :More parameters required: <nick> <nick2> ...");
+		}
+		else {
+			$ps = explode(" ",$params);
+			$xyxx = 0;
+			while ($ps[$xyxx] != "") {
+				sendserv("MODE $target +o ".$ps[$xyxx]);
+				if ($userinfo[strtolower($ps[$xyxx])]['nick'] == "") {
+					$fail = 1;
+				}
+				$xyxx++;
 			}
-			$xyxx++;
+			if ($fail == 1) {
+				sendserv("NOTICE $nick :\002$botnick\002 couldn't process some of the names you provided.");
+			}
+			sendserv("NOTICE $nick :User(s) have been opped in $cname.");
 		}
-		if ($fail == 1) {
-			sendserv("NOTICE $nick :\002$botnick\002 couldn't process some of the names you provided.");
-		}
-		sendserv("NOTICE $nick :User(s) have been opped in $cname.");
 	}
 	else {
 		sendserv("NOTICE $nick :You lack sufficient access to $cname to use this command.");
