@@ -20,7 +20,7 @@ $apikey = "";   //you can get your key here: http://www.worldweatheronline.com/r
 
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002time\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 $url = "http://api.worldweatheronline.com/free/v2/tz.ashx?q=".urlencode($params)."&format=json&key=".$apikey;

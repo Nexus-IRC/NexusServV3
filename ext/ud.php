@@ -19,7 +19,7 @@ $apikey = "";		//register for api key here: https://www.mashape.com/community/ur
 
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002ud\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 $url = "https://mashape-community-urban-dictionary.p.mashape.com/define?term=".urlencode($params);

@@ -19,7 +19,7 @@ $apikey = "";		//register for api key here: https://www.mashape.com/ismaelc/yoda
 
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002yoda\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 $url = "https://yoda.p.mashape.com/yoda?sentence=".urlencode($params);

@@ -17,7 +17,7 @@
  */
 $param = explode(" ",$params);
 if ($param[1] == "") {
-	echo("NOTICE $nick :\002ping_ip\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 if (php_uname("s") == "Windows NT") {

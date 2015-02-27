@@ -22,7 +22,7 @@ $apikey = "";
 
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002lastfm\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 $url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=".urlencode($params)."&limit=1&format=json&api_key=".$apikey;

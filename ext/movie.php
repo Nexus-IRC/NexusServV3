@@ -17,7 +17,7 @@
  */
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002movie\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 $url = "http://www.omdbapi.com/?t=".urlencode($params)."&type=movie&plot=full&r=json";

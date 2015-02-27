@@ -19,7 +19,7 @@ $apikey = "";		//register for the Books API here: https://code.google.com/apis/c
 
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002book\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 $url = "https://www.googleapis.com/books/v1/volumes?q=".urlencode($params)."&key=".$apikey;

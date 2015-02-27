@@ -17,7 +17,7 @@
  */
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002google\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 function object_to_array($object) {

@@ -15,9 +15,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>. 
  */
+global $command;
 $param = explode(" ",$params);
 if ($param[0] == "") {
-	echo("NOTICE $nick :\002dns\002 requires more parameters.");
+	echo("NOTICE $nick :\002".$command."\002 requires more parameters.");
 	die();
 }
 if (!isset($param[1])) {

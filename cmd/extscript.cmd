@@ -38,7 +38,7 @@ ob_start();
 $pe = substr($paramzz,strlen($la[0]." "));
 $fp = fopen("god_code.php","w+t");
 $xn = '$nicklist = unserialize(file_get_contents("nicklist.af"));';
-$extnick = '<?php $nick = "'.addslashes($nick).'"; $params = \''.addslashes($pe).'\'; $chan = \''.addslashes($cchan).'\'; $toys = \''.$toyz.'\'; '.$xn.'; $useragent = "'.$GLOBALS["useragent"].'"; ?>';
+$extnick = '<?php $nick = "'.addslashes($nick).'"; $params = \''.addslashes($pe).'\'; $chan = \''.addslashes($cchan).'\'; $toys = \''.$toyz.'\'; '.$xn.'; $useragent = "'.$GLOBALS["useragent"].'"; $command = "'.$GLOBALS["command"].'"; ?>';
 global $chans, $userinfo;
 $xx = fopen("nicklist.af","w+t");
 $nicklist = array();
